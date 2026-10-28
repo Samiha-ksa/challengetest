@@ -45,10 +45,19 @@
     }
     header p { color: var(--muted); margin: 0; font-size: 1.05rem; }
     .team-dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .team-dots span {
-      font-size: 0.85rem; font-weight: 700; color: #fff;
-      padding: 5px 16px; border-radius: 999px;
+    .team-dots .team-btn {
+      width: auto; flex: 1 1 0; min-width: 0; max-width: 150px; display: inline-flex; align-items: center; justify-content: center; text-align: center;
+      font-size: 1.2rem; font-weight: 700; line-height: 1.1; letter-spacing: 0.3px; color: #fff;
+      padding: 13px 8px; border-radius: 999px; border: 3px solid rgba(255,255,255,0.7);
+      box-shadow: 0 5px 0 rgba(43,32,53,0.3), 0 12px 20px -10px rgba(43,32,53,0.5);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
+    .team-dots .team-btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
+    .team-dots .team-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(43,32,53,0.3); }
+    .standings { scroll-margin-top: 14px; }
+    .lane.flash { animation: laneFlash 2.4s ease; }
+    @keyframes laneFlash { 0%, 100% { box-shadow: none; } 15%, 60% { box-shadow: 0 0 0 5px var(--tc), 0 0 24px 4px var(--tc); } }
+    @media (prefers-reduced-motion: reduce) { .lane.flash { animation: none; box-shadow: 0 0 0 4px var(--tc); } }
 
     .controls-card, .card, .leaderboard {
       background: var(--card);
@@ -139,6 +148,7 @@
     .tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: -6px 0 26px; }
     .tab { width: auto; padding: 9px 18px; background: var(--card); color: var(--ink); border: 1px solid var(--line); box-shadow: none; font-size: 0.95rem; }
     .tab:hover { background: var(--soft); }
+    .stat-table td.z { color: #b9b1c2; } .stat-table th, .stat-table td { text-align: right; white-space: nowrap; } .stat-table th:first-child, .stat-table td:first-child { text-align: left; white-space: normal; } .stat-table small { color: var(--muted); }
     .tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
     .zone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-bottom: 10px; }
     .zone-item { text-align: center; }
@@ -245,7 +255,10 @@
     .avatar .crown { position: absolute; top: -18px; left: 50%; width: 22px; height: 22px; transform: translateX(-50%); fill: #e0b341; stroke: #8a6a1c; }
     .race-note { font-size: 0.8rem; color: var(--muted); margin: 10px 4px 0; }
     .quest-result { margin: 12px 0 4px; padding: 12px 14px; border-radius: 14px; background: var(--sun); color: var(--ink); font-weight: 700; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-    .quest-result button, .see-race { width: auto; padding: 9px 16px; font-size: 0.9rem; }
+    .quest-result button { width: auto; padding: 9px 16px; font-size: 0.9rem; }
+    .see-race, .back-small { width: auto; display: inline-block; margin: 10px 0 0; padding: 5px 14px; font-size: .78rem; border-radius: 999px; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+    .see-race:hover, .back-small:hover { background: var(--sun); filter: none; }
+    .back-small { margin: 0 0 12px; }
     .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 60; }
     .confetti i { position: absolute; top: -16px; width: 9px; height: 14px; border-radius: 2px; animation: confettiFall 2.6s ease-in forwards; }
     @keyframes confettiFall { to { transform: translate(var(--dx), 108vh) rotate(720deg); } }
@@ -308,6 +321,18 @@
     .startbar .ctok { position: static; transform: none; }
     .legend { margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--muted); font-size: .8rem; }
     .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; }
+    .hfwave { position: fixed; right: 14px; bottom: 16px; z-index: 40; width: auto; display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; box-shadow: none; padding: 0; cursor: pointer; }
+    .hfwave:hover { filter: none; background: none; }
+    .hfwave:focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; border-radius: 14px; }
+    .hfwave svg { width: 74px; height: 68px; overflow: visible; transform-origin: 50% 92%; animation: handWave 1.4s ease-in-out infinite; filter: drop-shadow(0 4px 5px rgba(0,0,0,.25)); }
+    .hfwave.sent svg { animation: none; }
+    .hf-say { max-width: 190px; background: #fff; color: #2b2035; border: 2px solid var(--btn, var(--violet)); border-radius: 14px; padding: 7px 11px; font-family: "DM Sans", sans-serif; font-size: .8rem; font-weight: 500; line-height: 1.25; text-align: left; position: relative; margin-bottom: 8px; box-shadow: 0 4px 12px -4px rgba(0,0,0,.4); }
+    .hf-say b { color: var(--btn, var(--violet)); font-family: var(--head); }
+    .hf-say small { color: var(--muted); }
+    .hf-say::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 12px; height: 12px; background: #fff; border-right: 2px solid var(--btn, var(--violet)); border-bottom: 2px solid var(--btn, var(--violet)); transform: translateX(-50%) rotate(45deg); }
+    .hf-ribbon { background: var(--btn, var(--violet)); color: #fff; font-family: var(--head); font-weight: 700; font-size: .72rem; padding: 3px 14px; clip-path: polygon(0 0, 100% 0, 93% 50%, 100% 100%, 0 100%, 7% 50%); white-space: nowrap; }
+    @keyframes handWave { 0%, 55%, 100% { transform: rotate(0); } 10% { transform: rotate(14deg); } 20% { transform: rotate(-12deg); } 30% { transform: rotate(14deg); } 40% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+    @media (max-width: 520px) { .hfwave svg { width: 60px; height: 56px; } .hf-say { max-width: 150px; font-size: .74rem; } .hf-ribbon { font-size: .66rem; padding: 2px 11px; } }
     .hf textarea { width: 100%; font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--field); color: var(--ink); resize: vertical; margin-bottom: 8px; }
     .hf-list { list-style: none; padding: 0; margin: 14px 0 0; } .hf-list li { padding: 8px 0; border-top: 1px solid var(--line2); display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; } .hf-list span { color: var(--muted); white-space: nowrap; } .hf-list .empty { color: var(--muted); }
     .hand { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
@@ -349,9 +374,11 @@
     .pulse { transform-box: fill-box; transform-origin: center; animation: pulseRing 1.6s ease-in-out infinite; }
     @keyframes pulseRing { 50% { opacity: .3; } }
 
-    .rest-mini { display: block; width: auto; margin: 10px auto 0; padding: 5px 14px; font-size: .78rem; font-weight: 700; border-radius: 999px; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
-    .rest-mini:hover:not(:disabled) { background: var(--sun); filter: none; }
-    .rest-mini:disabled { opacity: .55; cursor: default; }
+    .rest-mini { display: block; width: 100%; margin: 14px 0 0; padding: 16px 14px; font-size: clamp(1.05rem, 4.2vw, 1.3rem); font-weight: 700; border-radius: 22px; background: #f5c93a; color: #3b2a08; border: none; box-shadow: 0 7px 0 rgba(120,84,0,.35); }
+    .rest-mini:hover:not(:disabled) { background: #f8d35c; filter: none; }
+    .rest-mini:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 2px 0 rgba(120,84,0,.35); }
+    .rest-mini:disabled { opacity: .6; cursor: default; box-shadow: none; }
+    .rest-note { font-size: .82rem; color: var(--muted); text-align: center; margin: 10px 4px 0; line-height: 1.4; }
     .admin-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; opacity: .28; }
     .admin-foot:hover, .admin-foot:focus-within { opacity: .9; }
     .admin-foot button { width: auto; min-width: 14px; height: 14px; padding: 0 3px; font-size: 9px; line-height: 12px; font-family: inherit; font-weight: 700; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; box-shadow: none; }
@@ -372,7 +399,64 @@
     .pf-ok { width: auto; padding: 12px 28px; background: #f5c542; color: #3b2a08; }
     .pf-early { width: auto; padding: 4px 10px; font-size: .75rem; font-weight: 500; background: transparent; color: #8fa3bd; border: 1px solid #3a4f6b; margin-top: 18px; }
 
+    .kid-star { position: static; width: auto; display: inline-flex; flex-direction: column; align-items: center; gap: 1px; padding: 0 6px; margin: -4px 0 -6px; background: transparent; border: 0; box-shadow: none; cursor: pointer; font-family: "Fredoka", "DM Sans", sans-serif; font-weight: 600; font-size: 0.72rem; line-height: 1; color: var(--ink); }
+    .kid-star:hover { filter: none; background: transparent; }
+    .kid-star[hidden] { display: none; }
+    .name-pick { text-align: center; }
+    .name-pick select { max-width: 320px; margin: 0 auto; font-weight: 700; font-size: 1rem; }
+    .name-hello { font-family: var(--head); font-weight: 700; font-size: 1.6rem; margin: 2px 0 0; color: var(--btn, var(--violet)); }
+    .name-change { width: auto; display: inline-block; margin: 4px 0 2px; padding: 3px 12px; font-size: .78rem; border-radius: 999px; background: var(--soft); color: var(--muted); border: 1px solid var(--line); box-shadow: none; }
     .tabs[hidden] { display: none; }
+    .name-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .name-btns .name-change { margin: 4px 0 2px; }
+    .name-change.stuck-btn { background: #fff1b8; color: #5a4200; border-color: #e0b341; font-weight: 700; }
+    .p-hello { text-align: center; }
+    .p-cheer { margin: 6px auto 4px; max-width: 460px; color: var(--muted); font-size: 0.95rem; }
+    /* "I'm stuck" page */
+    .stk-hero { text-align: center; background: linear-gradient(135deg, #fff6d6, #e8f6ee 60%, #e4f3ff); border: 3px solid var(--ink); border-radius: 22px; padding: 18px 16px; margin-bottom: 18px; box-shadow: 0 8px 0 rgba(43,32,53,0.12); }
+    .stk-hero h2 { font-family: var(--head); font-size: 1.6rem; margin: 0 0 4px; }
+    .stk-hero p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .stk-tip { background: #fffdf3; border: 2px solid #e0b341; border-radius: 18px; padding: 18px 16px; text-align: center; margin-top: 10px; }
+    .stk-tip .stk-n { font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+    .stk-tip h3 { font-family: var(--head); font-size: 1.35rem; line-height: 1.25; margin: 6px 0 8px; }
+    .stk-tip p { margin: 0 auto; max-width: 460px; font-size: 1.02rem; line-height: 1.5; }
+    .stk-nav { display: flex; gap: 8px; margin-top: 12px; }
+    .stk-nav button { margin: 0; }
+    .stk-prev { flex: 0 0 32%; background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+    .stk-prev:hover { background: var(--soft); }
+    .stk-more { flex: 1; background: var(--ink); }
+    .stk-feel { margin-top: 10px; background: #f3effa; border: 2px solid #b9a8dc; border-radius: 14px; padding: 12px 14px; }
+    .stk-feel b { font-family: var(--head); }
+    .stk-feel p { margin: 4px 0 0; font-size: 0.95rem; line-height: 1.45; }
+    .stk textarea { width: 100%; font: inherit; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--field); color: var(--ink); resize: vertical; margin-bottom: 8px; }
+    .stk-q { font-weight: 700; margin: 14px 0 8px; }
+    .stk-wa { background: #1e8a5a; margin-top: 4px; }
+    .stk-copy { margin-top: 8px; background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+    .stk-copy:hover { background: var(--soft); }
+    /* whimsical badge cabinet */
+    .bh { text-align: center; background: linear-gradient(135deg, #fff6d6, #ffe3ef 55%, #e4f3ff); border: 3px solid var(--ink); border-radius: 22px; padding: 20px 16px 16px; margin-bottom: 22px; box-shadow: 0 8px 0 rgba(43,32,53,0.12); }
+    .bh h2 { font-family: var(--head); font-size: 1.6rem; margin: 0 0 4px; }
+    .bh p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .bh-bar { height: 16px; max-width: 360px; margin: 12px auto 6px; border-radius: 999px; background: rgba(255,255,255,0.8); border: 2px solid var(--ink); overflow: hidden; }
+    .bh-bar div { height: 100%; background: repeating-linear-gradient(45deg, #ffb703 0 10px, #ff8fa3 10px 20px); transition: width 0.6s ease; }
+    .bh .name-change { margin-top: 8px; }
+    .wb-sec { font-family: var(--head); font-size: 1.25rem; margin: 24px 0 4px; }
+    .wb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 12px; margin-top: 12px; }
+    .wb { position: relative; text-align: center; background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 12px 8px 12px; }
+    .wb.got { border-color: var(--ink); box-shadow: 0 5px 0 rgba(43,32,53,0.14); }
+    .wb-svg { width: 84px; height: 94px; display: block; margin: 0 auto 4px; overflow: visible; }
+    .wb.got:hover .wb-svg { animation: wbWobble 0.7s ease; }
+    @keyframes wbWobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg) scale(1.06); } 60% { transform: rotate(7deg) scale(1.06); } }
+    .wb.got .spark { animation: wbTwinkle 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .wb.got .spark.s2 { animation-delay: 1.1s; }
+    @keyframes wbTwinkle { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.15); } }
+    .wb-name { font-family: var(--head); font-weight: 700; font-size: 0.98rem; line-height: 1.2; }
+    .wb-how { color: var(--muted); font-size: 0.78rem; line-height: 1.35; margin-top: 3px; }
+    .wb-prog { display: inline-block; margin-top: 7px; font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line2); color: var(--muted); }
+    .wb.got .wb-prog { background: #fff1b8; border-color: #e0b341; color: #5a4200; }
+    .wb.locked .wb-svg { filter: grayscale(1); opacity: 0.55; }
+    .wb.locked .wb-name { color: var(--muted); }
+    @media (prefers-reduced-motion: reduce) { .wb.got:hover .wb-svg, .wb.got .spark { animation: none; } }
     .mu-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
     .mu-xp { font-family: var(--head); font-size: 1.1rem; color: var(--muted); white-space: nowrap; }
     .mu-xp b { font-size: 1.9rem; color: #d49a12; }
@@ -414,6 +498,10 @@
     .wk-count { font-family: var(--head); font-size: 3rem; font-weight: 700; line-height: 1.1; }
     .wk-setn { font-size: .82rem; color: var(--muted); text-align: center; max-width: 130px; }
     .ph-rest .wk-count { color: #3d8a7e; }
+    .wk-reps { text-align: center; margin: 12px auto 4px; }
+    .wk-reps .wk-count { font-size: 2.4rem; }
+    .wk-reps .wk-setn { max-width: none; margin-top: 2px; }
+    .wk-bigbtn { min-width: 220px; font-size: 1.1rem; padding: 16px 22px !important; }
     .wk-ctl { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0; }
     .wk-ctl button { width: auto; padding: 10px 16px; }
     .wk-main { min-width: 130px; }
@@ -438,6 +526,123 @@
     .wk-sum li.sk { opacity: .55; }
     .wk-xp { text-align: center; font-family: var(--head); font-size: 3rem; font-weight: 700; color: #d49a12; margin: 6px 0; }
 
+    .rtimer { position: fixed; right: 10px; top: 42%; z-index: 45; display: flex; align-items: center; gap: 8px; }
+    .rtimer[hidden] { display: none; }
+    .rt-fab { width: 68px; height: 68px; border-radius: 50%; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: var(--btn, var(--violet)); color: #fff; font-family: "DM Sans", sans-serif; font-size: .72rem; font-weight: 700; box-shadow: 0 6px 16px -4px rgba(0,0,0,.4); }
+    .rt-fab.run { background: #3d8a7e; }
+    .rt-panel { order: -1; width: 190px; background: var(--card); border: 2px solid var(--btn, var(--violet)); border-radius: 18px; padding: 12px; text-align: center; box-shadow: 0 10px 26px -8px rgba(0,0,0,.4); }
+    .rt-panel[hidden] { display: none; }
+    .rt-time { width: 100%; font-family: var(--head); font-size: 2.6rem; padding: 6px; background: var(--soft); color: var(--ink); border: 2px solid var(--line); box-shadow: none; }
+    .rt-time:hover { filter: none; background: var(--sun); }
+    .rt-time.done { background: #3d8a7e; color: #fff; border-color: #3d8a7e; }
+    .rt-hint { font-size: .75rem; color: var(--muted); margin: 4px 0 8px; }
+    .rt-pre { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+    .rt-pre button, .rt-reset { width: auto; padding: 5px 9px; font-size: .78rem; font-family: "DM Sans", sans-serif; font-weight: 700; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; border-radius: 999px; }
+    .rt-pre button.on { background: var(--ink); color: var(--bg); }
+    .rt-reset { margin-top: 8px; }
+    .pbanner { display: flex; gap: 14px; align-items: center; background: #2b2035; color: #fff; border-radius: 18px; padding: 14px 16px; margin-bottom: 16px; box-shadow: 0 8px 22px -12px rgba(43,32,53,.6); border: 2px solid #f5c93a; }
+    .pbanner svg { flex: none; }
+    .pbanner b { display: block; font-family: var(--head); font-size: 1.2rem; letter-spacing: .02em; color: #f5c93a; }
+    .pbanner span { display: block; font-size: .85rem; line-height: 1.4; opacity: .92; }
+    .punits { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; font-size: .85rem; color: var(--muted); }
+    .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+    .seg button { width: auto; border-radius: 0; box-shadow: none; padding: 6px 14px; font-size: .8rem; background: var(--card); color: var(--ink); border: none; }
+    .seg button.on { background: var(--ink); color: var(--bg); }
+    .seg button:hover { filter: none; }
+    .pcard { margin-top: 14px; }
+    .pcard h3 { margin: 18px 0 6px; font-size: 1.05rem; font-family: var(--head); }
+    .pcard .sub { color: var(--muted); font-size: .85rem; margin: 0 0 8px; line-height: 1.4; }
+    .prow { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin: 8px 0; }
+    .prow label { display: flex; flex-direction: column; gap: 3px; font-size: .75rem; font-weight: 700; color: var(--muted); flex: 1 1 110px; }
+    .prow input, .prow select, .pgrid input { font: inherit; font-size: .95rem; padding: 9px 10px; border: 2px solid var(--line); border-radius: 12px; background: var(--field); color: var(--ink); width: 100%; min-width: 0; }
+    .prow button, .pbtn { width: auto; padding: 10px 16px; font-size: .9rem; }
+    .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin: 8px 0; }
+    .pgrid label { display: flex; flex-direction: column; gap: 3px; font-size: .75rem; font-weight: 700; color: var(--muted); }
+    .pchart { width: 100%; height: auto; margin: 6px 0; background: var(--soft); border-radius: 14px; }
+    .pchart .ln { fill: none; stroke: var(--btn, #5b4b8a); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+    .pchart .dot { fill: var(--btn, #5b4b8a); stroke: #fff; stroke-width: 1.6; }
+    .pchart .gl { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; }
+    .pchart text { font-size: 9.5px; fill: var(--muted); font-family: "DM Sans", sans-serif; }
+    .pchart .big { font-size: 11px; font-weight: 700; fill: var(--ink); }
+    .plist { list-style: none; padding: 0; margin: 6px 0; }
+    .plist li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 4px; border-bottom: 1px solid var(--line2); font-size: .9rem; }
+    .plist li small { color: var(--muted); }
+    .xbtn { width: auto; padding: 2px 9px; font-size: .85rem; line-height: 1.2; background: none; color: var(--muted); border: 1px solid var(--line); box-shadow: none; border-radius: 999px; }
+    .xbtn:hover { filter: none; background: var(--soft); }
+    .ptable { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .ptable th, .ptable td { padding: 6px 6px; border-bottom: 1px solid var(--line2); text-align: right; white-space: nowrap; }
+    .ptable th:first-child, .ptable td:first-child { text-align: left; }
+    .ptable small { color: var(--muted); }
+    .plb { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 8px; }
+    .plb li { display: grid; grid-template-columns: 38px 1fr auto; gap: 6px 10px; align-items: center; background: color-mix(in srgb, var(--btn, var(--violet)) 11%, var(--card)); border: 1px solid color-mix(in srgb, var(--btn, var(--violet)) 28%, var(--line)); border-radius: 16px; padding: 10px 12px; }
+    .plb .rk { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--head); font-weight: 700; background: var(--soft); color: var(--ink); }
+    .plb li:nth-child(1) .rk.m { background: #f5c93a; color: #3b2a08; } .plb li:nth-child(2) .rk.m { background: #d6dbe0; color: #2b3640; } .plb li:nth-child(3) .rk.m { background: #d9a273; color: #43260d; }
+    .plb .nm b { display: block; } .plb .nm small { color: var(--muted); font-size: .76rem; }
+    .plb .pv { font-family: var(--head); font-size: 1.15rem; text-align: right; }
+    .plb .acts { grid-column: 2 / 4; display: flex; gap: 8px; flex-wrap: wrap; }
+    .plb .acts button { width: auto; padding: 5px 12px; font-size: .78rem; }
+    .plb .acts .ghost { background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+    .parch { margin-top: 12px; border: 1px dashed #a7a0ae; border-radius: 14px; padding: 8px 12px; background: rgba(120,115,128,.08); color: #6b6573; }
+    .parch summary { cursor: pointer; font-weight: 700; padding: 4px 0; }
+    .parch .arow { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(120,115,128,.2); font-size: .85rem; filter: grayscale(1); }
+    .parch .arow:last-child { border-bottom: none; }
+    .parch h4 { margin: 10px 0 2px; font-size: .88rem; color: #57515f; }
+    .mtips { margin: 8px 0 10px; border: 1px solid var(--line); border-radius: 14px; padding: 8px 14px; background: var(--soft); font-size: .88rem; line-height: 1.5; }
+    .mtips summary { cursor: pointer; font-weight: 700; padding: 4px 0; }
+    .mtips h4 { margin: 14px 0 4px; font-family: var(--head); font-size: .98rem; }
+    .mtips p { margin: 6px 0; } .mtips ul { margin: 6px 0 4px; padding-left: 20px; } .mtips li { margin: 4px 0; }
+    .pchal { margin-top: 18px; } .pchal summary { cursor: pointer; font-weight: 700; }
+    .pbk { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pbk button, .pbk label.fbtn { width: auto; padding: 8px 14px; font-size: .82rem; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; border-radius: 999px; cursor: pointer; font-family: var(--head); font-weight: 600; }
+    .pbk button:hover, .pbk label.fbtn:hover { background: var(--sun); filter: none; }
+    .jbook { position: fixed; right: 14px; bottom: 16px; z-index: 40; width: auto; display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; box-shadow: none; padding: 0; cursor: pointer; }
+    .jbook:hover { filter: none; background: none; }
+    .jbook:focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; border-radius: 14px; }
+    .jbook svg { width: 72px; height: 80px; overflow: visible; animation: dbBounce 1.1s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 4px 5px rgba(0,0,0,.25)); }
+    .jbook.done svg { animation: none; }
+    @media (max-width: 520px) { .jbook svg { width: 60px; height: 67px; } }
+    .jr-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .jquote { margin: 0 0 14px; padding: 16px 18px 16px 46px; background: var(--soft); border-left: 5px solid var(--btn, var(--violet)); border-radius: 14px; font-family: var(--head); font-size: 1.1rem; line-height: 1.4; position: relative; }
+    .jquote span { position: absolute; left: 12px; top: -2px; font-size: 3rem; color: var(--btn, var(--violet)); line-height: 1; }
+    .jprompt { background: var(--done); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+    .jprompt small { display: block; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-size: .72rem; margin-bottom: 4px; }
+    .jlabel { display: block; font-weight: 700; margin: 8px 0 4px; }
+    #jText { width: 100%; min-height: 180px; resize: vertical; border: 2px solid var(--line); border-radius: 14px; padding: 12px; font: inherit; background: var(--field); color: var(--ink); line-height: 1.5; }
+    .jmeta { text-align: right; color: var(--muted); font-size: .78rem; margin: 2px 0 10px; }
+    .jbtns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+    .wa-btn { background: #1c9b52; color: #fff; }
+    .wa-btn:hover { filter: brightness(.93); }
+    .jentry { border: 1px solid var(--line); border-radius: 14px; padding: 12px; margin-bottom: 10px; background: var(--card); }
+    .jentry .jhead { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; margin-bottom: 4px; }
+    .jentry small { color: var(--muted); font-weight: 500; }
+    .jentry em { display: block; color: var(--muted); font-size: .85rem; margin-bottom: 6px; }
+    .jentry p { margin: 0 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .jmini, .wa-btn.small { width: auto; padding: 7px 14px; font-size: .85rem; }
+    .pfpic { display: block; width: 100%; background: none; border: none; box-shadow: none; padding: 0; margin-top: 10px; color: var(--ink); text-align: center; cursor: pointer; transition: transform .15s; }
+    .pfpic:hover { filter: none; background: none; transform: translateY(-2px); }
+    .pfpic:focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; border-radius: 18px; }
+    .pfpic svg { width: 100%; max-width: 380px; height: auto; border-radius: 18px; box-shadow: 0 8px 20px -10px rgba(0,0,0,.45); }
+    .pfpic .cap { display: block; margin-top: 8px; font-family: var(--head); font-size: 1.05rem; }
+    .pfpic .cap small { display: block; font-family: "DM Sans", sans-serif; color: var(--muted); font-size: .82rem; }
+    .pfpic:disabled { cursor: default; opacity: 1; transform: none; }
+    .pfpic.off { opacity: .55; }
+    .pfpic .bob { animation: pfBob 1.8s ease-in-out infinite; }
+    .pfpic .zz { animation: pfZ 2.6s ease-in infinite; opacity: 0; }
+    .pfpic .zz2 { animation-delay: .9s; } .pfpic .zz3 { animation-delay: 1.8s; }
+    .pfpic .ping { animation: pfPing 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes pfBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes pfZ { 0% { opacity: 0; transform: translate(0, 8px); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(12px, -20px); } }
+    @keyframes pfPing { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+    .dbell { position: fixed; right: 14px; bottom: 16px; z-index: 40; width: auto; display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; box-shadow: none; padding: 0; cursor: pointer; font-family: var(--head); color: var(--ink); }
+    .dbell:hover { filter: none; }
+    .dbell .db-say { background: #fff; color: #2b2035; border: 2px solid var(--btn, var(--violet)); border-radius: 14px; padding: 6px 10px; font-size: .82rem; font-weight: 700; max-width: 150px; line-height: 1.2; position: relative; box-shadow: 0 4px 12px -4px rgba(0,0,0,.35); }
+    .dbell .db-say::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 12px; height: 12px; background: #fff; border-right: 2px solid var(--btn, var(--violet)); border-bottom: 2px solid var(--btn, var(--violet)); transform: translateX(-50%) rotate(45deg); }
+    .dbell svg { width: 96px; height: 56px; overflow: visible; animation: dbBounce 1.1s ease-in-out infinite; transform-origin: 50% 100%; }
+    .dbell .db-shadow { width: 60px; height: 8px; border-radius: 50%; background: rgba(0,0,0,.2); animation: dbShadow 1.1s ease-in-out infinite; }
+    .dbell:focus-visible { outline: 3px solid var(--sun); outline-offset: 4px; border-radius: 14px; }
+    @keyframes dbBounce { 0%, 100% { transform: translateY(0) scale(1.08, .9); } 45% { transform: translateY(-22px) scale(.95, 1.06) rotate(-4deg); } 70% { transform: translateY(-10px) rotate(3deg); } }
+    @keyframes dbShadow { 0%, 100% { transform: scale(1); opacity: .35; } 45% { transform: scale(.6); opacity: .15; } }
+    @media (max-width: 520px) { .dbell svg { width: 78px; height: 46px; } .dbell .db-say { font-size: .75rem; max-width: 120px; } }
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
@@ -451,9 +656,13 @@
     <h1>Stronger Together Workout Challenge</h1>
     <p>Climb the board together. Log your workouts, pick a daily card and cheer on your teammate.</p>
     <div class="team-dots">
-      <span style="background: var(--coral)">Team 1</span>
-      <span style="background: var(--violet)">Team 2</span>
-      <span style="background: var(--teal)">Team 3</span>
+      <button type="button" class="team-btn" style="background: var(--coral)" onclick="goTeamRace('Team 1')" aria-label="Team 1: see the team race results">Team 1</button>
+      <button type="button" class="team-btn" style="background: var(--violet)" onclick="goTeamRace('Team 2')" aria-label="Team 2: see the team race results">Team 2</button>
+      <button type="button" class="team-btn" style="background: var(--teal)" onclick="goTeamRace('Team 3')" aria-label="Team 3: see the team race results">Team 3</button>
+      <button id="kidStar" class="kid-star" onclick="showView('kid')" aria-label="Kids">
+        <svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><path d="M32 9 L38 23 L53 24.500 L42 34.500 L45.500 49.500 L32 41.500 L18.500 49.500 L22 34.500 L11 24.500 L26 23 Z" fill="#ffe27a" stroke="#ffe27a" stroke-width="9" stroke-linejoin="round"/><ellipse cx="22.500" cy="35" rx="3.200" ry="2.200" fill="#ffb3a7" opacity=".7"/><ellipse cx="41.500" cy="35" rx="3.200" ry="2.200" fill="#ffb3a7" opacity=".7"/><circle cx="26" cy="30" r="2.600" fill="#5a4030"/><circle cx="38" cy="30" r="2.600" fill="#5a4030"/><circle cx="26.800" cy="29.100" r=".9" fill="#fff"/><circle cx="38.800" cy="29.100" r=".9" fill="#fff"/><path d="M28 35.500 q4 4 8 0" stroke="#5a4030" stroke-width="2.200" fill="none" stroke-linecap="round"/></svg>
+        <em style="font-style:normal">Kids</em>
+      </button>
     </div>
     <p class="status" id="status">Loading the shared scoreboard...</p>
   </header>
@@ -463,18 +672,17 @@
     <button class="tab" id="tab-board" onclick="showView('board')">Climb Board</button>
     <button class="tab" id="tab-card" onclick="showView('card')">Daily Card</button>
     <button class="tab" id="tab-muscle" onclick="showView('muscle')">Muscle Up</button>
-    <button class="tab" id="tab-race" onclick="showView('race')">Quest Race</button>
-    <button class="tab" id="tab-kid" onclick="showView('kid')">Kid Zone</button>
+    <button class="tab" id="tab-badges" onclick="showView('badges')">Badges</button>
+    <button class="tab" id="tab-stats" onclick="showView('stats')">My Stats</button>
   </nav>
 
   <div id="view-challenge">
 
   <div class="controls-card checkin-card">
-    <div class="pick-label">Who are you?</div>
-    <div class="pick-table" id="pickName"></div>
+    <div class="name-pick" id="pickName"></div>
     <button id="bigCheckin" class="bigcheck" onclick="doCheckIn()">Tap to check in</button>
     <button id="restBtn" class="rest-mini" onclick="useRestToken()">Use a rest token</button>
-    <div id="phoenixBox"></div>
+    <p class="rest-note" id="restNote"></p>
     <div class="quest-stats" id="statusStrip" style="margin-top:14px"></div>
   </div>
 
@@ -513,10 +721,6 @@
 
   <div class="quest-card" id="questBoard"></div>
 
-  <h2 class="section-title" id="badgeTitle"></h2>
-  <p class="badge-sub">Badges are personal. They add up across all four weeks.</p>
-  <div class="grid" id="badgeGrid"></div>
-
 
   <h2 class="section-title">Theme treasures</h2>
   <p class="badge-sub" id="themeSub"></p>
@@ -525,12 +729,12 @@
 
   <div id="view-board" hidden>
     <div class="quest-card" id="boardHead"></div>
-    <div class="pick-label">Who are you?</div><div class="pick-table" id="pickName2"></div>
+    <div id="hfWave"></div>
     <div class="pick-row" id="boardWeeks" style="margin-top:10px"></div>
     <div id="boardGrid" style="margin-top:12px"></div>
     <div class="treasure-row" id="boardUnlocks"></div>
     <div class="standings" id="standings"></div>
-    <div class="quest-card hf">
+    <div class="quest-card hf" id="hfCard">
       <h2 class="section-title">Send a high five</h2>
       <p class="badge-sub" id="hfSub"></p>
       <div class="pick-row" id="hfPick" style="margin-bottom:10px"></div>
@@ -540,10 +744,31 @@
     </div>
   </div>
   <div id="view-card" hidden><div id="cardBox"></div></div>
+  <div id="view-journal" hidden><div id="journalBox"></div></div>
   <div id="view-muscle" hidden><div id="muBox"></div></div>
   <div id="view-workout" hidden><div id="wkBox"></div></div>
   <div id="view-race" hidden>
+    <button class="jmini back-small" onclick="showView('challenge')">&larr; Back to the Challenge</button>
     <div id="raceBoard"></div>
+  </div>
+
+  <div id="view-badges" hidden><div id="badgesBox"></div></div>
+  <div id="view-stuck" hidden>
+    <button class="jmini back-small" onclick="showView('challenge')">&larr; Back to the Challenge</button>
+    <div class="stk" id="stuckBox"></div>
+  </div>
+
+  <div id="view-stats" hidden>
+    <div class="pbanner" role="note">
+      <svg viewBox="0 0 32 32" width="38" height="38" aria-hidden="true"><rect x="6" y="14" width="20" height="14" rx="3" fill="#f5c93a"/><path d="M10 14v-4a6 6 0 0 1 12 0v4" fill="none" stroke="#f5c93a" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="21" r="2.200" fill="#2b2035"/></svg>
+      <div><b>For your eyes only</b><span>This page is private. What you write here is saved only on this device. It is never sent to the scoreboard, your team or anyone else.</span></div>
+    </div>
+    <div class="quest-card"><div id="pHello"></div>
+      <div class="punits" id="pUnits"></div></div>
+    <div id="pBody"></div>
+    <div id="pStrength"></div>
+    <div id="pBackup"></div>
+    <details class="quest-card pchal"><summary>Challenge totals (shared scoreboard numbers)</summary><div id="statsBox"></div></details>
   </div>
 
   <div id="view-kid" class="kid-theme" hidden>
@@ -551,11 +776,56 @@
       <svg viewBox="0 0 64 64" width="76" height="76" aria-hidden="true"><polygon points="32,4 39,24 60,24 43,37 49,58 32,45 15,58 21,37 4,24 25,24" fill="#f7c948" stroke="#e0a800" stroke-width="2" stroke-linejoin="round"/><circle cx="26" cy="32" r="2.5" fill="#3b2a1a"/><circle cx="38" cy="32" r="2.5" fill="#3b2a1a"/><path d="M26 39q6 6 12 0" stroke="#3b2a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
       <div><h2 class="section-title">Kid Zone</h2><div class="kid-bubble" id="kidInfo"></div></div>
     </div>
-    <p class="badge-sub">Tap a badge each time you do it. Tap one 7 times to win a new star, and watch your tree grow!</p>
+    <p class="badge-sub">Tap a badge each time you do it. Tap one 7 times to win a new star. Every tap drops jelly beans in your jar. When the jar is full, a silly monster comes to gobble them all up, and you start a fresh jar!</p>
     <div class="star-shelf" id="kidStars"></div>
     <div class="zone-grid" id="kidGrid"></div>
     <div class="zone-actions"><button class="danger-btn" onclick="newWeek('kid')">Start a new week</button><button class="danger-btn solid" onclick="resetMonth('kid')">Reset for the new month</button></div>
   </div>
+
+  <button type="button" class="jbook" id="jbook" onclick="openJournal()" hidden aria-label="Open your journal">
+    <svg viewBox="0 0 80 90" aria-hidden="true">
+      <rect x="10" y="8" width="62" height="76" rx="8" fill="#2b2035"/>
+      <rect x="16" y="8" width="56" height="72" rx="7" fill="#fff" stroke="#2b2035" stroke-width="2.4"/>
+      <path d="M22 80h46" stroke="#e5dde9" stroke-width="3" stroke-linecap="round"/>
+      <rect x="8" y="4" width="58" height="76" rx="9" fill="#8a5fc9" stroke="#2b2035" stroke-width="3"/>
+      <rect x="8" y="4" width="13" height="76" rx="7" fill="#6f4aa8" stroke="#2b2035" stroke-width="3"/>
+      <path d="M44 4v22l6-5l6 5V4z" fill="#ff8fa3" stroke="#2b2035" stroke-width="2.2" stroke-linejoin="round"/>
+      <circle cx="33" cy="44" r="8" fill="#fff" stroke="#2b2035" stroke-width="2"/><circle cx="52" cy="44" r="8" fill="#fff" stroke="#2b2035" stroke-width="2"/>
+      <circle cx="34.600" cy="45.500" r="4" fill="#2b2035"/><circle cx="53.600" cy="45.500" r="4" fill="#2b2035"/>
+      <circle cx="36" cy="43.600" r="1.500" fill="#fff"/><circle cx="55" cy="43.600" r="1.500" fill="#fff"/>
+      <ellipse cx="27" cy="57" rx="4.500" ry="3" fill="#ff8fa3" opacity=".85"/><ellipse cx="58" cy="57" rx="4.500" ry="3" fill="#ff8fa3" opacity=".85"/>
+      <path d="M37 58q5.500 6 11 0" fill="none" stroke="#2b2035" stroke-width="2.600" stroke-linecap="round"/>
+      <path d="M70 12l2-5M74 20l5-2M66 4l1-4" stroke="#e0b341" stroke-width="2.400" stroke-linecap="round"/>
+    </svg>
+    <span class="hf-ribbon" id="jbRib">Journal</span>
+  </button>
+
+  <div class="rtimer" id="rtimer" hidden>
+    <div class="rt-panel" id="rtPanel" hidden>
+      <button type="button" class="rt-time" id="rtTime" onclick="rtMain()" aria-label="Start or pause the rest timer">1:00</button>
+      <div class="rt-hint" id="rtHint">Tap the time to start</div>
+      <div class="rt-pre"><button type="button" onclick="rtSet(30)">30s</button><button type="button" onclick="rtSet(45)">45s</button><button type="button" onclick="rtSet(60)">1 min</button><button type="button" onclick="rtSet(90)">90s</button><button type="button" onclick="rtSet(120)">2 min</button></div>
+      <button type="button" class="rt-reset" onclick="rtReset()">Reset</button>
+    </div>
+    <button type="button" class="rt-fab" id="rtFabBtn" onclick="rtToggle()" aria-label="Rest timer">
+      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 18V11M12 3h8M16 3v5" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+      <span id="rtFab">Rest</span></button>
+  </div>
+
+  <button type="button" class="dbell" id="dbell" onclick="showView('muscle')" aria-label="Click me to get stronger! Opens the Muscle Up page">
+    <span class="db-say">Click me to get stronger!</span>
+    <svg viewBox="0 0 96 56" aria-hidden="true">
+      <rect x="4" y="14" width="10" height="28" rx="4" fill="#5b4b8a"/><rect x="14" y="8" width="12" height="40" rx="4" fill="#5b4b8a"/>
+      <rect x="26" y="25" width="44" height="6" fill="#9aa3ad" stroke="#2b2035" stroke-width="1.5"/>
+      <rect x="70" y="8" width="12" height="40" rx="4" fill="#5b4b8a"/><rect x="82" y="14" width="10" height="28" rx="4" fill="#5b4b8a"/>
+      <g stroke="#2b2035" stroke-width="1.5" fill="none"><rect x="14" y="8" width="12" height="40" rx="4"/><rect x="70" y="8" width="12" height="40" rx="4"/></g>
+      <circle cx="40" cy="27" r="7" fill="#fff" stroke="#2b2035" stroke-width="1.5"/><circle cx="56" cy="27" r="7" fill="#fff" stroke="#2b2035" stroke-width="1.5"/>
+      <circle cx="42" cy="28" r="3" fill="#2b2035"/><circle cx="58" cy="28" r="3" fill="#2b2035"/>
+      <circle cx="43" cy="26.5" r="1" fill="#fff"/><circle cx="59" cy="26.5" r="1" fill="#fff"/>
+      <path d="M43 40q5 4 10 0" stroke="#2b2035" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="db-shadow"></span>
+  </button>
 
   <div class="admin-foot">
     <span class="admin-locks" id="lockBtns"></span>
@@ -567,7 +837,7 @@
 <div id="munch" class="munch" hidden role="dialog" aria-label="The Bean Monster">
   <div class="munch-box"><div class="rain"></div>
     <svg viewBox="0 0 160 150" class="monster" aria-hidden="true"><path d="M30 40l-10-26 28 14zM130 40l10-26-28 14z" fill="#6f4aa8"/><ellipse cx="80" cy="88" rx="64" ry="56" fill="#8a5fc9"/><circle cx="56" cy="58" r="15" fill="#fff"/><circle cx="104" cy="58" r="15" fill="#fff"/><circle class="pupil" cx="58" cy="60" r="6" fill="#222"/><circle class="pupil" cx="102" cy="60" r="6" fill="#222"/><g class="mouth"><path d="M36 92Q80 150 124 92Q80 80 36 92z" fill="#4a1d5e"/><path d="M50 94l6 12 6-12zM70 96l6 14 6-14zM92 96l6 12 6-12z" fill="#fff"/><ellipse cx="80" cy="120" rx="16" ry="9" fill="#e86a92"/></g></svg>
-    <p class="mtext"></p><button onclick="document.getElementById('munch').hidden=true">Ha! See you next week</button></div></div>
+    <p class="mtext"></p><button onclick="document.getElementById('munch').hidden=true">Ha! I will fill a new jar</button></div></div>
 <div id="pfLock" class="pf" hidden role="dialog" aria-modal="true" aria-label="Phone-free hour">
   <div class="pf-box">
     <svg viewBox="0 0 64 64" width="84" height="84" aria-hidden="true"><circle cx="32" cy="32" r="14" fill="#f5c542"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8M13 13l6 6M45 45l6 6M51 13l-6 6M19 45l-6 6" stroke="#f5c542" stroke-width="4" stroke-linecap="round"/></svg>
@@ -586,6 +856,7 @@
   // Weekly goals are the same every week. Team goals are written for a team of 2 (sleep is per person).
   const same = n => [n, n, n, n];
   const exerciseConfig = [
+    { id: 'pushups',    name: 'Push-ups',             unit: 'reps',  targets: same(200) },
     { id: 'calves',     name: 'Calf Raises',          unit: 'reps',  targets: same(700) },
     { id: 'wallslides', name: 'Wall Slides',          unit: 'reps',  targets: same(280) },
     { id: 'postwalk',   name: 'Post-Meal 10 Min Walks', unit: 'walks', targets: same(42) },
@@ -598,7 +869,7 @@
   ];
   // Personal badge milestones (cumulative per person, all weeks)
   const badgeTiers = {
-    calves: [100, 250, 500], wallslides: [20, 60, 120], postwalk: [3, 10, 21],
+    pushups: [50, 150, 300], calves: [100, 250, 500], wallslides: [20, 60, 120], postwalk: [3, 10, 21],
     sleep: [40, 100, 220], steps: [10000, 25000, 40000], workouttime: [60, 180, 360],
     squathold: [60, 180, 420], checkin: [3, 7, 14], wallsit: [60, 180, 420]
   };
@@ -647,7 +918,9 @@
       const seen = localStorage.getItem('reset_seen');
       if (seen === String(id)) return;
       if (seen === null && String(id) === '0') { localStorage.setItem('reset_seen', '0'); return; }
+      const keep = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('priv_')) keep[k] = localStorage.getItem(k); }   // private logs survive a reset
       localStorage.clear();
+      Object.keys(keep).forEach(k => localStorage.setItem(k, keep[k]));
       localStorage.setItem('reset_seen', String(id));
       location.reload();
     } catch (e) {}
@@ -702,14 +975,14 @@
         return `${tierNames[i]} ${ex.name} (${badgeTiers[id][i].toLocaleString()} ${ex.unit})`;
       });
 
-    const phoenixBefore = phoenixInfo(user).earned;
+    const tokensEarnedBefore = phoenixInfo(user).earned;
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
     try {
       const data = await api({ action: 'add', entry: { user, team, exercise, amount, phase } });
       applyData(data);
       const bits = [won.length ? `New badge: ${won.join(', ')}.` : `Added to ${team}.`];
-      if (phoenixInfo(user).earned > phoenixBefore) { bits.push('A Phoenix rises! 5 days in a row. You earned a rest token.'); launchConfetti(90); }
+      if (phoenixInfo(user).earned > tokensEarnedBefore) { bits.push('5 days in a row! You earned a rest token.'); launchConfetti(90); }
       themeDefs.filter(t => t.days > daysBefore && t.days <= daysAfter).forEach(t => bits.push(`New theme treasure unlocked: ${t.name}!`));
       return { ok: true, msg: bits.join(' ') };
     } catch (e) {
@@ -745,8 +1018,11 @@
   // First day of each week. The server records it when the week before is locked (or when the week's first entry is logged).
   const startOf = w => state.starts[w] !== undefined ? state.starts[w] : w === 1 ? state.logs.reduce((a, l) => Math.min(a, dayNum(l.ts)), todayD()) : startOf(w - 1) + 7;
 
+  let userChosen = false, changingName = false;
+  function pickFromDrop(v) { if (!v) return; userChosen = true; changingName = false; setPick('user', v); }
+  function changeName() { changingName = true; renderPickers(); }
   function setPick(kind, v) {
-    if (kind === 'user') questResultHTML = '';
+    if (kind === 'user') { questResultHTML = ''; userChosen = true; changingName = false; }
     document.getElementById(kind + 'Select').value = v;
     if (kind !== 'exercise') { try { localStorage.setItem('pick_' + kind, v); } catch (e) {} }
     renderDashboard();
@@ -761,11 +1037,12 @@
     const note = document.getElementById('lockNote');
     note.hidden = !isLocked(phase);
     note.textContent = state.locks.includes(+phase) ? `Week ${phase} is locked. Its scores are saved, but no new entries can be added.` : `Week ${phase} has not opened yet.`;
-    document.getElementById('pickName').innerHTML = ['Team 1', 'Team 2', 'Team 3'].map(t =>
-      `<div class="pk-team" style="--tc:${teamColor[t]}"><span class="pk-tag">${t}</span>` +
-      Object.keys(teamMap).filter(u => teamMap[u] === t).map(u =>
-        `<button class="pick${u === user ? ' on' : ''}" onclick="setPick('user','${u}')">${u}${xpOf(u) ? `<small>${xpOf(u)} XP</small>` : ''}</button>`).join('') + '</div>').join('');
-    document.getElementById('pickName2').innerHTML = document.getElementById('pickName').innerHTML;
+    let stored = null; try { stored = localStorage.getItem('pick_user'); } catch (e) {}
+    const chosen = (userChosen || (stored && teamMap[stored])) && !changingName;
+    document.getElementById('pickName').innerHTML = chosen
+      ? `<div class="name-hello" style="--btn:${teamColor[teamMap[user]]}">Let's go ${esc(user)}!</div><div class="name-btns"><button class="name-change" onclick="changeName()">Not you? Change</button><button class="name-change stuck-btn" onclick="showView('stuck')">I'm stuck. Help.</button></div>`
+      : `<div class="pick-label">Who are you?</div><select aria-label="Who are you?" onchange="pickFromDrop(this.value)"><option value="" disabled${changingName ? '' : ' selected'}>Choose your name...</option>` +
+        ['Team 1', 'Team 2', 'Team 3'].map(t => `<optgroup label="${t}">` + Object.keys(teamMap).filter(u => teamMap[u] === t).map(u => `<option value="${u}"${changingName && u === user ? ' selected' : ''}>${u}</option>`).join('') + '</optgroup>').join('') + '</select>';
     document.getElementById('pickEx').innerHTML = [...document.getElementById('exerciseSelect').options].map(o => {
       const e = exerciseConfig.find(x => x.id === o.value);
       return `<button class="pick${o.value === ex ? ' on' : ''}" onclick="setPick('exercise','${o.value}')">${e.name}<small>${e.id === 'checkin' ? 'once a day' : e.unit}</small></button>`;
@@ -777,7 +1054,7 @@
     const amt = document.getElementById('amountInput');
     const locked = isLocked(document.getElementById('phaseSelect').value);
     amt.disabled = isCheckin || locked;
-    amt.placeholder = locked ? 'Week locked' : isCheckin ? 'Counts as 1 day' : ({ sleep: 'Hours slept, e.g. 8', wallsit: 'Seconds held, e.g. 60', squathold: 'Seconds held, e.g. 60', postwalk: 'Walks done, e.g. 1', wallslides: 'Reps, e.g. 15' })[document.getElementById('exerciseSelect').value] || 'e.g. 50';
+    amt.placeholder = locked ? 'Week locked' : isCheckin ? 'Counts as 1 day' : ({ sleep: 'Hours slept, e.g. 8', wallsit: 'Seconds held, e.g. 60', squathold: 'Seconds held, e.g. 60', postwalk: 'Walks done, e.g. 1', wallslides: 'Reps, e.g. 15', pushups: 'Push-ups done, e.g. 10' })[document.getElementById('exerciseSelect').value] || 'e.g. 50';
     if (isCheckin || locked) amt.value = '';
     const sb = document.getElementById('submitBtn');
     sb.disabled = locked;
@@ -846,35 +1123,108 @@
     renderBoard();
     renderCardView();
     renderMuscle();
+    renderStats();
+    refreshPrivView();
     renderLockBtns();
   }
 
-  function renderBadges() {
-    const user = document.getElementById('userSelect').value;
-    const earned = earnedSet(user);
-    document.getElementById('badgeTitle').textContent = `Badges (${earned.size} of ${exerciseConfig.length * 3})`;
-    const grid = document.getElementById('badgeGrid');
-    grid.innerHTML = '';
-    exerciseConfig.forEach(ex => {
-      const total = userTotal(user, ex.id);
-      const tiers = badgeTiers[ex.id];
-      const next = tiers.find(t => total < t);
-      const tiles = tiers.map((t, i) => `
-        <div class="medal t${i}${total >= t ? ' earned' : ''}">
-          <div class="ring">${shortNum(t)}</div>
-          <small>${tierNames[i]}</small>
-        </div>`).join('');
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="card-header">
-          <span class="card-title">${ex.name}</span>
-          <span class="badge">${total.toLocaleString()} ${ex.unit}</span>
-        </div>
-        <div class="badge-row">${tiles}</div>
-        <div class="meta"><span>${next ? `Next badge at ${next.toLocaleString()} ${ex.unit}` : 'All badges earned'}</span></div>`;
-      grid.appendChild(card);
+  // ----- The Badge Cabinet: whimsical badges, on their own page -----
+  const wbCreatures = {
+    pushups:     { e: ['🥞', '⛰️', '🪐'], n: ['Pancake Flipper', 'Mountain Mover', 'Planet Pusher'] },
+    calves:      { e: ['🩰', '🦘', '🏙️'], n: ['Tippy Toes', 'Kangaroo Calves', 'Skyscraper Stretch'] },
+    wallslides:  { e: ['🦥', '🧙', '🕷️'], n: ['Slippery Sloth', 'Wall Wizard', 'Spider Sensei'] },
+    postwalk:    { e: ['🍽️', '🦆', '🎩'], n: ['Dinner Dawdler', 'Waddle Wizard', 'Digestion Duke'] },
+    sleep:       { e: ['🧸', '🌙', '👑'], n: ['Cozy Cub', 'Dream Weaver', 'Pillow Emperor'] },
+    steps:       { e: ['👟', '🥾', '🌕'], n: ['Puddle Hopper', 'Trail Blazer', 'Moon Walker'] },
+    workouttime: { e: ['🌱', '👹', '🐉'], n: ['Sweat Sprout', 'Gym Gremlin', 'Stamina Dragon'] },
+    squathold:   { e: ['🐸', '🪷', '🗿'], n: ['Froggy Pup', 'Lily Pad Boss', 'Squat Sphinx'] },
+    checkin:     { e: ['👋', '🌻', '🏆'], n: ['Hello Sunshine', 'Daily Dazzler', 'Attendance Legend'] },
+    wallsit:     { e: ['🪑', '🥋', '🏰'], n: ['Invisible Chair', 'Chair Champion', 'Sitting Samurai'] }
+  };
+  const wbTierColor = ['#d99a6c', '#b8c2cc', '#f2c14e'];
+  const wbTierWord = ['Bronze', 'Silver', 'Gold'];
+  function longestRun(days) {
+    const d = [...new Set(days)].sort((a, b) => a - b); let best = 0, run = 0;
+    d.forEach((x, i) => { run = i && x === d[i - 1] + 1 ? run + 1 : 1; best = Math.max(best, run); });
+    return best;
+  }
+  // Each special badge returns [how far you are, what it takes]
+  const specialBadges = [
+    { e: '🐣', c: '#ffd166', name: 'Fresh Hatchling',    how: 'Log your very first entry.',                       f: s => [s.logs.length, 1] },
+    { e: '🔥', c: '#ff8a5b', name: 'Toasty Streak',      how: 'Check in 3 days in a row.',                        f: s => [s.run, 3] },
+    { e: '🦄', c: '#e7a8f5', name: 'Unicorn Streak',     how: 'Check in 7 days in a row.',                        f: s => [s.run, 7] },
+    { e: '🌈', c: '#7fd3f0', name: 'Rainbow Week',       how: 'Check in all 7 days of one week.',                 f: s => [s.bestWeekCheckins, 7] },
+    { e: '🥾', c: '#9bd77c', name: 'Halfway Hiker',      how: 'Climb halfway up the board in any week.',          f: s => [s.halfWeeks, 1] },
+    { e: '👑', c: '#ffc933', name: 'Crown Chaser',       how: 'Reach the crown at the top of the board.',         f: s => [s.crownWeeks, 1] },
+    { e: '🎯', c: '#ff7b7b', name: 'Bullseye Betty',     how: 'Finish your full share of a weekly goal.',         f: s => [s.goalsDone, 1] },
+    { e: '🍽️', c: '#ffb86b', name: 'Goal Gobbler',       how: 'Finish your share of 10 weekly goals.',            f: s => [s.goalsDone, 10] },
+    { e: '🌪️', c: '#8fb8ff', name: 'Team Tornado',       how: 'Help your team hit a whole weekly goal.',          f: s => [s.teamGoals, 1] },
+    { e: '🃏', c: '#ff9ecb', name: 'Card Collector',     how: 'Pick 5 daily cards.',                              f: s => [s.cards, 5] },
+    { e: '📓', c: '#c7a6ff', name: 'Dear Diary',         how: 'Write 3 bonus reflections.',                       f: s => [s.reflects, 3] },
+    { e: '📵', c: '#7de0c8', name: 'Phone Whisperer',    how: 'Finish a phone-free hour.',                        f: s => [s.phonefree, 1] },
+    { e: '🧘', c: '#a5e3d0', name: 'Zen Hermit',         how: 'Finish 5 phone-free hours.',                       f: s => [s.phonefree, 5] },
+    { e: '💪', c: '#ff9a76', name: 'Muscle Mascot',      how: 'Finish a Muscle Up section.',                      f: s => [s.mu, 1] },
+    { e: '🦍', c: '#b79b7a', name: 'Gorilla Mode',       how: 'Finish 10 Muscle Up sections.',                    f: s => [s.mu, 10] },
+    { e: '🙌', c: '#ffd36e', name: 'Highly Fived',       how: 'Get a high five from a teammate.',                 f: s => [s.hf, 1] },
+    { e: '😴', c: '#b6c9ff', name: 'Nap Royalty',        how: 'Use a rest token. Rest is part of the plan!',      f: s => [s.rests, 1] },
+    { e: '🐲', c: '#8ede8a', name: 'Quest Goblin',       how: 'Finish 10 daily quests.',                          f: s => [s.quests, 10] }
+  ];
+  function badgeStats(u) {
+    const logs = state.logs.filter(l => l.user === u), team = teamMap[u];
+    const cnt = fn => logs.filter(fn).length;
+    const st = { logs, run: longestRun(logs.filter(l => l.exercise === 'checkin' && l.ts).map(l => dayNum(l.ts))),
+      cards: cnt(l => l.exercise.startsWith('c_')), reflects: cnt(l => l.exercise === 'reflect'), phonefree: cnt(l => l.exercise === 'phonefree'),
+      mu: cnt(l => l.exercise.startsWith('mu_d')), rests: cnt(l => l.exercise === 'rest'), quests: cnt(l => l.exercise.startsWith('q_')),
+      hf: logs.filter(l => l.exercise === 'hf').reduce((a, l) => a + l.amount, 0),
+      bestWeekCheckins: 0, halfWeeks: 0, crownWeeks: 0, goalsDone: 0, teamGoals: 0 };
+    [1, 2, 3, 4].forEach(w => {
+      st.bestWeekCheckins = Math.max(st.bestWeekCheckins, cnt(l => l.exercise === 'checkin' && l.phase === w));
+      const n = boardFor(w).n, pts = weekPoints(u, w);
+      if (pts >= n / 2) st.halfWeeks++;
+      if (pts >= n) st.crownWeeks++;
+      exerciseConfig.forEach(ex => {
+        const t = ex.targets[w - 1]; if (t === null || ex.id === 'checkin') return;
+        const mine = logs.filter(l => l.exercise === ex.id && l.phase === w).reduce((a, l) => a + l.amount, 0);
+        if (mine >= (ex.perPerson ? t : t / 2)) st.goalsDone++;
+        const tg = targetFor(ex, w, team);
+        if (tg !== null && state.logs.filter(l => l.team === team && l.exercise === ex.id && l.phase === w).reduce((a, l) => a + l.amount, 0) >= tg) st.teamGoals++;
+      });
     });
+    return st;
+  }
+  function allBadges(u) {
+    const st = badgeStats(u), list = [];
+    specialBadges.forEach(b => { const [v, g] = b.f(st); list.push({ sec: 'special', e: b.e, c: b.c, name: b.name, how: b.how, got: v >= g, prog: `${Math.min(v, g)} / ${g}` }); });
+    exerciseConfig.forEach(ex => {
+      const total = userTotal(u, ex.id), cr = wbCreatures[ex.id];
+      badgeTiers[ex.id].forEach((t, i) => list.push({ sec: 'collect', e: cr.e[i], c: wbTierColor[i], name: cr.n[i], how: `${wbTierWord[i]}: ${t.toLocaleString()} ${ex.unit} of ${ex.name}.`, got: total >= t, prog: `${Math.min(total, t).toLocaleString()} / ${t.toLocaleString()}` }));
+    });
+    return list;
+  }
+  function badgeCounts(u) { const l = allBadges(u); return { earned: l.filter(b => b.got).length, total: l.length }; }
+  function wbSVG(b) {
+    const dark = '#2b2035', scallops = Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6; return `<circle cx="${(40 + 31 * Math.cos(a)).toFixed(1)}" cy="${(40 + 31 * Math.sin(a)).toFixed(1)}" r="7.5" fill="${b.got ? b.c : '#d9d2e0'}" stroke="${dark}" stroke-width="2"/>`; }).join('');
+    const sp = b.got ? `<path class="spark" d="M70 6l2.600 6 6 2.600-6 2.600L70 23l-2.600-5.800-6-2.600 6-2.600z" fill="#ffe27a" stroke="${dark}" stroke-width="1.400" stroke-linejoin="round"/><path class="spark s2" d="M8 10l1.800 4 4 1.800-4 1.800L8 22l-1.800-4.400-4-1.800 4-1.800z" fill="#fff" stroke="${dark}" stroke-width="1.200" stroke-linejoin="round"/>` : '';
+    return `<svg viewBox="0 0 80 96" class="wb-svg" aria-hidden="true"><path d="M26 64L17 92l14-7 8 9 4-30z" fill="${b.got ? '#ff8fa3' : '#cfc6d8'}" stroke="${dark}" stroke-width="2" stroke-linejoin="round"/><path d="M54 64l9 28-14-7-8 9-4-30z" fill="${b.got ? '#ff6f8f' : '#bfb5ca'}" stroke="${dark}" stroke-width="2" stroke-linejoin="round"/>${scallops}<circle cx="40" cy="40" r="27" fill="${b.got ? b.c : '#d9d2e0'}" stroke="${dark}" stroke-width="2.400"/><circle cx="40" cy="40" r="21" fill="#fff" stroke="${dark}" stroke-width="1.600" stroke-dasharray="3 3.500"/><text x="40" y="49.500" text-anchor="middle" font-size="26">${b.got ? b.e : '❓'}</text>${sp}</svg>`;
+  }
+  function renderBadges() {
+    const box = document.getElementById('badgesBox'); if (!box) return;
+    const user = document.getElementById('userSelect').value, list = allBadges(user), got = list.filter(b => b.got).length;
+    const tile = b => `<div class="wb ${b.got ? 'got' : 'locked'}">${wbSVG(b)}<div class="wb-name">${b.name}</div><div class="wb-how">${b.how}</div><span class="wb-prog">${b.got ? '&#10003; Earned!' : b.prog}</span></div>`;
+    const sp = list.filter(b => b.sec === 'special'), co = list.filter(b => b.sec === 'collect');
+    const msg = got === 0 ? 'Your cabinet is empty, but not for long. Log something to hatch your first badge!' : got === list.length ? 'Every single badge! You are officially a legend.' : `${list.length - got} more to collect. Keep going!`;
+    box.innerHTML = `
+      <div class="bh"><h2>${esc(user)}'s Badge Cabinet</h2>
+        <p>${msg}</p>
+        <div class="bh-bar" role="img" aria-label="${got} of ${list.length} badges"><div style="width:${got / list.length * 100}%"></div></div>
+        <p><b>${got} of ${list.length}</b> badges collected &middot; they add up across all four weeks</p>
+        <button class="name-change" onclick="changeName();showView('challenge')">Not you? Change</button></div>
+      <h2 class="wb-sec">Silly achievements</h2>
+      <p class="badge-sub" style="margin:0">Earned by doing things, not just by counting reps.</p>
+      <div class="wb-grid">${sp.map(tile).join('')}</div>
+      <h2 class="wb-sec">The exercise collection</h2>
+      <p class="badge-sub" style="margin:0">Each exercise has three badges to win: bronze, silver and gold.</p>
+      <div class="wb-grid">${co.map(tile).join('')}</div>`;
   }
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -885,6 +1235,10 @@
   // cards, the reflection, the phone-free hour and high fives can all make up the points, so there are many ways to reach the crown.
   const BOARDS = [{ n: 40 }, { n: 46 }, { n: 53 }, { n: 60 }];
   const boardFor = w => BOARDS[Math.min(4, Math.max(1, w)) - 1];
+  // Cut-off targets: to stay in the challenge you must reach this share of the climb by the end of the week.
+  // Week 1: halfway, week 2: 60%, week 3: 70%. (Rounded up to a whole space.) Week 4 has no cut-off.
+  const CUTOFF = { 1: 0.5, 2: 0.6, 3: 0.7 };
+  const cutoffAt = w => CUTOFF[w] ? Math.ceil(CUTOFF[w] * boardFor(w).n - 1e-9) : null;
   const membersOf = t => Object.keys(teamMap).filter(u => teamMap[u] === t);
   // Team goals are written for a team of 2. Sleep is per person (8 hrs a day = 56 a week each).
   const targetFor = (ex, w, team) => { const t = ex.targets[w - 1]; if (t === null) return null; const n = membersOf(team).length; return ex.perPerson ? t * n : Math.round(t * n / 2); };
@@ -933,7 +1287,7 @@
     document.getElementById('standings').innerHTML = `
       <div class="st-head"><h2 class="section-title">Team race: ${phaseNames[phase - 1]}</h2><div class="st-cheer">${cheer}</div></div>
       <div class="st-body">${rows.map(r => { const pct = r.score / top * 100, lead = started && r.rank === 1; return `
-        <div class="lane${r.t === mineTeam ? ' me' : ''}${lead ? ' winner' : ''}" style="--tc:${teamColor[r.t]}">
+        <div data-team="${r.t}" class="lane${r.t === mineTeam ? ' me' : ''}${lead ? ' winner' : ''}" style="--tc:${teamColor[r.t]}">
           <div class="lane-top"><span class="lane-name">${r.rank}. ${r.t}${r.t === mineTeam ? '<small>your team</small>' : ''}</span><span class="lane-pts">${r.score} of ${top} spaces</span></div>
           <div class="lane-track"><div class="lane-fill" style="width:${pct}%"></div>
             ${[25, 50, 75].map(p => `<i class="ms${pct >= p ? ' hit' : ''}" style="left:${p}%"></i>`).join('')}
@@ -1203,7 +1557,7 @@
       : (top > 0 ? `${leaders} leads with ${top} points. The race ends when the week is locked.` : 'The race has not started. Complete a quest to get your icon moving!');
     el.innerHTML = `
       <div class="race-card">
-        <div class="race-head"><h2 class="section-title">Quest Race: Week ${week}</h2><div class="race-banner">${banner}</div></div>
+        <div class="race-head"><h2 class="section-title">Quest Race: Week ${week}</h2><div class="race-banner">${banner}</div><div class="race-banner" style="font-weight:500;font-size:.85rem;margin-top:4px">Separate from the challenge: quest points never count toward the Climb Board or team scores.</div></div>
         <div class="race-body">
           <div class="race-weeks">${phaseNames.map((n, i) => `<button class="pick${week === i + 1 ? ' on' : ''}" onclick="setRaceWeek(${i + 1})">Week ${i + 1}${isLocked(i + 1) ? lockSVG : ''}</button>`).join('')}</div>
           <div class="race-scale">${rf.ms.map(m => `<span style="left:${m.at / rf.max * 100}%"><b>${m.name}</b>${m.at}<i class="flagpole"></i></span>`).join('')}</div>
@@ -1220,7 +1574,7 @@
               </div>
             </div>`;
           }).join('')}
-          <p class="race-note">Every daily quest earns points that move your icon along the track (streak days add extra). Anyone can reach every milestone, and each one is celebrated. The person with the most points when the week is locked wins. Your lane is highlighted using the name picked on the Challenge page. Team colors show who is on which team.</p>
+          <p class="race-note"><strong>The Quest Race is its own separate competition.</strong> Quest points only count here. They do not add to your Climb Board, your team's race, badges or any other points in the challenge, and the challenge points do not count here either. Every daily quest earns points that move your icon along the track (streak days add extra). Anyone can reach every milestone, and each one is celebrated. The person with the most points when the week is locked wins. Your lane is highlighted using the name picked on the Challenge page. Team colors show who is on which team.</p>
         </div>
       </div>`;
   }
@@ -1383,16 +1737,20 @@
       const q = pts[p], k = seenAt[p] = (seenAt[p] ?? -1) + 1, o = offs[k % 7], lv = faceLevel(p / N), col = teamColor[teamMap[u]];
       return `<g class="tk" style="transform:translate(${q[0] + o[0]}px,${q[1] + o[1] - 12}px)"><title>${u}: space ${p}</title>${u === me ? '<circle cy="2" r="21" fill="none" stroke="#e0b341" stroke-width="3.5"/>' : ''}<g class="lv${lv}"><g transform="translate(-16 -18) scale(.8)">${faceInner(col, lv)}</g></g>${p === N ? '<path d="M-9-22l-2-9 6 4 5-8 5 8 6-4-2 9z" fill="#e0b341" stroke="#8a6a1c" stroke-width="1.2"/>' : ''}<text y="30" text-anchor="middle" class="tk-name" style="fill:${col}">${u}</text></g>`;
     }).join('');
-    const sun = pts[N];
+    const sun = pts[N], T = cutoffAt(w), passed = T !== null && mine >= T;
+    const goalSvg = T === null ? '' : (() => { const q = pts[T], c = passed ? '#d99a1c' : '#9a8f86', lid = passed ? '<path d="M-12-9l2-9q10-5 20 0l2 9z" fill="#f3c94a" stroke="#5a3f06" stroke-width="1.6" stroke-linejoin="round" transform="rotate(-18 -12 -9)"/><path d="M-6-19l2-7M3-22l1-7M10-17l5-5" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/>' : '<path d="M-12-9q0-9 12-9t12 9z" fill="#b57a3c" stroke="#5a3f06" stroke-width="1.6" stroke-linejoin="round"/>';
+      return `<g transform="translate(${q[0]} ${q[1] - 34})" class="goalmark"><title>Week ${w} target: space ${T}</title><ellipse cy="12" rx="17" ry="4" fill="rgba(43,32,53,.18)"/>${lid}<rect x="-12" y="-9" width="24" height="17" rx="3" fill="${passed ? '#e0b341' : '#a8683a'}" stroke="#5a3f06" stroke-width="1.6"/><path d="M-12-2h24" stroke="#5a3f06" stroke-width="1.4"/><rect x="-3" y="-5" width="6" height="7" rx="1.5" fill="${passed ? '#fff3c4' : '#d9c7a3'}" stroke="#5a3f06" stroke-width="1.2"/><text y="23" text-anchor="middle" font-size="8.5" font-weight="700" style="fill:#5a3f06;stroke:#fff;stroke-width:3px;paint-order:stroke">TARGET</text></g>`; })();
+    if (T !== null && passed && !isLocked(w)) { try { const k = `cut_${me}_${w}`; if (!localStorage.getItem(k)) { localStorage.setItem(k, 1); showToast(`${me}, you passed the Week ${w} target!`); launchConfetti(80); } } catch (e) {} }
+    const goalNote = T === null ? `<p class="badge-sub" style="margin-top:6px"><b>Week ${w} has no cut-off.</b> Climb as high as you can and race to the crown!</p>` : `<p class="badge-sub" style="margin-top:6px"><b>Week ${w} target: reach space ${T} of ${N} (${Math.round(CUTOFF[w] * 100)}% of the climb).</b> ${passed ? `You are past the treasure chest, so you have passed this week's target. Keep climbing!` : `You are on space ${mine}, so ${T - mine} more ${T - mine === 1 ? 'space' : 'spaces'} to open the treasure chest. Players who have not reached it by the end of the week will be asked to leave the challenge.`}</p>`;
     document.getElementById('boardGrid').innerHTML = `<div class="board-wrap"><svg viewBox="${lay.vb.join(' ')}" class="board-svg" role="img" aria-label="A winding candy road with ${N} spaces past beaches, waterfalls and mountains">
       <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff1ff"/><stop offset=".55" stop-color="#e6f6dc"/><stop offset="1" stop-color="#fff0cf"/></linearGradient></defs>
       <rect x="0" y="${lay.vb[1]}" width="400" height="${lay.vb[3]}" fill="url(#sky)"/>
       ${lay.clouds}
       <g transform="translate(${sun[0]} ${sun[1] - 52})"><g stroke="#ffb703" stroke-width="3" stroke-linecap="round"><path d="M0-30V-38M-22-22l-6-6M22-22l6-6M-30 0H-38M30 0H38"/></g><circle r="22" fill="#ffd166"/><path d="M-9 4q9 9 18 0" stroke="#b8860b" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="-8" cy="-4" r="2.5" fill="#b8860b"/><circle cx="8" cy="-4" r="2.5" fill="#b8860b"/></g>
       <path d="${lay.d}" fill="none" stroke="#b88a5a" stroke-width="46" stroke-linecap="round"/><path d="${lay.d}" fill="none" stroke="#fff3d6" stroke-width="38" stroke-linecap="round"/>
-      ${lmSvg}${tiles}${toks}</svg></div>
+      ${lmSvg}${tiles}${goalSvg}${toks}</svg></div>
       <div class="startbar"><span class="legend" style="margin-left:0">${players.map(x => `<span class="lg-item">${miniFace(teamColor[teamMap[x.u]], faceLevel(x.p / N))}${x.u} ${x.p}</span>`).join('')}</span></div>
-      <p class="badge-sub" style="margin-top:10px"><b>${latest ? `You are visiting ${latest.name}!` : 'You are at the starting line.'}</b> Trip so far: ${lms.map(l => `${mine >= l.at ? '&#10003;' : '&#9675;'} ${l.name}`).join(' &middot; ')}</p>`;
+      <p class="badge-sub" style="margin-top:10px"><b>${latest ? `You are visiting ${latest.name}!` : 'You are at the starting line.'}</b> Trip so far: ${lms.map(l => `${mine >= l.at ? '&#10003;' : '&#9675;'} ${l.name}`).join(' &middot; ')}</p>${goalNote}`;
     const mi = missInfo(me, w), ps = phoenixInfo(me);
     document.getElementById('boardUnlocks').innerHTML = `<p class="badge-sub" style="width:100%;margin:0">Slide watch: ${SLIDE_AFTER} days in a row without updating the challenge slides you back ${SLIDE_BACK} spaces (daily cards do not count). You have missed ${mi.run} in a row and slid ${mi.slides} ${mi.slides === 1 ? 'time' : 'times'} this week. Rest tokens left: ${ps.left}.</p>` + unl.map(d => {
       const open = mine >= d.at, msg = d.pool[hash(me + w + d.at) % d.pool.length], key = `unl_${me}_${w}_${d.at}`;
@@ -1414,12 +1772,28 @@
     const mate = hfMate(me), locked = isLocked(curWeek());
     document.getElementById('hfPick').innerHTML = matesOf(me).length > 1
       ? matesOf(me).map(u => `<button class="pick${u === mate ? ' on' : ''}" style="--tc:${teamColor[teamMap[me]]}" onclick="setHfTarget('${u}')">${u}</button>`).join('') : '';
-    document.getElementById('hfSub').textContent = `Cheer on ${mate}. Your note gives ${mate} ${mine >= goldenAt(w) ? '2 points (Golden High-Five!)' : '1 point'}. You can send one high five a day.`;
-    const sentToday = hfSentToday(me);
+    document.getElementById('hfSub').textContent = `Cheer on ${mate}. Your note gives ${mate} ${mine >= goldenAt(w) ? '2 points (Golden High-Five!)' : '1 point'}. You can send one high five a day. The messages below clear every time a new week opens.`;
+    const sentToday = hfSentToday(me), cw = curWeek();
+    // New high fives sent to me this week that I have not looked at yet show up on the hand.
+    const inbox = state.logs.filter(l => l.exercise === 'hf' && l.user === me && l.phase === cw && l.ts > hfSeen(me));
+    const newest = inbox[inbox.length - 1], said = newest ? String(newest.note || 'A high five!').slice(0, 90) : '';
+    document.getElementById('hfWave').innerHTML = isLocked(cw) ? '' : `<button type="button" class="hfwave${sentToday && !inbox.length ? ' sent' : ''}" onclick="hfJump()" aria-label="${inbox.length ? 'You have a new high five. Tap to read it' : sentToday ? 'You sent a high five today' : 'Send ' + mate + ' a high five'}">
+      ${inbox.length ? `<span class="hf-say"><b>New high five!</b><br>${esc(said)}${inbox.length > 1 ? `<br><small>+${inbox.length - 1} more</small>` : ''}</span>` : ''}
+      <svg viewBox="0 0 108 100" aria-hidden="true"><ellipse cx="47" cy="91" rx="22" ry="7" fill="#ffb3c7" stroke="#2b2035" stroke-width="3.400"/><g fill="#2b2035" stroke="#2b2035" stroke-width="7" stroke-linejoin="round"><rect x="10" y="44" width="17.500" height="34" rx="8.750" transform="rotate(-10 19 72)"/><rect x="28" y="30" width="18" height="46" rx="9" transform="rotate(-4 37 72)"/><rect x="46" y="25" width="18" height="50" rx="9"/><rect x="64" y="32" width="17.500" height="44" rx="8.750" transform="rotate(8 72 72)"/><rect x="66" y="58" width="34" height="19" rx="9.500" transform="rotate(-26 70 68)"/><ellipse cx="47" cy="70" rx="37" ry="23"/></g><g fill="#fff"><rect x="10" y="44" width="17.500" height="34" rx="8.750" transform="rotate(-10 19 72)"/><rect x="28" y="30" width="18" height="46" rx="9" transform="rotate(-4 37 72)"/><rect x="46" y="25" width="18" height="50" rx="9"/><rect x="64" y="32" width="17.500" height="44" rx="8.750" transform="rotate(8 72 72)"/><rect x="66" y="58" width="34" height="19" rx="9.500" transform="rotate(-26 70 68)"/><ellipse cx="47" cy="70" rx="37" ry="23"/></g><path d="M30 38q3-2 6 0M48 33q3-2 6 0M66 40q3-2 6 0" stroke="#efe9f4" stroke-width="3.200" stroke-linecap="round" fill="none"/><ellipse cx="29" cy="78" rx="5.500" ry="3.400" fill="#ff8fa3" opacity=".8"/><ellipse cx="65" cy="78" rx="5.500" ry="3.400" fill="#ff8fa3" opacity=".8"/><circle cx="37" cy="68" r="8" fill="#fff" stroke="#2b2035" stroke-width="2"/><circle cx="57" cy="68" r="8" fill="#fff" stroke="#2b2035" stroke-width="2"/><circle cx="38.600" cy="69.400" r="4.200" fill="#2b2035"/><circle cx="58.600" cy="69.400" r="4.200" fill="#2b2035"/><circle cx="40" cy="67.600" r="1.600" fill="#fff"/><circle cx="60" cy="67.600" r="1.600" fill="#fff"/><circle cx="37.400" cy="71.200" r=".8" fill="#fff"/><circle cx="57.400" cy="71.200" r=".8" fill="#fff"/><path d="M42 79q5 5 10 0" fill="none" stroke="#2b2035" stroke-width="2.600" stroke-linecap="round"/><path d="M95 22c-3-5-9-1-5 4l5 5l5-5c4-5-2-9-5-4z" fill="#ff6f91" stroke="#2b2035" stroke-width="1.600" stroke-linejoin="round" transform="scale(.8) translate(24 4)"/><path d="M94 52l2 4l4 2l-4 2l-2 4l-2-4l-4-2l4-2z" fill="#ffd166" transform="translate(-4 -34) scale(.9)"/></svg>
+      <span class="hf-ribbon">${inbox.length ? 'New high five!' : sentToday ? 'Sent today!' : 'High five!'}</span></button>`;
     document.getElementById('hfBtn').textContent = sentToday ? 'High five sent today. Come back tomorrow!' : `Send ${mate} a high five`;
     document.getElementById('hfBtn').disabled = locked || sentToday;
-    const hf = state.logs.filter(l => l.exercise === 'hf' && l.team === teamMap[me] && l.phase === w).slice(-6).reverse();
+    // The message list only shows the open week, so it starts fresh whenever a new week opens.
+    const hf = state.logs.filter(l => l.exercise === 'hf' && l.team === teamMap[me] && l.phase === cw).slice(-6).reverse();
     document.getElementById('hfList').innerHTML = hf.length ? hf.map(l => `<li><b>${esc(l.note || 'A high five!')}</b><span>to ${esc(l.user)}</span></li>`).join('') : '<li class="empty">No high fives yet this week. Be the first!</li>';
+  }
+  const hfSeen = u => { try { return parseInt(localStorage.getItem('hfseen_' + u)) || 0; } catch (e) { return 0; } };
+  function hfJump() {
+    const me = document.getElementById('userSelect').value, mine = state.logs.filter(l => l.exercise === 'hf' && l.user === me && l.phase === curWeek());
+    const had = mine.some(l => l.ts > hfSeen(me));
+    if (had) { try { localStorage.setItem('hfseen_' + me, Math.max(...mine.map(l => l.ts))); } catch (e) {} renderBoard(); }
+    const c = document.getElementById('hfCard'); c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!had) setTimeout(() => { const t = document.getElementById('hfNote'); t && t.focus({ preventScroll: true }); }, 450);
   }
   async function sendHighFive() {
     const me = document.getElementById('userSelect').value, w = curWeek();
@@ -1488,7 +1862,7 @@
   let cardPick = null;
   function todaysCard(me) { return state.logs.filter(l => l.user === me && l.exercise.startsWith('c_') && l.ts && dayNum(l.ts) === todayD()).pop(); }
 
-  // ----- Phoenix badge: update the challenge 5 days in a row to earn a rest token -----
+  // ----- Rest tokens: update the challenge 5 days in a row to earn one -----
   // A challenge day is a day with a check-in, an exercise entry or a daily quest. Daily cards and high fives do not count.
   // A rest token keeps the streak alive for its day, but it is not one of the 5 days.
   const isChallengeLog = l => !!l.ts && (validIds.includes(l.exercise) || !!questById[l.exercise]);
@@ -1505,12 +1879,11 @@
     const streak = last !== undefined && (last === today || last === today - 1) ? runs[runs.length - 1] : 0;
     return { earned, used, left: Math.max(0, earned + claimed - used), streak, inCycle: streak ? ((streak - 1) % 5) + 1 : 0, restToday: rest.has(today) };
   }
-  const phoenixSVG = on => `<svg viewBox="0 0 64 64" width="64" height="64" style="flex:none;opacity:${on ? 1 : .3};filter:${on ? 'none' : 'grayscale(1)'}" aria-hidden="true"><path d="M23 28C14 22 7 26 3 38c8-3 14-2 19 3z" fill="#ffb02e"/><path d="M41 28c9-6 16-2 20 10-8-3-14-2-19 3z" fill="#ffb02e"/><path d="M32 36c-4 11-8 16-13 22 8-4 12-6 13-6s5 2 13 6c-5-6-9-11-13-22z" fill="#e4572e"/><path d="M32 6c3 7 9 11 9 19 0 6-4 11-9 11s-9-5-9-11c0-8 6-12 9-19z" fill="#ff7a1a"/><path d="M32 16c2 4 5 6 5 11 0 4-2 7-5 7s-5-3-5-7c0-5 3-7 5-11z" fill="#ffd166"/><circle cx="29" cy="24" r="2.2" fill="#fff"/><circle cx="29.5" cy="24" r="1" fill="#3b2a1a"/><path d="M33 26l6 2-5 2z" fill="#ffb02e"/></svg>`;
   function renderCardView() {
     const box = document.getElementById('cardBox'); if (!box) return;
     const me = document.getElementById('userSelect').value, w = curWeek(), done = todaysCard(me);
     let html = `<div class="quest-card"><h2 class="section-title">Daily Card</h2>
-      <p class="badge-sub">A gentle bonus: each card is worth +2 points. Cards do not count toward your Phoenix streak or the slide watch. Those follow your challenge updates on the Challenge page. Below the cards you will find a bonus reflection card and the daily phone-free hour.</p>`;
+      <p class="badge-sub">A gentle bonus: each card is worth +2 points. Cards do not count toward your 5-day streak or the slide watch. Those follow your challenge updates on the Challenge page. Tap the little bouncing journal book in the corner for a bonus journal entry (+1 point), and below the cards you will find the daily phone-free hour.</p>`;
     if (isLocked(w)) html += `<p class="badge-sub">${state.locks.includes(w) ? 'This week is locked. Well done, everyone!' : 'This week has not opened yet. Come back soon!'}</p>`;
     else if (done) { const c = cardsById[done.exercise]; html += `<div class="card-done">&#10003; Today's card is done: <b>${c ? c.name : 'Daily card'}</b> (+2 points). A fresh set arrives tomorrow.</div>`; }
     else if (!cardPick) {
@@ -1523,7 +1896,8 @@
         ${c.cat !== 'Mindfulness' ? `<a class="wk-yt" style="margin-bottom:12px" href="https://www.youtube.com/results?search_query=${encodeURIComponent(c.name + ' ' + c.cat.toLowerCase() + ' exercise proper form')}" target="_blank" rel="noopener">Watch a video of this exercise on YouTube</a>` : ''}
         <div class="zone-actions"><button class="danger-btn" onclick="cardPick=null;renderCardView()">Choose another</button><button id="cardDone" onclick="finishCard()">I finished it</button></div>`;
     }
-    box.innerHTML = html + '</div>' + reflectHTML(me, w) + phoneFreeHTML(me, w);
+    box.innerHTML = html + '</div>' + phoneFreeHTML(me, w);
+    paintJournalBook(); refreshJournalView();
   }
   function openCard(id) { cardPick = id; renderCardView(); window.scrollTo(0, 0); }
   async function finishCard() {
@@ -1537,14 +1911,14 @@
   async function useRestToken() {
     const me = document.getElementById('userSelect').value, w = curWeek();
     if (isLocked(w) || phoenixInfo(me).left < 1) return;
-    if (!confirm('Use a rest token for today? It counts as an active day (no slide), keeps your Phoenix streak alive and gives +1 point.')) return;
+    if (!confirm('Use a rest token for today? It counts as an active day (no slide), keeps your streak alive and gives +1 point.')) return;
     try {
       const data = await api({ action: 'add', entry: { user: me, team: teamMap[me], exercise: 'rest', amount: 1, phase: w } });
       applyData(data); launchConfetti(50); showToast('Rest day taken. +1 point, and today counts as an active day.');
     } catch (e) { showToast(String(e.message).includes('409') ? 'You already used a rest token today.' : 'Could not save that. Try again.'); }
   }
 
-  // ----- Bonus card: reflect, write or draw, then post it in the group (+1 point, once a day) -----
+  // ----- Bonus journal: reflect, write or draw prompts (+1 point, once a day) -----
   const reflectKinds = [
     { label: 'reflection question', how: 'journal or free write your answer for about 5 minutes.', list: [
       'What is one thing you are proud of this week that nobody noticed?', 'What does being strong mean to you right now? Has that changed?',
@@ -1587,23 +1961,106 @@
       'What was your very first job or first big responsibility?', 'What hobby would you try if time and money were no issue?',
       'What is the most useful thing you own?', 'Which household chore do you secretly enjoy?'] }
   ];
-  function reflectHTML(me, w) {
-    const d = todayD(), k = reflectKinds[d % reflectKinds.length], text = k.list[Math.floor(d / reflectKinds.length) % k.list.length];
-    const done = state.logs.some(l => l.user === me && l.exercise === 'reflect' && l.ts && dayNum(l.ts) === d);
-    return `<div class="quest-card" style="margin-top:14px"><h2 class="section-title">Bonus card: reflect, write or draw</h2>
-      <p class="badge-sub">Today's ${k.label}: ${k.how}</p>
-      <div class="card-done"><b>${esc(text)}</b></div>
-      <p class="badge-sub" style="margin:10px 0">Post it in the group chat to earn +1 point. No post, no point.</p>
-      ${done ? '<div class="card-done">&#10003; Posted today. +1 point. A new prompt arrives tomorrow.</div>' : `<button onclick="postReflect()" ${isLocked(w) ? 'disabled' : ''}>I posted it in the group (+1 point)</button>`}</div>`;
+  // ----- Journal: a little bouncing book opens a full page with a mindfulness quote and today's prompt (+1 point a day) -----
+  const journalQuotes = [
+    'Breathe in slowly. This moment is the only one you actually have.', 'You do not have to fix everything today. Notice it, breathe, and take one small step.',
+    'Gratitude turns what we have into enough.', 'Be gentle with yourself. You are learning, not failing.',
+    'Like muddy water, the mind clears when you let it be still.', 'Notice three things you can see, two you can hear and one you can feel.',
+    'A calm minute is never wasted.', 'Strength can be quiet. Rest is part of the work.',
+    'Where your feet are, there your life is. Arrive fully.', 'Let the thought pass like a cloud. You are the sky.',
+    'Small, steady kindness to yourself changes everything over time.', 'You are allowed to take up space, and you are allowed to pause.',
+    'Slow down enough to taste the moment.', 'Peace is a practice, not a place.',
+    'Every breath is a fresh start.', 'Listen to your body today. It has been listening to you all along.'
+  ];
+  const journalPrompt = () => { const d = todayD(), k = reflectKinds[d % reflectKinds.length]; return { k, text: k.list[Math.floor(d / reflectKinds.length) % k.list.length] }; };
+  const journalDoneToday = me => state.logs.some(l => l.user === me && l.exercise === 'reflect' && l.ts && dayNum(l.ts) === todayD());
+  let jUser = null, jEntries = [], jLoad = 'idle';
+  const jDraftKey = u => 'jdraft_' + u;
+  const jFmtDate = ts => new Date(ts).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Asia/Riyadh' });
+  const waText = (who, kind, prompt, text) => `*${who}'s journal*\n${prompt ? `_${kind ? kind + ': ' : ''}${prompt}_\n` : ''}\n${text}`;
+  // Opens WhatsApp with the message ready to send. It must run straight from a tap, or browsers block the new window.
+  function waShare(text) { const url = 'https://wa.me/?text=' + encodeURIComponent(text); const w = window.open(url, '_blank'); if (!w) location.href = url; }
+
+  function paintJournalBook() {
+    const b = document.getElementById('jbook'); if (!b) return;
+    const done = journalDoneToday(document.getElementById('userSelect').value);
+    b.classList.toggle('done', done);
+    document.getElementById('jbRib').textContent = done ? 'Journaled!' : 'Journal';
   }
-  async function postReflect() {
-    const me = document.getElementById('userSelect').value, w = curWeek();
-    if (isLocked(w)) return;
-    if (!confirm('Did you post it in the group chat? The point is for posting it.')) return;
+  function openJournal() {
+    jUser = document.getElementById('userSelect').value; jEntries = []; jLoad = 'loading';
+    showView('journal'); buildJournal(); loadJournal();
+  }
+  // The page is built once, so a background refresh never wipes what someone is typing.
+  function buildJournal() {
+    const me = jUser, { k, text } = journalPrompt(), q = journalQuotes[todayD() % journalQuotes.length], draw = k.label === 'drawing challenge';
+    let draft = ''; try { draft = localStorage.getItem(jDraftKey(me)) || ''; } catch (e) {}
+    $id('journalBox').innerHTML = `<div class="quest-card jr">
+      <div class="jr-top"><button class="wk-back" onclick="showView('card')">&larr; Daily Card</button><h2 class="section-title" style="margin:0">${esc(me)}'s journal</h2></div>
+      <blockquote class="jquote"><span aria-hidden="true">&ldquo;</span>${esc(q)}</blockquote>
+      <div class="jprompt"><small>Today's ${k.label}</small><b>${esc(text)}</b>
+        <p class="badge-sub" style="margin:6px 0 0">${draw ? 'Draw it on paper in about 5 minutes, then share a photo of it with the group. You can write a note about your drawing below.' : k.how.charAt(0).toUpperCase() + k.how.slice(1)}</p></div>
+      <p class="badge-sub" id="jStatus"></p>
+      <label for="jText" class="jlabel">${draw ? 'Your note (optional)' : 'Your entry'}</label>
+      <textarea id="jText" maxlength="3000" rows="8" placeholder="${draw ? 'Tell us about your drawing...' : 'Start writing here...'}" oninput="jInput()">${esc(draft)}</textarea>
+      <div class="jmeta" id="jCount"></div>
+      <div class="jbtns"><button id="jSave" onclick="saveJournal(false)">Save my entry</button><button id="jShare" class="wa-btn" onclick="saveJournal(true)">Share on WhatsApp</button></div>
+      <h3 class="wk-h">Your last 5 entries</h3><div id="jList"></div></div>`;
+    jInput(); paintJournalStatus(); paintJournalList();
+  }
+  function jInput() {
+    const t = $id('jText'); if (!t) return;
+    $id('jCount').textContent = t.value.length + ' / 3000';
+    try { localStorage.setItem(jDraftKey(jUser), t.value); } catch (e) {}
+  }
+  function paintJournalStatus() {
+    const el = $id('jStatus'); if (!el) return;
+    el.innerHTML = isLocked(curWeek()) ? 'This week is closed for points, but you can still write and save entries.'
+      : journalDoneToday(jUser) ? '&#10003; Today\'s journal point is earned (+1). You can keep writing as much as you like.'
+      : 'Save or share an entry to earn <b>+1 point</b> (once a day). Your entries are saved to your name, so you can read them on any device.';
+  }
+  // If someone changes the name at the top while the journal is open, switch to that person's journal.
+  function refreshJournalView() {
+    const v = $id('view-journal'); if (!v || v.hidden) return;
+    const me = $id('userSelect').value;
+    if (me !== jUser) { jUser = me; jEntries = []; jLoad = 'loading'; buildJournal(); loadJournal(); } else paintJournalStatus();
+  }
+  async function loadJournal() {
+    const who = jUser;
     try {
-      const data = await api({ action: 'add', entry: { user: me, team: teamMap[me], exercise: 'reflect', amount: 1, phase: w } });
-      applyData(data); renderCardView();
-    } catch (e) { showToast(String(e.message).includes('409') ? 'You already posted today. Come back tomorrow!' : 'Could not save that. Try again.'); }
+      const r = await fetch(API + '?journal=' + encodeURIComponent(who), { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const d = await r.json(); if (who !== jUser) return;
+      jEntries = d.journal || []; jLoad = 'ok';
+    } catch (e) { if (who !== jUser) return; jLoad = 'err'; }
+    paintJournalList();
+  }
+  function paintJournalList() {
+    const el = $id('jList'); if (!el) return;
+    if (jLoad === 'loading') { el.innerHTML = '<p class="badge-sub">Loading your entries...</p>'; return; }
+    if (jLoad === 'err') { el.innerHTML = '<p class="badge-sub">Could not load your saved entries. <button class="jmini" onclick="jLoad=\'loading\';paintJournalList();loadJournal()">Try again</button></p>'; return; }
+    el.innerHTML = jEntries.length ? jEntries.map((e, i) => `<div class="jentry"><div class="jhead"><span>${jFmtDate(e.ts)}</span><small>${esc(e.kind || '')}</small></div>${e.prompt ? `<em>${esc(e.prompt)}</em>` : ''}<p>${esc(e.text)}</p><button class="wa-btn small" onclick="shareEntry(${i})">Share on WhatsApp</button></div>`).join('')
+      : '<p class="badge-sub">No saved entries yet. Your first one will show up here.</p>';
+  }
+  function shareEntry(i) { const e = jEntries[i]; if (e) waShare(waText(jUser, e.kind, e.prompt, e.text)); }
+  async function saveJournal(share) {
+    const me = jUser, { k, text: prompt } = journalPrompt(), draw = k.label === 'drawing challenge', box = $id('jText');
+    let text = box.value.trim();
+    if (!text && draw) text = 'I drew it! Can you guess what it is?';
+    if (!text) { showToast('Write a few words first.'); box.focus(); return; }
+    if (share) waShare(waText(me, k.label, prompt, text));   // sharing also keeps a saved copy, so it earns the point too
+    const b1 = $id('jSave'), b2 = $id('jShare'); b1.disabled = b2.disabled = true;
+    try {
+      const data = await api({ action: 'journal-save', user: me, kind: k.label, prompt, text });
+      applyData(data);
+      if (me === jUser) {
+        jEntries = data.journal || jEntries; jLoad = 'ok';
+        box.value = ''; jInput(); paintJournalStatus(); paintJournalList();
+      }
+      showToast(data.awarded ? `Saved! +1 point, ${me}.` : 'Saved to your journal.');
+      if (data.awarded) launchConfetti(50);
+    } catch (e) { showToast(share ? 'WhatsApp opened, but your entry was not saved. Tap Save my entry to keep a copy.' : 'Could not save that. Check your connection and try again.'); }
+    finally { b1.disabled = b2.disabled = false; }
   }
 
   // ----- Phone-free hour: blocks this page for about an hour, then gives +3 points. Once a day. -----
@@ -1622,11 +2079,38 @@
   const pfLoad = () => { try { return JSON.parse(localStorage.getItem('pf_session')); } catch (e) { return null; } };
   const pfSave = s => { try { if (s) localStorage.setItem('pf_session', JSON.stringify(s)); else localStorage.removeItem('pf_session'); } catch (e) {} };
   const pfDoneToday = me => state.logs.some(l => l.user === me && l.exercise === 'phonefree' && l.ts && dayNum(l.ts) === todayD());
+  // A clickable picture: an awake phone with a ping badge. Tap it to tuck the phone in for an hour (it falls asleep under a blanket).
+  function phoneFreePic(sleep) {
+    const eyes = sleep ? '<path d="M137 70q9 8 18 0M165 70q9 8 18 0" fill="none" stroke="#2b2035" stroke-width="3.200" stroke-linecap="round"/>'
+      : '<circle cx="146" cy="70" r="11" fill="#fff" stroke="#2b2035" stroke-width="2"/><circle cx="174" cy="70" r="11" fill="#fff" stroke="#2b2035" stroke-width="2"/><circle cx="148" cy="72" r="5.500" fill="#2b2035"/><circle cx="176" cy="72" r="5.500" fill="#2b2035"/><circle cx="150.500" cy="69.500" r="2" fill="#fff"/><circle cx="178.500" cy="69.500" r="2" fill="#fff"/>';
+    const mouth = sleep ? '<path d="M152 90q8 6 16 0" fill="none" stroke="#2b2035" stroke-width="2.600" stroke-linecap="round"/>'
+      : '<path d="M150 88q10 11 20 0z" fill="#ff8fa3" stroke="#2b2035" stroke-width="2.400" stroke-linejoin="round"/>';
+    const stars = '<g fill="#fff"><circle cx="30" cy="30" r="2"/><circle cx="70" cy="18" r="1.500"/><circle cx="104" cy="40" r="2"/><circle cx="224" cy="22" r="1.800"/><circle cx="290" cy="70" r="1.800"/><circle cx="40" cy="74" r="1.500"/></g><path d="M262 20a18 18 0 1 0 14 28a14 14 0 1 1-14-28z" fill="#ffe9a8"/>';
+    const cap = sleep ? '<path d="M126 50Q146 14 192 34L196 50z" fill="#ff8fa3" stroke="#2b2035" stroke-width="2.400" stroke-linejoin="round"/><rect x="122" y="46" width="78" height="10" rx="5" fill="#fff" stroke="#2b2035" stroke-width="2.200"/><circle cx="194" cy="32" r="6" fill="#fff" stroke="#2b2035" stroke-width="2"/>' : '';
+    const badge = sleep ? '' : '<g class="ping"><circle cx="200" cy="44" r="12" fill="#e4572e" stroke="#fff" stroke-width="2.400"/><text x="200" y="49" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">!</text></g>';
+    const zz = sleep ? '<g fill="#fff" font-weight="700" font-family="sans-serif"><text class="zz" x="212" y="70" font-size="16">z</text><text class="zz zz2" x="224" y="52" font-size="21">z</text><text class="zz zz3" x="238" y="32" font-size="26">Z</text></g>' : '';
+    const blanket = sleep
+      ? '<path d="M44 114q14-9 28 0t28 0t28 0t28 0t28 0t28 0t28 0V176a14 14 0 0 1-14 14H58a14 14 0 0 1-14-14z" fill="#ff8fa3" stroke="#2b2035" stroke-width="3" stroke-linejoin="round"/><path d="M52 138h216M52 160h216" stroke="#ffd0dc" stroke-width="4" stroke-linecap="round"/>'
+      : '<rect x="44" y="150" width="232" height="30" rx="15" fill="#ff8fa3" stroke="#2b2035" stroke-width="3"/><path d="M60 165h200" stroke="#ffd0dc" stroke-width="4" stroke-linecap="round"/>';
+    return `<svg viewBox="0 0 320 200" aria-hidden="true"><defs><linearGradient id="pfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2a5e"/><stop offset="1" stop-color="#5b4b8a"/></linearGradient></defs>
+      <rect width="320" height="200" fill="url(#pfSky)"/>${stars}
+      <rect x="36" y="98" width="248" height="94" rx="12" fill="#8a5a36" stroke="#2b2035" stroke-width="3"/>
+      <rect x="44" y="128" width="232" height="58" rx="14" fill="#f7ecd9" stroke="#2b2035" stroke-width="3"/>
+      <ellipse cx="160" cy="130" rx="66" ry="17" fill="#fff" stroke="#2b2035" stroke-width="3"/>
+      <g class="${sleep ? '' : 'bob'}"><rect x="120" y="34" width="80" height="116" rx="17" fill="#2b2035"/><rect x="127" y="42" width="66" height="100" rx="11" fill="${sleep ? '#8a7fc4' : '#bfe6f5'}"/>
+      ${eyes}${mouth}<ellipse cx="136" cy="84" rx="5" ry="3.200" fill="#ff8fa3" opacity=".75"/><ellipse cx="184" cy="84" rx="5" ry="3.200" fill="#ff8fa3" opacity=".75"/>${cap}${badge}</g>
+      ${blanket}${zz}</svg>`;
+  }
   function phoneFreeHTML(me, w) {
-    const done = pfDoneToday(me), sess = pfLoad();
+    const done = pfDoneToday(me), sess = pfLoad(), locked = isLocked(w);
+    const sleeping = done || !!sess;
+    const [cap, sub] = done ? ['Phone tucked in. Sleep tight!', '+3 points earned today. See you tomorrow!']
+      : sess ? ['Your phone is having a nap', 'Phone-free hour in progress. Come back when it ends.']
+      : locked ? ['Closed for this week', state.locks.includes(w) ? 'This week is locked.' : 'This week has not opened yet.']
+      : ['Tap the phone to tuck it in for an hour', 'Put it down and be present. +3 points when the hour ends.'];
     return `<div class="quest-card" style="margin-top:14px"><h2 class="section-title">Phone-free hour</h2>
       <p class="badge-sub">Once a day, put your phone down for an hour and be present with yourself and the people around you. This page is blocked for the hour, and you earn <b>+3 points</b> when it ends.</p>
-      ${done ? '<div class="card-done">&#10003; Phone-free hour done today. +3 points. See you tomorrow!</div>' : `<button onclick="startPhoneFree()" ${isLocked(w) || sess ? 'disabled' : ''}>${sess ? 'Phone-free hour in progress' : 'Start my phone-free hour (+3 points)'}</button>`}</div>`;
+      <button type="button" class="pfpic${locked && !sleeping ? ' off' : ''}" onclick="startPhoneFree()" ${locked || sleeping ? 'disabled' : ''} aria-label="${cap}">${phoneFreePic(sleeping)}<span class="cap">${cap}<small>${sub}</small></span></button></div>`;
   }
   function startPhoneFree() {
     const me = $id('userSelect').value, w = curWeek();
@@ -1694,12 +2178,10 @@
     const ps = phoenixInfo(me), mi = missInfo(me, w);
     const rb = document.getElementById('restBtn');
     rb.disabled = locked || ps.left < 1 || ps.restToday;
-    rb.textContent = ps.restToday ? 'Rest token used today' : ps.left < 1 ? 'No rest tokens yet' : `Use a rest token (${ps.left} left)`;
-    document.getElementById('phoenixBox').innerHTML = `<div class="phoenix-row" style="margin:14px 0 0">${phoenixSVG(ps.earned > 0)}<div style="flex:1"><strong>${ps.earned ? `Phoenix badge x${ps.earned}` : 'Phoenix badge (not earned yet)'}</strong>
-        <div class="badge-sub" style="margin:2px 0 6px">Update the challenge 5 days in a row (a check-in, an exercise or a daily quest) to earn a Phoenix and a rest token. A rest token covers one day: it gives 1 point, counts as an active day so there is no slide, and keeps your streak alive.</div>
-        <div class="streak-dots">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= ps.inCycle ? 'on' : ''}"></i>`).join('')}<span>${ps.streak} day streak</span></div></div></div>`;
+    rb.textContent = ps.restToday ? `Rest token used today (${ps.left} left)` : ps.left < 1 ? 'You have 0 rest tokens' : `Use a rest token (${ps.left} left)`;
+    document.getElementById('restNote').innerHTML = `Update the challenge 5 days in a row (a check-in, an exercise or a daily quest) to earn a rest token. A token covers one day: it gives 1 point, counts as an active day so there is no slide, and keeps your streak going. <b>${ps.streak} day streak</b>, ${ps.inCycle} of 5 days to your next token.`;
     document.getElementById('statusStrip').innerHTML =
-      `<span class="qstat">Rest tokens: ${ps.left}</span><span class="qstat">Phoenix x${ps.earned}</span><span class="qstat">Days missed in a row: ${mi.run} of ${SLIDE_AFTER}</span><span class="qstat">Slides this week: ${mi.slides}</span>` +
+      `<span class="qstat">Rest tokens: ${ps.left}</span><span class="qstat">Days missed in a row: ${mi.run} of ${SLIDE_AFTER}</span><span class="qstat">Slides this week: ${mi.slides}</span>` +
       (mi.run >= SLIDE_AFTER - 1 && !mi.activeToday ? `<span class="qstat" style="background:#ffd3c9">Update the challenge today or use a rest token to avoid sliding back ${SLIDE_BACK} spaces!</span>` : '');
   }
   async function doCheckIn() {
@@ -1720,11 +2202,13 @@
       b += `<ellipse cx="${x}" cy="${y}" rx="6.3" ry="4.6" fill="${beanCols[(i * 3) % 8]}" transform="rotate(${rot} ${x} ${y})"/><ellipse cx="${x - 1.5}" cy="${y - 1.5}" rx="2" ry="1.1" fill="#fff" opacity=".45" transform="rotate(${rot} ${x} ${y})"/>`; }
     return `<svg class="tree-svg" viewBox="0 0 120 150" role="img" aria-label="${n} jelly beans in a jar"><rect x="16" y="22" width="88" height="120" rx="16" fill="#eef6fb" stroke="#9db8c9" stroke-width="3"/>${b}<rect x="22" y="6" width="76" height="14" rx="5" fill="#b8763a"/><rect x="24" y="26" width="5" height="90" rx="2.5" fill="#fff" opacity=".6"/></svg>`;
   }
-  const gardenHTML = (z, xp) => z === 'kid' ? jarSVG(beansOf()) + `<div class="tree-label">${beansOf()} jelly beans in the jar</div>` : treeSVG(xp) + `<div class="tree-label">${treeStage(xp)}</div>`;
-  function eatBeans() {
-    const n = beansOf(); try { localStorage.setItem('zonebeans_kid', 0); } catch (e) {}
+  const JAR_FULL = 66;
+  const gardenHTML = (z, xp) => z === 'kid' ? jarSVG(beansOf()) + `<div class="tree-label">${Math.min(beansOf(), JAR_FULL)} of ${JAR_FULL} jelly beans in the jar</div>` : treeSVG(xp) + `<div class="tree-label">${treeStage(xp)}</div>`;
+  function eatBeans(full) {
+    const have = beansOf(), n = full ? JAR_FULL : have;
+    try { localStorage.setItem('zonebeans_kid', full ? have - JAR_FULL : 0); } catch (e) {}
     const m = document.getElementById('munch');
-    m.querySelector('.mtext').textContent = n ? `Nom nom nom! The Bean Monster gobbled all ${n} jelly beans. Start filling the jar again!` : 'The Bean Monster peeked in, found an empty jar and sniffled. Fill it this week!';
+    m.querySelector('.mtext').textContent = full ? `The jar is FULL! A silly Bean Monster stomped in and went nom nom nom, gobbling all ${n} jelly beans! Burp! Here is a brand new empty jar. Fill it up!` : n ? `Nom nom nom! The Bean Monster gobbled all ${n} jelly beans. Start filling the jar again!` : 'The Bean Monster peeked in, found an empty jar and sniffled. Fill it this week!';
     m.querySelector('.rain').innerHTML = Array.from({ length: Math.min(n, 18) }, (_, i) => `<i style="left:${40 + (i * 7) % 24}%;background:${beanCols[i % 8]};animation-delay:${i * 0.12}s"></i>`).join('');
     m.hidden = false; renderStars('kid');
   }
@@ -1772,7 +2256,7 @@
           <span class="qstat">Today: ${st.doneToday.size} of ${quests.length}</span>
         </div>
       </div>
-      <p class="badge-sub" style="margin:0 0 4px">Tap a quest when you have done it. Each one counts once a day and moves your icon along the Quest Race track. Streak days add +2 extra points each, up to +10 a day.${next ? ` Next milestone: ${next.name} at ${next.at} points.` : ' You have finished the race track, keep going to win!'}${st.atRisk ? ' <strong>Do a quest today to keep your streak alive!</strong>' : ''}${locked ? ' <strong>Week ' + phase + ' is locked, so pick an open week to log quests.</strong>' : ''}</p>
+      <p class="badge-sub" style="margin:0 0 4px"><strong>Quests are a separate game.</strong> They only move your icon in the Quest Race. They do not add climb points, board spaces or team race points anywhere else in the challenge. Tap a quest when you have done it. Each one counts once a day. Streak days add +2 extra points each, up to +10 a day.${next ? ` Next milestone: ${next.name} at ${next.at} points.` : ' You have finished the race track, keep going to win!'}${st.atRisk ? ' <strong>Do a quest today to keep your streak alive!</strong>' : ''}${locked ? ' <strong>Week ' + phase + ' is locked, so pick an open week to log quests.</strong>' : ''}</p>
       ${questResultHTML ? `<div class="quest-result"><span>${questResultHTML}</span><button onclick="showView('race')">See the race</button></div>` : ''}
       <div class="quest-grid">${quests.map(q => {
         const entry = todaysQuestEntry(user, q.id);
@@ -1801,7 +2285,7 @@
       msg += m.at >= rf.max ? ` You crossed the FINISH line!` : ` Milestone reached: ${m.name}!`;
       launchConfetti(m.at >= rf.max ? 130 : 70);
     }
-    const pho = (r.msg.match(/A Phoenix rises!.*?token\./) || [''])[0];
+    const pho = (r.msg.match(/5 days in a row! You earned a rest token\./) || [''])[0];
     questResultHTML = `${msg} ${unlock} ${pho}`.trim();
     justDone = id;
     renderQuests();
@@ -1895,6 +2379,7 @@
     if (afterLevel > beforeLevel) msg += ` Level up! Level ${afterLevel}.`;
     renderZone(z, d > 0 ? id : null);
     renderZoneInfo(z, msg);
+    if (z === 'kid' && d > 0 && beansOf() >= JAR_FULL) setTimeout(() => eatBeans(true), 500);
   }
   function renderZoneInfo(z, flash) {
     const xp = zoneXp(z), L = levelFor(xp);
@@ -1905,7 +2390,7 @@
     renderStars(z);
   }
   function newWeek(z) {
-    if (!confirm("Start a new week? This clears this week's tallies so you can earn stars again. Your stars, XP and tree are kept.")) return;
+    if (!confirm("Start a new week? This clears this week's tallies so you can earn stars again. Your stars and XP are kept, and the Bean Monster will come to eat your jelly beans.")) return;
     zoneSave(z, {});
     try { localStorage.removeItem('starswk_' + z); } catch (e) {}
     renderZone(z);
@@ -1913,7 +2398,7 @@
     if (z === 'kid') eatBeans();
   }
   function resetMonth(z) {
-    if (!confirm('Reset for the new month? This erases all tallies, stars, XP and the tree on this device. It cannot be undone.')) return;
+    if (!confirm('Reset for the new month? This erases all tallies, stars, XP and jelly beans on this device. It cannot be undone.')) return;
     zoneSave(z, {});
     try { ['starswk_', 'stars_', 'zonexp_', 'zonebeans_'].forEach(p => localStorage.removeItem(p + z)); } catch (e) {}
     renderZone(z);
@@ -2133,11 +2618,11 @@
     frames: [{ p: Pz({ t: 82, hd: -6, A1: fk(114, 114), A2: fk(92, 92), L1: fk(-90, -90), L2: fk(-112, -112) }), d: 800 }, { p: Pz({ t: 82, hd: -6, A1: fk(92, 92), A2: fk(114, 114), L1: fk(-112, -112), L2: fk(-90, -90) }), d: 800 }] };
 
   const LATSTAND = LGF(0, 80, 14, -14);
-  EX.lateralraise = { name: 'Lateral raises', view: 'front', prop: 'plate', anchor: 'f1', gear: '2 light dumbbells', works: 'Side shoulders', hl: ['ua1', 'ua2'],
-    cues: ['Stand tall with a light dumbbell in each hand at your sides.', 'Raise your arms out to the sides up to shoulder height, elbows slightly bent, leading with your elbows.', 'Lower slowly. Do not shrug your shoulders or swing.'],
+  EX.lateralraise = { name: 'Lateral raises', view: 'front', prop: 'plate', anchor: 'f1', gear: '2 dumbbells', works: 'Side shoulders', hl: ['ua1', 'ua2'],
+    cues: ['Stand tall with a dumbbell in each hand at your sides. Pick a weight that feels right for you.', 'Raise your arms out to the sides up to shoulder height, elbows slightly bent, leading with your elbows.', 'Lower slowly. Do not shrug your shoulders or swing.'],
     frames: [{ p: Pz({ ...LATSTAND, A1: fk(8, 8), A2: fk(-8, -8) }), d: 1500, h: 150 }, { p: Pz({ ...LATSTAND, A1: fk(84, 92), A2: fk(-84, -92) }), d: 1200, h: 300 }] };
 
-  EX.crossfront = { name: 'Cross-front raises', view: 'front', prop: 'plate', anchor: 'f1', gear: '2 light dumbbells', works: 'Front shoulders', hl: ['ua1', 'ua2'],
+  EX.crossfront = { name: 'Cross-front raises', view: 'front', prop: 'plate', anchor: 'f1', gear: '2 dumbbells', works: 'Front shoulders', hl: ['ua1', 'ua2'],
     cues: ['Stand tall with a dumbbell in each hand, elbows bent and the weights up at shoulder height in front of you.', 'Open your arms out wide so your elbows move out and down and the weights stay at shoulder height, like a W.', 'Bring the weights back together in front of your shoulders with control. Do not swing or shrug.'],
     frames: [{ p: Pz({ ...LATSTAND, A1: fk(22, 198), A2: fk(-22, -198) }), d: 1100, h: 250 }, { p: Pz({ ...LATSTAND, A1: fk(52, 132), A2: fk(-52, -132) }), d: 1200, h: 350 }] };
 
@@ -2244,7 +2729,7 @@
 
   // ===== Muscle Up: body map, guided workouts, XP and workout rest tokens =====
   const MU_POINTS = 3;
-  const XP_PER_SET = 5, XP_BONUS = 25, XP_LEVEL = 150, MU_MAX_RESTS = 2, WK_GET = 10;
+  const XP_PER_SET = 5, XP_BONUS = 25, XP_LEVEL = 150, MU_MAX_RESTS = 2, WK_GET = 10;  // (WK_GET is no longer used: workouts are not timed)
   const muLevelNames = ['Warm-up', 'Mover', 'Lifter', 'Sculptor', 'Powerhouse', 'Titan'];
   const muUser = () => document.getElementById('userSelect').value;
   const xpOf = u => state.logs.reduce((a, l) => l.user === u && l.exercise.startsWith('mu_d') ? a + l.amount : a, 0);
@@ -2291,7 +2776,7 @@
     const me = muUser(), w = curWeek(), xp = xpOf(me), lv = levelOf(xp), locked = isLocked(w);
     const prog = (xp % XP_LEVEL) / XP_LEVEL * 100, doneN = muDoneCount(me, w), claimed = muClaims(me, w);
     const avail = Math.max(0, Math.min(MU_MAX_RESTS, doneN) - claimed), tokens = phoenixInfo(me).left;
-    const mins = d => Math.round(d.ex.length * 3 + 1);
+    const mins = d => Math.round(d.ex.length * 3 + 1);  // rough guide only
     box.innerHTML = `<div class="quest-card">
         <div class="mu-head"><div><h2 class="section-title" style="margin:0 0 2px">Muscle Up</h2><div class="badge-sub" style="margin:0">${esc(me)} &middot; Level ${lv}: ${muLevelNames[Math.min(lv - 1, muLevelNames.length - 1)]}</div></div><div class="mu-xp"><b>${xp}</b> XP</div></div>
         <div class="mu-bar" aria-label="Progress to the next level"><i style="width:${prog.toFixed(1)}%"></i></div>
@@ -2317,7 +2802,7 @@
   }
 
   // ---- the guided workout page ----
-  let muRun = null, muRaf = null, muAnimT = 0, muLastTs = 0, muSound = true, muWake = null, muTick = null;
+  let muRun = null, muRaf = null, muAnimT = 0, muLastTs = 0, muSound = true, muWake = null;
   function muBeep(freq = 880, ms = 110) {
     if (!muSound) return;
     try { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; window.__ac = window.__ac || new AC(); const o = window.__ac.createOscillator(), g = window.__ac.createGain(); o.frequency.value = freq; o.type = 'sine'; g.gain.value = 0.12; o.connect(g); g.connect(window.__ac.destination); o.start(); o.stop(window.__ac.currentTime + ms / 1000); } catch (e) {}
@@ -2329,53 +2814,39 @@
     if (isLocked(w)) { muNote('This week is locked, so workouts are closed.'); return; }
     if (muDone(me, w, id)) { muNote(`${muDay(id).name} is done for this week. Come back next week!`); return; }
     if (muRun && muRun.phase !== 'summary' && !confirm('Start a different workout? Your current one will be lost.')) return;
-    muRun = { day: id, user: me, i: 0, set: 1, phase: 'intro', left: 0, endAt: 0, paused: false, settings: { sets: 3, work: 40, rest: 20 }, done: [], skipped: [], lastBeep: 0, saved: false, xp: 0, complete: false, err: '' };
+    muRun = { day: id, user: me, i: 0, set: 1, phase: 'intro', settings: { sets: 3 }, reps: muDay(id).ex.map(k => repsFor(k)[0]), done: [], skipped: [], saved: false, xp: 0, complete: false, err: '' };
     showView('workout');
   }
   const wkEx = () => EX[muDay(muRun.day).ex[muRun.i]];
-  function wkSetPhase(phase, secs) { const r = muRun; r.phase = phase; r.left = secs * 1000; r.endAt = Date.now() + r.left; r.paused = false; r.lastBeep = 0; wkRender(); }
-  function wkStart() { muBeep(880, 160); try { navigator.wakeLock && navigator.wakeLock.request('screen').then(l => { muWake = l; }).catch(() => {}); } catch (e) {} muRun.i = muRun.i || 0; wkSetPhase('get', WK_GET); }
-  function wkAdj(key, dir) { const r = muRun, lim = { sets: [1, 10, 1], work: [10, 180, 5], rest: [0, 180, 5] }[key]; r.settings[key] = Math.max(lim[0], Math.min(lim[1], r.settings[key] + dir * lim[2])); wkRender(); }
-  function wkSetVal(key, v) { const lim = { sets: [1, 10], work: [10, 180], rest: [0, 180] }[key]; v = parseInt(v); if (isNaN(v)) return; muRun.settings[key] = Math.max(lim[0], Math.min(lim[1], v)); const el = document.getElementById('wkv-' + key); if (el && document.activeElement !== el) el.value = muRun.settings[key]; wkUpdateEst(); }
-  function wkTogglePause() { const r = muRun; if (!['get', 'work', 'rest'].includes(r.phase)) return; if (r.paused) { r.endAt = Date.now() + r.left; r.paused = false; } else { r.left = Math.max(0, r.endAt - Date.now()); r.paused = true; } wkRender(); }
-  function wkAddRest() { const r = muRun; if (r.phase !== 'rest') return; if (r.paused) r.left += 15000; else r.endAt += 15000; wkUpdateTimer(); }
-  function wkSkipPhase() { const r = muRun; if (r.phase === 'get' || r.phase === 'rest') wkAdvance(true); }
+  // Workouts are set based, not timed: do the reps, tap "Done set", rest as long as you need, then start the next set.
+  const REPS = { goblet: [12], glutebridge: [15], sidelunge: [10, 'each side'], bicepcurl: [12], hammercurl: [12], deadbug: [10, 'each side'], superman: [12], snowangel: [12], swimcrawl: [20, 'in total'], lateralraise: [12], crossfront: [12], reversecrunch: [15], birddog: [10, 'each side'], sumo: [15], splitsquat: [10, 'each leg'], curtsy: [10, 'each side'], tricepkick: [12], widerow: [12], flutter: [30, 'kicks'], shouldertap: [20, 'taps'], bearcrawl: [10, 'steps'], kneeelbow: [12, 'each side'], crunch: [15], pulsesquat: [20, 'pulses'], pendulum: [8, 'each leg'], climber: [20, 'taps'], vup: [10], punches: [30, 'punches'] };
+  const repsFor = k => REPS[k] || [12];
+  const wkRepLabel = () => { const r = muRun, per = repsFor(muDay(r.day).ex[r.i])[1]; return `${r.reps[r.i]} ${per && per !== 'in total' && !/^(kicks|taps|steps|pulses|punches)$/.test(per) ? 'reps ' + per : per === 'in total' ? 'reps in total' : per || 'reps'}`.replace('reps reps', 'reps'); };
+  function wkSetPhase(phase) { muRun.phase = phase; wkRender(); }
+  function wkStart() { muBeep(880, 160); try { navigator.wakeLock && navigator.wakeLock.request('screen').then(l => { muWake = l; }).catch(() => {}); } catch (e) {} muRun.i = 0; muRun.set = 1; wkSetPhase('get'); }
+  function wkAdj(key, dir) { const r = muRun; if (key === 'reps') r.reps[r.i] = Math.max(1, Math.min(100, r.reps[r.i] + dir)); else r.settings.sets = Math.max(1, Math.min(10, r.settings.sets + dir)); wkRender(); }
+  function wkSetVal(key, v) { const r = muRun; v = parseInt(v); if (isNaN(v)) return; if (key === 'reps') r.reps[r.i] = Math.max(1, Math.min(100, v)); else r.settings.sets = Math.max(1, Math.min(10, v)); wkUpdateEst(); }
   function wkSkipExercise() { if (!confirm('Skip this exercise?')) return; muRun.skipped[muRun.i] = true; wkNextExercise(); }
-  function wkNextExercise() { const r = muRun; r.i++; r.set = 1; if (r.i >= muDay(r.day).ex.length) wkFinish(); else wkSetPhase('get', WK_GET); }
-  function wkAdvance(manual) {
-    const r = muRun, s = r.settings;
-    if (r.phase === 'get') { r.set = 1; muBeep(880, 200); wkSetPhase('work', s.work); }
+  function wkNextExercise() { const r = muRun; r.i++; r.set = 1; if (r.i >= muDay(r.day).ex.length) wkFinish(); else wkSetPhase('get'); }
+  // "I'm ready" -> set 1 starts. "Done set" -> rest (or the next exercise after the last set). "Start next set" -> the next set.
+  function wkAdvance() {
+    const r = muRun;
+    if (r.phase === 'get') { r.set = 1; muBeep(880, 200); wkSetPhase('work'); }
     else if (r.phase === 'work') {
       r.done[r.i] = (r.done[r.i] || 0) + 1;
-      if (r.set < s.sets) { if (s.rest > 0) { muBeep(520, 220); wkSetPhase('rest', s.rest); } else { r.set++; muBeep(880, 160); wkSetPhase('work', s.work); } }
+      if (r.set < r.settings.sets) { muBeep(520, 220); wkSetPhase('rest'); }
       else { muBeep(660, 300); wkNextExercise(); }
     }
-    else if (r.phase === 'rest') { r.set++; muBeep(880, 200); wkSetPhase('work', s.work); }
+    else if (r.phase === 'rest') { r.set++; muBeep(880, 200); wkSetPhase('work'); }
   }
-  function wkTickFn() {
-    const r = muRun; if (!r || r.paused || !['get', 'work', 'rest'].includes(r.phase)) return;
-    r.left = r.endAt - Date.now();
-    const secs = Math.ceil(r.left / 1000);
-    if (secs >= 1 && secs <= 3 && r.lastBeep !== secs) { r.lastBeep = secs; muBeep(660, 70); }
-    if (r.left <= 0) wkAdvance(); else wkUpdateTimer();
-  }
-  const fmtClock = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
-  function wkUpdateTimer() {
-    const r = muRun; if (!r) return;
-    const total = (r.phase === 'get' ? WK_GET : r.phase === 'work' ? r.settings.work : r.settings.rest) * 1000 || 1;
-    const c = document.getElementById('wkCount'), ring = document.getElementById('wkRing');
-    if (c) c.textContent = fmtClock(r.left);
-    if (ring) ring.setAttribute('stroke-dashoffset', (339.3 * (1 - Math.max(0, Math.min(1, r.left / total)))).toFixed(1));
-  }
-  function wkEstMin() { const r = muRun, n = muDay(r.day).ex.length, s = r.settings; return Math.round((n * (s.sets * (s.work + s.rest) + WK_GET)) / 60); }
-  function wkUpdateEst() { const el = document.getElementById('wkEst'); if (el) el.textContent = `About ${wkEstMin()} minutes in total`; }
+  function wkEstMin() { const r = muRun; return Math.round(r.reps.reduce((a, n) => a + r.settings.sets * (n * 3 + 45), 0) / 60); }
+  function wkUpdateEst() { const el = document.getElementById('wkEst'); if (el) el.textContent = `About ${wkEstMin()} minutes in total, at your own pace`; }
   function wkStepper(key, label, unit) {
-    const r = muRun;
-    return `<div class="wk-field"><span>${label}</span><div class="stp"><button type="button" onclick="wkAdj('${key}',-1)" aria-label="Fewer ${label}">&minus;</button><input id="wkv-${key}" type="number" inputmode="numeric" value="${r.settings[key]}" onchange="wkSetVal('${key}',this.value)" oninput="wkSetVal('${key}',this.value)" aria-label="${label}"><button type="button" onclick="wkAdj('${key}',1)" aria-label="More ${label}">+</button></div><small>${unit}</small></div>`;
+    const r = muRun, val = key === 'reps' ? r.reps[r.i] : r.settings.sets;
+    return `<div class="wk-field"><span>${label}</span><div class="stp"><button type="button" onclick="wkAdj('${key}',-1)" aria-label="Fewer ${label}">&minus;</button><input id="wkv-${key}" type="number" inputmode="numeric" value="${val}" onchange="wkSetVal('${key}',this.value)" oninput="wkSetVal('${key}',this.value)" aria-label="${label}"><button type="button" onclick="wkAdj('${key}',1)" aria-label="More ${label}">+</button></div><small>${unit}</small></div>`;
   }
   async function wkFinish() {
     const r = muRun, d = muDay(r.day), n = d.ex.length;
-    clearInterval(muTick); muTick = null;
     const sets = r.done.reduce((a, v) => a + (v || 0), 0);
     const full = d.ex.filter((_, i) => !r.skipped[i] && (r.done[i] || 0) >= 1).length;
     r.complete = full >= Math.ceil(n / 2);
@@ -2394,7 +2865,7 @@
   function wkLeave() {
     const r = muRun;
     if (r && ['get', 'work', 'rest'].includes(r.phase) && !confirm('Leave this workout? Your progress will be lost.')) return;
-    muRun = null; clearInterval(muTick); muTick = null; try { if (muWake) { muWake.release(); muWake = null; } } catch (e) {}
+    muRun = null; try { if (muWake) { muWake.release(); muWake = null; } } catch (e) {}
     showView('muscle');
   }
   function wkToggleSound() { muSound = !muSound; wkRender(); }
@@ -2407,10 +2878,10 @@
     if (r.phase === 'intro') {
       box.innerHTML = `<div class="quest-card wk">${head}
         <h2 class="section-title">Ready to start?</h2>
-        <p class="badge-sub">${n} exercises. For each one you will see how to do it, then work for a set time with a rest between sets. You can pause any time for water or to grab weights, and skip an exercise if you need to. Finish at least half to complete the section.</p>
-        <ol class="wk-list">${d.ex.map(k => `<li><b>${EX[k].name}</b><small>${EX[k].gear}</small></li>`).join('')}</ol>
-        <div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}${wkStepper('work', 'Work', 'seconds')}${wkStepper('rest', 'Rest', 'seconds')}</div>
-        <p class="badge-sub" id="wkEst" style="margin:8px 0 14px">About ${wkEstMin()} minutes in total</p>
+        <p class="badge-sub">${n} exercises. For each one you will see how to do it, then do a set number of reps. Tap Done set when you finish a set, rest for as long as you need, then start the next one. There is no clock, so go at your own pace. Skip an exercise if you need to, and finish at least half to complete the section.</p>
+        <ol class="wk-list">${d.ex.map(k => `<li><b>${EX[k].name}</b><small>${repsFor(k)[0]} ${repsFor(k)[1] || 'reps'} &middot; ${EX[k].gear}</small></li>`).join('')}</ol>
+        <div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}</div>
+        <p class="badge-sub" id="wkEst" style="margin:8px 0 14px">About ${wkEstMin()} minutes in total, at your own pace</p>
         <button class="wk-go" onclick="wkStart()">Start workout</button></div>`;
       return;
     }
@@ -2424,22 +2895,22 @@
         <button class="${r.complete ? 'wk-go' : 'wk-ghost'}" onclick="wkLeave()">${r.complete ? 'Back to Muscle Up' : 'Back to Muscle Up'}</button></div>`;
       return;
     }
-    const ex = wkEx(), phase = r.phase, working = phase === 'work';
-    const label = { get: 'GET READY', work: 'WORK', rest: 'REST' }[phase];
+    const ex = wkEx(), phase = r.phase;
+    const label = { get: 'GET READY', work: 'SET ' + r.set + ' OF ' + r.settings.sets, rest: 'REST' }[phase];
     const next = r.i + 1 < n ? EX[d.ex[r.i + 1]].name : null;
-    const sub = phase === 'get' ? `Next: ${ex.name}${ex.gear && !/Bodyweight|Mat/.test(ex.gear) ? ' (grab: ' + ex.gear + ')' : ''}` : `Set ${r.set} of ${r.settings.sets}`;
+    const gearNote = ex.gear && !/Bodyweight|Mat/.test(ex.gear) ? ' (grab: ' + ex.gear + ')' : ex.gear === 'Mat' ? ' (grab a mat)' : '';
+    const mainText = phase === 'get' ? "I'm ready, start set 1" : phase === 'work' ? 'Done set' : `Start set ${r.set + 1}`;
+    const big = phase === 'get' ? `<div class="wk-setn">${r.settings.sets} sets of ${wkRepLabel()}${gearNote}</div>` : phase === 'work' ? `<div class="wk-count">${wkRepLabel()}</div><div class="wk-setn">Tap Done set when you finish</div>` : `<div class="wk-count" style="font-size:1.6rem">Catch your breath</div><div class="wk-setn">Take as long as you need.<br>${r.done[r.i] || 0} of ${r.settings.sets} sets done</div>`;
     box.innerHTML = `<div class="quest-card wk ph-${phase}">${head}
       <div class="wk-prog">Exercise ${r.i + 1} of ${n}${next ? ` &middot; then ${next}` : ' &middot; last one!'}</div>
       <h2 class="wk-title">${ex.name}</h2>
-      <div class="wk-stage${phase === 'rest' ? ' dim' : ''}"><svg id="wkSvg" viewBox="0 0 300 200" role="img" aria-label="Animation of ${ex.name}"></svg><div class="wk-works">Works: ${ex.works}${ex.gear ? ' &middot; ' + ex.gear : ''}</div>${phase === 'rest' ? '<div class="wk-rest">Rest. Shake it out and breathe.</div>' : ''}${r.paused ? '<div class="wk-paused">Paused. Grab your water or weights, then tap Resume.</div>' : ''}</div>
-      <div class="wk-timer"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="var(--track)" stroke-width="9"/><circle id="wkRing" cx="60" cy="60" r="54" fill="none" stroke="${phase === 'rest' ? '#3d8a7e' : d.color}" stroke-width="9" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="0" transform="rotate(-90 60 60)"/></svg>
-        <div class="wk-tin"><div class="wk-phase">${label}</div><div class="wk-count" id="wkCount">${fmtClock(r.left)}</div><div class="wk-setn">${sub}</div></div></div>
-      <div class="wk-ctl"><button class="wk-main" onclick="wkTogglePause()">${r.paused ? 'Resume' : 'Pause'}</button>${phase === 'rest' ? '<button class="wk-ghost" onclick="wkAddRest()">+15 sec rest</button>' : ''}${phase === 'get' || phase === 'rest' ? `<button class="wk-ghost" onclick="wkSkipPhase()">${phase === 'get' ? 'Start now' : 'Skip rest'}</button>` : ''}<button class="wk-ghost" onclick="wkSkipExercise()">Skip exercise</button></div>
-      ${phase === 'get' ? `<div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}${wkStepper('work', 'Work', 'seconds')}${wkStepper('rest', 'Rest', 'seconds')}</div>` : ''}
+      <div class="wk-stage${phase === 'rest' ? ' dim' : ''}"><svg id="wkSvg" viewBox="0 0 300 200" role="img" aria-label="Animation of ${ex.name}"></svg><div class="wk-works">Works: ${ex.works}${ex.gear ? ' &middot; ' + ex.gear : ''}</div>${phase === 'rest' ? '<div class="wk-rest">Rest. Shake it out and breathe.</div>' : ''}</div>
+      <div class="wk-reps"><div class="wk-phase">${label}</div>${big}</div>
+      <div class="wk-ctl"><button class="wk-main wk-bigbtn" style="background:${phase === 'rest' ? '#3d8a7e' : d.color}" onclick="wkAdvance()">${mainText}</button><button class="wk-ghost" onclick="wkSkipExercise()">Skip exercise</button></div>
+      ${phase === 'get' ? `<div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}${wkStepper('reps', 'Reps', 'this exercise')}</div>` : ''}
       <h3 class="wk-h">How to do it</h3>
       <ol class="wk-cues">${ex.cues.map(c => `<li>${c}</li>`).join('')}</ol>
       <a class="wk-yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name + ' exercise proper form')}" target="_blank" rel="noopener">Watch a video of this exercise on YouTube</a></div>`;
-    wkUpdateTimer();
   }
   function wkFrame(ts) {
     muRaf = null;
@@ -2449,7 +2920,7 @@
     const svg = document.getElementById('wkSvg');
     if (svg && ['get', 'work', 'rest'].includes(r.phase)) {
       const ex = wkEx(), d = muDay(r.day);
-      if (r.phase !== 'rest' && !r.paused) muAnimT += dt;
+      if (r.phase !== 'rest') muAnimT += dt;
       const ms = r.phase === 'rest' ? 0 : muAnimT, p = poseAt(ex, ms);
       svg.innerHTML = ex.view === 'top' ? topViewSVG(p, { shirt: d.color }, ms) : figureSVG(p, { front: ex.view === 'front', shirt: d.color, prop: ex.prop, hl: ex.hl, mat: ex.mat, anchor: ex.anchor, ground: ex.ground }, ms);
     }
@@ -2457,10 +2928,301 @@
   }
   function wkEnter() {
     wkRender(); muAnimT = 0; muLastTs = 0;
-    if (!muTick) muTick = setInterval(wkTickFn, 200);
     if (!muRaf) muRaf = requestAnimationFrame(wkFrame);
   }
-  document.addEventListener('visibilitychange', () => { const r = muRun; if (document.visibilityState === 'hidden' && r && ['get', 'work', 'rest'].includes(r.phase) && !r.paused) { r.left = Math.max(0, r.endAt - Date.now()); r.paused = true; wkRender(); } });
+
+
+  // ----- My Stats: a private log that lives only on this device (never sent to the server) -----
+  const PRIV_PREFIX = 'priv_v1_';
+  const privBlank = () => ({ units: 'metric', weights: [], meas: [], lifts: {} });
+  function privLoad(u) { try { const d = JSON.parse(localStorage.getItem(PRIV_PREFIX + u)); if (d && typeof d === 'object') return Object.assign(privBlank(), d); } catch (e) {} return privBlank(); }
+  function privSave(u, d) { try { localStorage.setItem(PRIV_PREFIX + u, JSON.stringify(d)); return true; } catch (e) { showToast('Could not save on this device. Private browsing may be on.'); return false; } }
+  let pUser = null, pLiftNames = [];
+  const KG_LB = 2.2046226218, CM_IN = 0.3937007874;
+  const imp = d => d.units === 'imperial';
+  const wOut = (d, kg) => imp(d) ? kg * KG_LB : kg, wIn = (d, v) => imp(d) ? v / KG_LB : v, wUnit = d => imp(d) ? 'lb' : 'kg';
+  const lOut = (d, cm) => imp(d) ? cm * CM_IN : cm, lIn = (d, v) => imp(d) ? v / CM_IN : v, lUnit = d => imp(d) ? 'in' : 'cm';
+  const fmt1 = n => String(Math.round(n * 10) / 10);
+  const todayISO = () => { const t = new Date(); return t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0'); };
+  const niceDate = iso => { const t = new Date(iso + 'T12:00:00'); return isNaN(t) ? iso : t.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); };
+  const shortDate = iso => { const t = new Date(iso + 'T12:00:00'); return isNaN(t) ? iso : t.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); };
+  const byDate = (a, b) => (a.d < b.d ? -1 : a.d > b.d ? 1 : (a.ts || 0) - (b.ts || 0));
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  const BODY_PARTS = [['chest', 'Chest'], ['arm', 'Upper arm'], ['waist', 'Waist'], ['hips', 'Hips'], ['thigh', 'Thigh'], ['calf', 'Calf']];
+  const LIFT_PRESETS = { 'Squat': 'weight', 'Deadlift': 'weight', 'Bench press': 'weight', 'Overhead press': 'weight', 'Hip thrust': 'weight', 'Dumbbell row': 'weight', 'Bicep curl': 'weight', 'Lateral raise': 'weight', 'Goblet squat': 'weight', 'Lunge': 'weight', 'Push-ups': 'reps', 'Pull-ups': 'reps', 'Sit-ups': 'reps', 'Plank': 'time', 'Wall sit': 'time' };
+  const TYPE_LABEL = { weight: 'Weight lifted', reps: 'Max reps', time: 'Longest hold (seconds)' };
+  const csvCell = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  function download(name, text, mime = 'text/csv') {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: mime + ';charset=utf-8' })); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  const safeName = () => pUser.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  // A simple line chart. pts = [{ d: '2026-10-27', y: 61.2 }] sorted by date.
+  function lineChart(pts, unit, label) {
+    if (!pts.length) return '';
+    const W = 320, H = 170, L = 42, R = 14, T = 16, B = 28, ys = pts.map(p => p.y), lo0 = Math.min(...ys), hi0 = Math.max(...ys);
+    const span = (hi0 - lo0) || Math.max(1, hi0 * .02), lo = lo0 - span * .25, hi = hi0 + span * .25;
+    const ms = d => new Date(d + 'T12:00:00').getTime(), t0 = ms(pts[0].d), t1 = ms(pts[pts.length - 1].d);
+    const X = d => pts.length < 2 || t1 === t0 ? (L + W - R) / 2 : L + (ms(d) - t0) / (t1 - t0) * (W - L - R);
+    const Y = v => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+    const poly = pts.map(p => X(p.d).toFixed(1) + ',' + Y(p.y).toFixed(1)).join(' ');
+    const labs = [...new Set([hi0, lo0].map(v => fmt1(v)))].map(t => `<text x="${L - 6}" y="${(Y(parseFloat(t)) + 3).toFixed(1)}" text-anchor="end">${t}</text><line class="gl" x1="${L}" x2="${W - R}" y1="${Y(parseFloat(t)).toFixed(1)}" y2="${Y(parseFloat(t)).toFixed(1)}"/>`).join('');
+    const last = pts[pts.length - 1];
+    return `<svg class="pchart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)} over time, latest ${fmt1(last.y)} ${unit}"><title>${esc(label)}</title>${labs}
+      ${pts.length > 1 ? `<polyline class="ln" points="${poly}"/>` : ''}${pts.map(p => `<circle class="dot" cx="${X(p.d).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="3.6"/>`).join('')}
+      <text class="big" x="${Math.min(X(last.d), W - R - 2).toFixed(1)}" y="${(Y(last.y) + (pts.length > 1 && pts[pts.length - 2].y >= last.y ? 17 : -9)).toFixed(1)}" text-anchor="${pts.length > 1 ? 'end' : 'middle'}">${fmt1(last.y)} ${unit}</text>
+      <text x="${pts.length > 1 ? L : (L + W - R) / 2}" y="${H - 8}" text-anchor="${pts.length > 1 ? 'start' : 'middle'}">${shortDate(pts[0].d)}</text>${pts.length > 1 ? `<text x="${W - R}" y="${H - 8}" text-anchor="end">${shortDate(last.d)}</text>` : ''}</svg>`;
+  }
+
+  const pCheer = [
+    'This page is your private corner. Every little step adds up, and we are so glad you are here.',
+    'Look at you, showing up for yourself! Small steps, taken with a good intention, really do add up.',
+    'You are stronger than you think, and getting stronger every day. One gentle step at a time.',
+    'Take a moment to be proud of how far you have come. Today is a fresh chance to be kind to your body.',
+    'Bismillah, here is to another good day! Whatever you do today is already a win.',
+    'No pressure and no comparing. Just you, getting a little bit better, at your own pace.',
+    'Your future self says thank you! Keep showing up, even in small ways.'
+  ];
+  function pHelloHTML(u) {
+    const i = (todayD() + [...u].reduce((a, c) => a + c.charCodeAt(0), 0)) % pCheer.length;
+    return `<div class="p-hello" style="--btn:${teamColor[teamMap[u]]}"><div class="name-hello">Hi ${esc(u)}!</div><p class="p-cheer">${pCheer[i]}</p><button class="name-change" onclick="changeName();showView('challenge')">Not you? Change</button></div>`;
+  }
+  function renderPrivate() {
+    pUser = $id('userSelect').value;
+    $id('pHello').innerHTML = pHelloHTML(pUser);
+    const d = privLoad(pUser);
+    $id('pUnits').innerHTML = `<span>Units for ${esc(pUser)}:</span><span class="seg"><button class="${imp(d) ? '' : 'on'}" onclick="privUnits('metric')">kg and cm</button><button class="${imp(d) ? 'on' : ''}" onclick="privUnits('imperial')">lb and inches</button></span>`;
+    renderBody(); renderStrength(); renderBackup();
+  }
+  function refreshPrivView() { const v = $id('view-stats'); if (v && !v.hidden && $id('userSelect').value !== pUser) renderPrivate(); }
+  function privUnits(u) { const d = privLoad(pUser); d.units = u; privSave(pUser, d); renderPrivate(); }
+
+  // ---- My body ----
+  let pBodyPart = 'waist';
+  function renderBody() {
+    const box = $id('pBody'); if (!box) return;
+    const d = privLoad(pUser), ws = d.weights.slice().sort(byDate), ms = d.meas.slice().sort(byDate), wu = wUnit(d), lu = lUnit(d);
+    const wpts = ws.map(w => ({ d: w.d, y: wOut(d, w.kg) }));
+    const change = wpts.length > 1 ? wpts[wpts.length - 1].y - wpts[0].y : null;
+    const partsUsed = BODY_PARTS.filter(([k]) => ms.some(m => m.v && m.v[k] > 0));
+    if (!partsUsed.some(([k]) => k === pBodyPart)) pBodyPart = partsUsed.length ? partsUsed[0][0] : 'waist';
+    const ppts = ms.filter(m => m.v && m.v[pBodyPart] > 0).map(m => ({ d: m.d, y: lOut(d, m.v[pBodyPart]) }));
+    const recent = ms.slice(-5).reverse();
+    box.innerHTML = `<div class="quest-card pcard"><h2 class="section-title">My body</h2>
+      <p class="sub">Totally optional, and just for you. Track only what feels good, skip anything that does not, and remember numbers are only one small part of how strong you are.</p>
+      <h3>Weight</h3>
+      <div class="prow"><label>Date<input type="date" id="pwDate" value="${todayISO()}" max="${todayISO()}"></label><label>Weight (${wu})<input type="number" id="pwVal" inputmode="decimal" step="0.1" min="0" placeholder="e.g. ${imp(d) ? '135.0' : '61.5'}"></label><button class="pbtn" onclick="addWeight()">Add weight</button></div>
+      ${wpts.length ? lineChart(wpts, wu, 'Weight') : '<p class="sub">Add your first weight and your graph will appear here.</p>'}
+      ${change !== null ? `<p class="sub">Change since your first entry (${niceDate(ws[0].d)}): <b>${change > 0 ? '+' : ''}${fmt1(change)} ${wu}</b></p>` : ''}
+      ${ws.length ? `<ul class="plist">${ws.slice(-6).reverse().map(w => `<li><span>${niceDate(w.d)}</span><span><b>${fmt1(wOut(d, w.kg))} ${wu}</b> <button class="xbtn" onclick="delWeight('${w.id}')" aria-label="Delete this weight entry">&times;</button></span></li>`).join('')}</ul>` : ''}
+      <h3>Measurements</h3>
+      <p class="sub">Fill in any you like (all optional) and save. Measure the same way each time, for example standing relaxed.</p>
+      <details class="mtips"><summary>How to measure (tips)</summary>
+        <h4>If you only track one thing, make it your waist</h4>
+        <p>Besides (or instead of) your weight, waist circumference is the one to pick. Measures of central adiposity, like waist circumference and waist-to-height ratio, are consistently linked with cardiometabolic risk and often do better than BMI as screening tools. It is also sensitive to fat loss, so you will often see your waist change before the scale shows a clear trend.</p>
+        <p>The key is measuring correctly and consistently. You need a flexible, non-stretch measuring tape. Measure in the morning before eating, standing relaxed, at the end of a normal exhale (no sucking in).</p>
+        <p><b>Technique (NHANES style):</b> Stand tall and find the top of your hip bones (the iliac crest). Wrap the tape horizontally around your abdomen at that level, keeping it level all the way around and snug against your skin without squeezing. Take the measurement after a normal exhale and write it down. For extra accuracy, measure twice and average the two if they differ.</p>
+        <p><b>Note:</b> other methods (for example the WHO one) use the midpoint between your lowest rib and the top of your hip bone. Choose one method and stick with it so your trend is reliable.</p>
+        <p><b>How often:</b> measure your waist once a week, on the same day and at the same time.</p>
+        <h4>For all the other measurements</h4>
+        <p>For the most reliable trend, measure every 2 to 4 weeks under similar conditions: ideally in the morning, before eating, and not straight after a workout. Keep the tape snug but not tight and parallel to the floor, and take two readings. If they differ, record the average.</p>
+        <ul>
+          <li><b>Hips:</b> around the fullest part of your buttocks.</li>
+          <li><b>Thigh:</b> at the midpoint between your hip crease and the top of your kneecap. This is more repeatable than the widest point, which can change with how you stand.</li>
+          <li><b>Upper arm:</b> at the midpoint between the tip of your shoulder and your elbow.</li>
+          <li><b>Chest:</b> at the fullest part of the bust, keeping the tape level all the way around.</li>
+        </ul>
+      </details>
+      <div class="prow"><label>Date<input type="date" id="pmDate" value="${todayISO()}" max="${todayISO()}"></label></div>
+      <div class="pgrid">${BODY_PARTS.map(([k, n]) => `<label>${n} (${lu})<input type="number" inputmode="decimal" step="0.1" min="0" id="pm_${k}" placeholder="${lu}"></label>`).join('')}</div>
+      <button class="pbtn" onclick="addMeasure()">Save measurements</button>
+      ${partsUsed.length ? `<div class="prow" style="margin-top:14px"><label>Graph this measurement<select onchange="pBodyPart=this.value;renderBody()">${partsUsed.map(([k, n]) => `<option value="${k}"${k === pBodyPart ? ' selected' : ''}>${n}</option>`).join('')}</select></label></div>${lineChart(ppts, lu, BODY_PARTS.find(x => x[0] === pBodyPart)[1])}
+      <div style="overflow-x:auto"><table class="ptable"><tr><th>Date</th>${partsUsed.map(([, n]) => `<th>${n}</th>`).join('')}<th></th></tr>${recent.map(m => `<tr><td>${shortDate(m.d)}</td>${partsUsed.map(([k]) => `<td>${m.v && m.v[k] > 0 ? fmt1(lOut(d, m.v[k])) : '<small>-</small>'}</td>`).join('')}<td><button class="xbtn" onclick="delMeasure('${m.id}')" aria-label="Delete this measurement entry">&times;</button></td></tr>`).join('')}</table></div>` : ''}
+      ${ws.length || ms.length ? `<div class="pbk"><button onclick="downloadBody()">Download my body log (CSV)</button></div>` : ''}</div>`;
+  }
+  function addWeight() {
+    const d = privLoad(pUser), raw = parseFloat($id('pwVal').value), date = $id('pwDate').value || todayISO();
+    if (!(raw > 0) || raw > 1000) { showToast('Type your weight first.'); return; }
+    d.weights.push({ id: uid(), d: date, ts: Date.now(), kg: Math.round(wIn(d, raw) * 1000) / 1000 });
+    if (privSave(pUser, d)) { renderBody(); showToast('Weight saved on this device.'); }
+  }
+  function delWeight(id) { if (!confirm('Delete this weight entry?')) return; const d = privLoad(pUser); d.weights = d.weights.filter(w => w.id !== id); privSave(pUser, d); renderBody(); }
+  function addMeasure() {
+    const d = privLoad(pUser), v = {}; let any = false;
+    BODY_PARTS.forEach(([k]) => { const x = parseFloat($id('pm_' + k).value); if (x > 0 && x < 1000) { v[k] = Math.round(lIn(d, x) * 100) / 100; any = true; } });
+    if (!any) { showToast('Fill in at least one measurement.'); return; }
+    d.meas.push({ id: uid(), d: $id('pmDate').value || todayISO(), ts: Date.now(), v });
+    if (privSave(pUser, d)) { renderBody(); showToast('Measurements saved on this device.'); }
+  }
+  function delMeasure(id) { if (!confirm('Delete this measurement entry?')) return; const d = privLoad(pUser); d.meas = d.meas.filter(m => m.id !== id); privSave(pUser, d); renderBody(); }
+  function downloadBody() {
+    const d = privLoad(pUser), rows = [['Type', 'Date', 'Item', 'Value', 'Unit']];
+    d.weights.slice().sort(byDate).forEach(w => rows.push(['Weight', w.d, 'Body weight', fmt1(wOut(d, w.kg)), wUnit(d)]));
+    d.meas.slice().sort(byDate).forEach(m => BODY_PARTS.forEach(([k, n]) => { if (m.v && m.v[k] > 0) rows.push(['Measurement', m.d, n, fmt1(lOut(d, m.v[k])), lUnit(d)]); }));
+    download(`my-body-log-${safeName()}.csv`, rows.map(r => r.map(csvCell).join(',')).join('\n'));
+  }
+
+  // ---- My strength: a personal leaderboard. A new higher record moves the old one into a grey archive. ----
+  const liftShow = (d, type, r) => type === 'weight' ? `${fmt1(wOut(d, r.v))} ${wUnit(d)} &times; ${r.reps}` : type === 'reps' ? `${r.v} reps` : `${r.v} sec`;
+  const liftBetter = (type, a, b) => type === 'weight' ? (a.v > b.v || (a.v === b.v && a.reps > b.reps)) : a.v > b.v;
+  function renderStrength() {
+    const box = $id('pStrength'); if (!box) return;
+    const d = privLoad(pUser), names = Object.keys(d.lifts);
+    const wts = names.filter(n => d.lifts[n].type === 'weight').sort((a, b) => d.lifts[b].cur.v - d.lifts[a].cur.v || a.localeCompare(b));
+    const others = names.filter(n => d.lifts[n].type !== 'weight').sort((a, b) => a.localeCompare(b));
+    pLiftNames = [...wts, ...others];
+    const card = (n, i, ranked) => {
+      const L = d.lifts[n], first = L.arch.length ? L.arch[0] : null, gain = first ? L.cur.v - first.v : 0;
+      const gainTxt = first && gain > 0 ? `+${L.type === 'weight' ? fmt1(wOut(d, gain)) + ' ' + wUnit(d) : gain + (L.type === 'reps' ? ' reps' : ' sec')} since your first record` : '';
+      return `<li><div class="rk${ranked ? ' m' : ''}">${ranked ? i + 1 : '&#9733;'}</div><div class="nm"><b>${esc(n)}</b><small>Set ${niceDate(L.cur.d)}${L.arch.length ? ` &middot; ${L.arch.length + 1} records` : ''}${gainTxt ? ` &middot; ${gainTxt}` : ''}</small></div><div class="pv">${liftShow(d, L.type, L.cur)}</div>
+        <div class="acts"><button onclick="liftPrefill(${pLiftNames.indexOf(n)})">Beat it</button><button class="ghost" onclick="liftRemove(${pLiftNames.indexOf(n)})">Remove</button></div></li>`;
+    };
+    const archGroups = names.filter(n => d.lifts[n].arch.length);
+    const archCount = archGroups.reduce((a, n) => a + d.lifts[n].arch.length, 0);
+    box.innerHTML = `<div class="quest-card pcard"><h2 class="section-title">My strength</h2>
+      <p class="sub">Log the weights you lift, or your max reps and holds. When you beat a record, save the new one and your old one drops into the grey archive below, so you can always look back.</p>
+      <div class="prow"><label>Exercise<input id="pLName" list="pLList" maxlength="40" placeholder="e.g. Squat" oninput="liftNameInput()" autocomplete="off"><datalist id="pLList">${Object.keys(LIFT_PRESETS).map(k => `<option value="${k}">`).join('')}</datalist></label>
+        <label>What are you logging?<select id="pLType" onchange="liftTypeChange()">${Object.entries(TYPE_LABEL).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label></div>
+      <div class="prow"><label id="pLValL">Weight (${wUnit(d)})<input type="number" id="pLVal" inputmode="decimal" step="0.5" min="0" placeholder="0"></label><label id="pLRepsL">Reps (1 = your max single)<input type="number" id="pLReps" inputmode="numeric" min="1" max="100" value="1"></label>
+        <label>Date<input type="date" id="pLDate" value="${todayISO()}" max="${todayISO()}"></label><button class="pbtn" onclick="saveLift()">Save</button></div>
+      <h3>My leaderboard</h3>
+      ${names.length ? `<ol class="plb">${wts.map((n, i) => card(n, i, true)).join('')}${others.map((n, i) => card(n, i, false)).join('')}</ol>` : '<p class="sub">No records yet. Add your first one above and it will appear here.</p>'}
+      <details class="parch"${archCount ? '' : ' hidden'}><summary>Archive: ${archCount} older record${archCount === 1 ? '' : 's'}</summary>
+        ${archGroups.map(n => { const L = d.lifts[n]; return `<h4>${esc(n)}</h4>${L.arch.slice().reverse().map(r => `<div class="arow"><span>${liftShow(d, L.type, r)}</span><span>${niceDate(r.d)}</span></div>`).join('')}`; }).join('')}</details>
+      ${names.length ? `<div class="pbk"><button onclick="downloadStrength()">Download my strength log and archive (CSV)</button></div>` : ''}</div>`;
+    liftTypeChange();
+  }
+  function liftNameInput() {
+    const d = privLoad(pUser), name = $id('pLName').value.trim().toLowerCase();
+    const ex = Object.keys(d.lifts).find(k => k.toLowerCase() === name), pre = Object.keys(LIFT_PRESETS).find(k => k.toLowerCase() === name);
+    const t = ex ? d.lifts[ex].type : pre ? LIFT_PRESETS[pre] : null;
+    if (t) { $id('pLType').value = t; liftTypeChange(); }
+  }
+  function liftTypeChange() {
+    const d = privLoad(pUser), t = $id('pLType').value;
+    $id('pLRepsL').hidden = t !== 'weight';
+    $id('pLValL').firstChild.textContent = t === 'weight' ? `Weight (${wUnit(d)})` : t === 'reps' ? 'Max reps' : 'Seconds';
+    $id('pLVal').step = t === 'weight' ? '0.5' : '1';
+  }
+  function liftPrefill(i) {
+    const n = pLiftNames[i]; if (!n) return;
+    $id('pLName').value = n; liftNameInput(); $id('pLVal').value = ''; $id('pLName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => $id('pLVal').focus({ preventScroll: true }), 400);
+  }
+  function saveLift() {
+    const d = privLoad(pUser), name = $id('pLName').value.trim().replace(/\s+/g, ' ').slice(0, 40), type = $id('pLType').value, raw = parseFloat($id('pLVal').value);
+    if (!name) { showToast('Type the exercise name first.'); $id('pLName').focus(); return; }
+    if (!(raw > 0) || raw > 100000) { showToast('Type your number first.'); $id('pLVal').focus(); return; }
+    const reps = type === 'weight' ? Math.max(1, Math.min(100, parseInt($id('pLReps').value) || 1)) : 1;
+    const rec = { v: type === 'weight' ? Math.round(wIn(d, raw) * 1000) / 1000 : Math.round(raw), reps, d: $id('pLDate').value || todayISO(), ts: Date.now() };
+    const key = Object.keys(d.lifts).find(k => k.toLowerCase() === name.toLowerCase()) || name, L = d.lifts[key];
+    if (!L) { d.lifts[key] = { type, cur: rec, arch: [] }; if (privSave(pUser, d)) { renderStrength(); showToast(`${key} added to your leaderboard.`); } return; }
+    if (L.type !== type) { showToast(`${key} is saved as "${TYPE_LABEL[L.type]}". Pick that, or use a different name.`); return; }
+    if (liftBetter(type, rec, L.cur)) {
+      L.arch.push({ ...L.cur, replaced: Date.now() }); L.cur = rec;
+      if (privSave(pUser, d)) { renderStrength(); launchConfetti(60); showToast(`New personal best! Your old ${key} record moved to the archive.`); }
+    } else if (!liftBetter(type, L.cur, rec)) { showToast('That matches your current record. Nothing changed.'); }
+    else if (confirm(`That is lower than your current ${key} record (${liftShow(d, type, L.cur).replace(/&times;/g, 'x')}). Replace it? Only do this to fix a mistake. The old number will not be archived.`)) {
+      L.cur = rec; if (privSave(pUser, d)) { renderStrength(); showToast('Record replaced.'); }
+    }
+  }
+  function liftRemove(i) {
+    const n = pLiftNames[i]; if (!n) return;
+    if (!confirm(`Remove ${n} and its archive from your private log? You can download it first if you want to keep it.`)) return;
+    const d = privLoad(pUser); delete d.lifts[n]; privSave(pUser, d); renderStrength();
+  }
+  function downloadStrength() {
+    const d = privLoad(pUser), rows = [['Exercise', 'Status', 'Amount', 'Unit', 'Reps', 'Date achieved']];
+    Object.keys(d.lifts).sort().forEach(n => {
+      const L = d.lifts[n], row = (r, st) => rows.push([n, st, L.type === 'weight' ? fmt1(wOut(d, r.v)) : r.v, L.type === 'weight' ? wUnit(d) : L.type === 'reps' ? 'reps' : 'seconds', L.type === 'weight' ? r.reps : '', r.d]);
+      row(L.cur, 'Current record'); L.arch.slice().reverse().forEach(r => row(r, 'Archived'));
+    });
+    download(`my-strength-log-${safeName()}.csv`, rows.map(r => r.map(csvCell).join(',')).join('\n'));
+  }
+
+  // ---- Backup: since nothing is stored online, a file backup lets you move to a new phone ----
+  function renderBackup() {
+    const box = $id('pBackup'); if (!box) return;
+    box.innerHTML = `<div class="quest-card pcard"><h2 class="section-title">Keep it safe</h2>
+      <p class="sub">Your private log is saved only in this browser on this device. If you clear your browser data or switch phones it is gone, so download a backup now and then. A backup file can be loaded back in here.</p>
+      <div class="pbk"><button onclick="privExport()">Download backup (.json)</button><label class="fbtn">Load a backup<input type="file" accept="application/json,.json" hidden onchange="privImport(this)"></label></div></div>`;
+  }
+  function privExport() { download(`my-private-log-${safeName()}.json`, JSON.stringify({ app: 'stronger-together-private', name: pUser, saved: new Date().toISOString(), data: privLoad(pUser) }, null, 1), 'application/json'); }
+  function privImport(inp) {
+    const f = inp.files && inp.files[0]; inp.value = ''; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const j = JSON.parse(r.result), d = j && j.data;
+        if (!d || j.app !== 'stronger-together-private' || !Array.isArray(d.weights) || !Array.isArray(d.meas) || typeof d.lifts !== 'object') throw new Error('bad');
+        if (!confirm(`Replace ${pUser}'s private log on this device with this backup?`)) return;
+        privSave(pUser, Object.assign(privBlank(), d)); renderPrivate(); showToast('Backup loaded.');
+      } catch (e) { showToast('That file is not a backup from this page.'); }
+    };
+    r.readAsText(f);
+  }
+
+  // ----- Challenge totals: each person's numbers on the shared scoreboard, week by week (collapsed at the bottom) -----
+  function renderStats() {
+    const box = document.getElementById('statsBox'); if (!box) return;
+    const me = document.getElementById('userSelect').value, W = [1, 2, 3, 4];
+    const mine = state.logs.filter(l => l.user === me);
+    const amt = (id, w) => mine.filter(l => l.exercise === id && l.phase === w).reduce((a, l) => a + l.amount, 0);
+    const cnt = (test, w) => mine.filter(l => test(l.exercise) && l.phase === w).length;
+    const row = (label, unit, f, fmt = v => v.toLocaleString()) => { const v = W.map(f), tot = v.reduce((a, b) => a + b, 0); return `<tr><td>${label}${unit ? ` <small>(${unit})</small>` : ''}</td>${v.map(x => `<td class="${x ? '' : 'z'}">${fmt(x)}</td>`).join('')}<td><b>${fmt(tot)}</b></td></tr>`; };
+    const head = `<tr><th>&nbsp;</th>${W.map(w => `<th>Week ${w}</th>`).join('')}<th>Total</th></tr>`;
+    const ex = exerciseConfig.map(e => row(e.name, e.unit, w => e.id === 'checkin' ? cnt(x => x === 'checkin', w) : amt(e.id, w))).join('');
+    const extra = [
+      row('Climb points', 'points', w => weekPoints(me, w)),
+      row('Board spaces reached', `of ${BOARDS.map(b => b.n).join('/')}`, w => weekSpaces(me, w)),
+      row('Muscle Up sections', 'done', w => cnt(x => x.startsWith('mu_d'), w)),
+      row('Muscle Up XP', 'xp', w => mine.filter(l => l.exercise.startsWith('mu_d') && l.phase === w).reduce((a, l) => a + l.amount, 0)),
+      row('Daily cards', 'done', w => cnt(x => x.startsWith('c_'), w)),
+      row('Journal days', 'entries saved', w => cnt(x => x === 'reflect', w)),
+      row('Phone-free hours', 'done', w => cnt(x => x === 'phonefree', w)),
+      row('High fives sent', 'sent', w => state.logs.filter(l => l.exercise === 'hf' && l.phase === w && senderOf(l) === me).length),
+      row('Rest tokens used', 'used', w => cnt(x => x === 'rest', w))
+    ].join('');
+    const quest = row('Quest Race points', 'separate game', w => questWeekPoints(me, w));
+    const ps = phoenixInfo(me), xp = xpOf(me);
+    box.innerHTML = `
+      <div class="quest-card"><div class="quest-stats">
+        <span class="qstat">${esc(me)} &middot; ${teamMap[me]}</span><span class="qstat">Days logged: ${daysLogged(me)}</span>
+        <span class="qstat">Badges: ${badgeCounts(me).earned} of ${badgeCounts(me).total}</span>
+        <span class="qstat">Muscle Up: ${xp} XP, level ${levelOf(xp)}</span></div></div>
+      <div class="quest-card"><h2 class="section-title">Exercises you submitted</h2><div class="table-wrap"><table class="stat-table">${head}${ex}</table></div></div>
+      <div class="quest-card"><h2 class="section-title">Points and bonuses</h2><div class="table-wrap"><table class="stat-table">${head}${extra}</table></div></div>
+      <div class="quest-card"><h2 class="section-title">Quest Race</h2><p class="badge-sub">The Quest Race is a separate game. These points never count toward the Climb Board or team scores.</p><div class="table-wrap"><table class="stat-table">${head}${quest}</table></div></div>`;
+  }
+
+
+  // ----- Rest timer: a tappable timer on the side of the Muscle Up pages -----
+  const RT = { len: 60, left: 60000, endAt: 0, run: false, timer: null, fin: false };
+  const rtFmt = ms => { const t = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+  function rtPaint() {
+    const t = document.getElementById('rtTime'); if (!t) return;
+    t.textContent = RT.fin ? 'Go!' : rtFmt(RT.left); t.classList.toggle('done', RT.fin);
+    document.getElementById('rtHint').textContent = RT.fin ? 'Rest is over. Tap to restart.' : RT.run ? 'Tap the time to pause' : RT.left < RT.len * 1000 ? 'Paused. Tap to continue' : 'Tap the time to start';
+    document.getElementById('rtFab').textContent = RT.run || RT.left < RT.len * 1000 ? (RT.fin ? 'Go!' : rtFmt(RT.left)) : 'Rest';
+    document.getElementById('rtFabBtn').classList.toggle('run', RT.run);
+    document.querySelectorAll('.rt-pre button').forEach(b => b.classList.toggle('on', b.textContent === ({ 30: '30s', 45: '45s', 60: '1 min', 90: '90s', 120: '2 min' })[RT.len]));
+  }
+  function rtToggle() { const p = document.getElementById('rtPanel'); p.hidden = !p.hidden; rtPaint(); }
+  function rtSet(sec) { RT.len = sec; RT.left = sec * 1000; RT.fin = false; RT.run = false; clearInterval(RT.timer); rtPaint(); }
+  function rtReset() { rtSet(RT.len); }
+  function rtMain() {
+    if (RT.run) { RT.left = Math.max(0, RT.endAt - Date.now()); RT.run = false; clearInterval(RT.timer); rtPaint(); return; }
+    if (RT.fin || RT.left <= 0) { RT.left = RT.len * 1000; RT.fin = false; }
+    RT.endAt = Date.now() + RT.left; RT.run = true; muBeep(660, 80);
+    clearInterval(RT.timer);
+    RT.timer = setInterval(() => {
+      RT.left = RT.endAt - Date.now();
+      if (RT.left <= 0) { RT.left = 0; RT.run = false; RT.fin = true; clearInterval(RT.timer); muBeep(880, 200); setTimeout(() => muBeep(880, 200), 320); setTimeout(() => muBeep(1100, 350), 640); }
+      rtPaint();
+    }, 250);
+    rtPaint();
+  }
 
   // ----- Tiny admin buttons at the bottom of the page. The passwords are checked on the server. -----
   function renderLockBtns() {
@@ -2474,7 +3236,7 @@
     try {
       const data = await api({ action: 'lock', week: n, locked: !on, password: pw });
       applyData(data);
-      alert(`Week ${n} is now ${on ? 'unlocked' : 'locked'}.`);
+      alert(on ? `Week ${n} is now the open week. Weeks after it are closed again.` : (n < 4 ? `Week ${n} is locked, along with any earlier weeks. Week ${n + 1} is now the open week.` : 'Week 4 is locked. All weeks are now closed.'));
     } catch (e) { alert(String(e.message).includes('403') ? 'Wrong password.' : 'Could not do that. Check your connection and try again.'); }
   }
   async function adminReset() {
@@ -2487,19 +3249,122 @@
       applyData(data);   // this device clears its own saved data and reloads
     } catch (e) { alert(String(e.message).includes('403') ? 'Wrong password.' : 'Could not do that. Check your connection and try again.'); }
   }
+  // ----- "I'm stuck. Help." : a tiny tip, or phone a friend on WhatsApp -----
+  const stuckTips = [
+    { t: 'Say Bismillah, then do just ONE rep.', d: 'You are not signing up for the whole workout. Say Bismillah, do one push-up or one calf raise, and give yourself full permission to stop. Starting is the hard part, and one rep very often turns into more.' },
+    { t: 'Make it a 2-minute deal.', d: 'Set a timer for 2 minutes and do the easiest exercise on your list. When it rings, you are allowed to stop. Most of the time you will not want to.' },
+    { t: 'Refresh with a wudu reset.', d: 'Splash cool water on your face, hands and arms, the way you do for wudu. It wakes your body up and gives your brain a clean fresh start.' },
+    { t: 'Pick the smallest thing, not the best thing.', d: 'Being stuck is often too many choices at once. Choose the easiest exercise on the board, not the most important one. A small done thing beats a perfect thing you never start.' },
+    { t: 'Only do the very first action.', d: 'Do not think about the workout. Think about one action: put on your shoes, or roll out your mat. When that is done, you are allowed to decide what comes next.' },
+    { t: 'Walk to the door and back.', d: 'Movement breaks the freeze. Stand up, walk to the door, take 5 slow breaths, and walk back. Then do one tiny thing.' },
+    { t: 'Pair it with a salah.', d: 'Hook your movement onto something you already do. Right after a prayer you are already up, clean and calm. Do one minute of stretching or squats before you sit back down.' },
+    { t: 'Small and steady beats big and rare.', d: 'It is taught that the deeds most loved by Allah are the consistent ones, even if they are small. A tiny workout today counts for more than a perfect one that never happens.' },
+    { t: 'Say your next step out loud.', d: 'Tell yourself exactly what to do, like "Stand up." Just one thing. When it is done, say the next one. Your brain follows clear, tiny instructions much better than big plans.' },
+    { t: 'Find a buddy to start beside.', d: 'Message a teammate: "I am doing 5 minutes right now, want to join?" Even doing it at the same time in different places makes starting so much easier.' },
+    { t: 'Breathe, then say Alhamdulillah.', d: 'Breathe in slowly for 4 and out for 6, three times. On the last breath out, say Alhamdulillah for one thing you are grateful for today. A calmer mind finds it easier to start.' },
+    { t: 'Put on something you love.', d: 'Play a recitation or a nasheed you enjoy and begin moving when it starts. Let the sound carry you for the first minute, and the rest often follows.' },
+    { t: 'Plan the "bad day version".', d: 'Decide in advance what your tiniest version looks like, like one stretch or one short walk. On a heavy day, do only that. Showing up small still keeps the habit alive.' },
+    { t: 'Be gentle with yourself.', d: 'Being stuck is not laziness, and it does not mean you are failing. Brains get stuck sometimes. Take a deep breath, ask Allah to make it easy for you, and try one tiny step.' }
+  ];
+  let stuckTip = 0, stuckFeel = '', stuckThing = '', stuckHelp = '', stuckExtra = '', stuckMsg = '', stuckEdited = false;
+  const stuckFeels = [
+    { n: 'Overwhelmed', d: 'Everything feels like too much at once, so your brain shuts the door. This is a signal to make things smaller, not a flaw in you. Try just one tiny step.' },
+    { n: 'Tired', d: 'Your body is asking for care. A glass of water, some fresh air or a short rest can help, and so can one very gentle movement.' },
+    { n: 'Worried or anxious', d: 'Your mind is busy with "what if". Slow breathing and one small, certain step can help it settle. You do not have to solve everything today.' },
+    { n: 'Bored or flat', d: 'Nothing feels interesting, so starting feels pointless. Adding something fun, like a recitation you love or a buddy, can wake things up.' },
+    { n: 'Discouraged', d: 'You feel behind or not good enough. That feeling is loud, but it is not the truth. One small win can turn it around.' },
+    { n: 'Guilty about missed days', d: 'Guilt makes starting feel heavier. You can begin again right now. There is nothing to catch up on, only the next small step.' },
+    { n: 'Not sure why', d: 'That is okay. Sometimes it cannot be named. Pick the closest one, or just tell your friend that you feel stuck.' }
+  ];
+  const stuckThings = ['Starting my workout', 'Knowing what to do next', 'Staying consistent', 'Feeling tired or low', 'Something else'];
+  const stuckHelps = ['A pep talk', 'Someone to join me', 'A gentle reminder later', 'A du\'a for ease', 'Someone to listen'];
+  function buildStuckMsg() {
+    const me = document.getElementById('userSelect').value;
+    let m = 'Assalamu alaikum! I am feeling a bit stuck' + (stuckThing ? ' with: ' + stuckThing.toLowerCase() : '') + ' in our Stronger Together challenge.';
+    if (stuckFeel) m += ' Right now I feel ' + stuckFeel.toLowerCase() + '.';
+    if (stuckHelp) m += ' What would help me most: ' + stuckHelp.toLowerCase() + '.';
+    if (stuckExtra.trim()) m += ' ' + stuckExtra.trim();
+    return m + ' Could you help me out? Jazaakillah khayr. - ' + me;
+  }
+  // Tips go in order. Each new visit shows the next tip after the last one you saw, so you do not get repeats.
+  function stuckSave() { try { localStorage.setItem('stuck_tip', stuckTip); } catch (e) {} }
+  function enterStuck() {
+    let last = -1; try { const v = localStorage.getItem('stuck_tip'); if (v !== null) last = parseInt(v); } catch (e) {}
+    stuckTip = isNaN(last) ? 0 : (last + 1) % stuckTips.length;
+    renderStuck();
+  }
+  function stuckStep(d) { stuckTip = (stuckTip + d + stuckTips.length) % stuckTips.length; renderStuck(); }
+  function stuckPick(kind, i) {
+    if (kind === 'feel') { const v = stuckFeels[i].n; stuckFeel = stuckFeel === v ? '' : v; }
+    else if (kind === 'thing') { const v = stuckThings[i]; stuckThing = stuckThing === v ? '' : v; }
+    else { const v = stuckHelps[i]; stuckHelp = stuckHelp === v ? '' : v; }
+    stuckEdited = false; renderStuck();
+  }
+  function stuckExtraInput(v) { stuckExtra = v; if (!stuckEdited) { stuckMsg = buildStuckMsg(); document.getElementById('stuckMsg').value = stuckMsg; } }
+  function stuckMsgInput(v) { stuckEdited = true; stuckMsg = v; }
+  function stuckWhatsApp() {
+    const t = document.getElementById('stuckMsg').value.trim(); if (!t) { showToast('Write a little message first.'); return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank', 'noopener');
+  }
+  function stuckCopy() {
+    const t = document.getElementById('stuckMsg').value;
+    const done = () => showToast('Message copied.');
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, () => { document.getElementById('stuckMsg').select(); showToast('Select the text and copy it.'); });
+    else { document.getElementById('stuckMsg').select(); showToast('Select the text and copy it.'); }
+  }
+  function renderStuck() {
+    const box = document.getElementById('stuckBox'); if (!box) return;
+    stuckSave();
+    if (!stuckEdited) stuckMsg = buildStuckMsg();
+    const tip = stuckTips[stuckTip], me = document.getElementById('userSelect').value;
+    const feel = stuckFeels.find(f => f.n === stuckFeel);
+    const chips = (list, cur, kind) => list.map((x, i) => `<button class="pick${cur === x ? ' on' : ''}" onclick="stuckPick('${kind}',${i})">${esc(x)}</button>`).join('');
+    box.innerHTML = `
+      <div class="stk-hero"><h2>Feeling stuck? That is okay.</h2><p>${esc(me)}, it happens to everyone. Take one slow breath, then pick whichever feels easier below.</p></div>
+      <div class="quest-card"><h2 class="section-title">A tiny tip</h2>
+        <div class="stk-tip"><div class="stk-n">Tip ${stuckTip + 1} of ${stuckTips.length}</div><h3>${esc(tip.t)}</h3><p>${esc(tip.d)}</p></div>
+        <div class="stk-nav"><button class="stk-prev" onclick="stuckStep(-1)" aria-label="Previous tip">&larr; Back</button><button class="stk-more" onclick="stuckStep(1)">Next tip &rarr;</button></div></div>
+      <div class="quest-card"><h2 class="section-title">Phone a friend</h2>
+        <p class="badge-sub" style="margin:0">Naming what is going on makes it smaller. Answer a few quick questions, then send a message to someone you trust.</p>
+        <div class="stk-q">How are you feeling right now?</div>
+        <div class="pick-row" style="flex-wrap:wrap">${stuckFeels.map((f, i) => `<button class="pick${stuckFeel === f.n ? ' on' : ''}" onclick="stuckPick('feel',${i})">${esc(f.n)}</button>`).join('')}</div>
+        ${feel ? `<div class="stk-feel"><b>${esc(feel.n)}</b><p>${esc(feel.d)}</p></div>` : '<p class="badge-sub" style="margin:8px 0 0">Tap the one that fits best. Giving a feeling a name makes it smaller.</p>'}
+        <div class="stk-q">What are you stuck on?</div><div class="pick-row" style="flex-wrap:wrap">${chips(stuckThings, stuckThing, 'thing')}</div>
+        <div class="stk-q">What would help most?</div><div class="pick-row" style="flex-wrap:wrap">${chips(stuckHelps, stuckHelp, 'help')}</div>
+        <div class="stk-q">Anything else you want to say? <span style="font-weight:400;color:var(--muted)">(optional)</span></div>
+        <textarea rows="2" maxlength="200" placeholder="Write it in your own words..." oninput="stuckExtraInput(this.value)">${esc(stuckExtra)}</textarea>
+        <div class="stk-q">Your message <span style="font-weight:400;color:var(--muted)">(you can edit it)</span></div>
+        <textarea id="stuckMsg" rows="7" oninput="stuckMsgInput(this.value)">${esc(stuckMsg)}</textarea>
+        <button class="stk-wa" onclick="stuckWhatsApp()">Send on WhatsApp</button>
+        <button class="stk-copy" onclick="stuckCopy()">Copy message</button>
+        <p class="badge-sub" style="margin:10px 0 0;text-align:center">WhatsApp opens so you can pick who to send it to. Nothing is sent until you press send there.</p></div>`;
+  }
+  function goTeamRace(team) {
+    showView('board');
+    const box = document.getElementById('standings');
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const lane = box.querySelector(`.lane[data-team="${team}"]`);
+    if (lane) { lane.classList.remove('flash'); void lane.offsetWidth; lane.classList.add('flash'); setTimeout(() => lane.classList.remove('flash'), 2500); }
+  }
   function showView(v) {
-    if (muRun && ['get', 'work', 'rest'].includes(muRun.phase) && !muRun.paused && v !== 'workout') { muRun.left = Math.max(0, muRun.endAt - Date.now()); muRun.paused = true; }
-    ['challenge', 'board', 'card', 'muscle', 'workout', 'race', 'kid'].forEach(n => {
+    ['challenge', 'board', 'card', 'journal', 'muscle', 'workout', 'race', 'badges', 'stuck', 'stats', 'kid'].forEach(n => {
       document.getElementById('view-' + n).hidden = n !== v;
       const tb = document.getElementById('tab-' + n);
-      if (tb) tb.classList.toggle('active', n === v || (n === 'muscle' && v === 'workout'));
+      if (tb) tb.classList.toggle('active', n === v || (n === 'muscle' && v === 'workout') || (n === 'card' && v === 'journal') || (n === 'challenge' && (v === 'race' || v === 'stuck')));
     });
     document.querySelector('nav.tabs').hidden = v === 'workout';
+    const ks = document.getElementById('kidStar'); if (ks) ks.hidden = v === 'workout';
+    const db = document.getElementById('dbell'); if (db) db.hidden = v !== 'challenge';
+    const jb = document.getElementById('jbook'); if (jb) jb.hidden = v !== 'card';
+    const rtm = document.getElementById('rtimer'); if (rtm) rtm.hidden = !(v === 'muscle' || v === 'workout');
     if (v === 'card') cardPick = null;
     if (v === 'card') renderCardView();
     if (v === 'muscle') renderMuscle();
     if (v === 'workout') wkEnter();
     if (v === 'race') { renderRace(); celebrateFinishedRace(); }
+    if (v === 'badges') renderBadges();
+    if (v === 'stuck') enterStuck();
+    if (v === 'stats') renderPrivate();
     window.scrollTo(0, 0);
   }
 
