@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stronger Together Workout Challenge</title>
+  <meta name="description" content="A safe sisters circle dedicated to getting stronger bi'ithnillah!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stronger Together Workout Challenge">
+  <meta property="og:description" content="A safe sisters circle dedicated to getting stronger bi'ithnillah!">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Stronger Together Workout Challenge">
+  <meta name="twitter:description" content="A safe sisters circle dedicated to getting stronger bi'ithnillah!">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5ea7'/%3E%3Cstop offset='1' stop-color='%23432d6b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Crect x='6' y='25' width='6' height='14' rx='2.5' fill='%23fff'/%3E%3Crect x='12' y='20' width='7' height='24' rx='3' fill='%23fff'/%3E%3Crect x='19' y='30' width='26' height='4' fill='%23e9defa'/%3E%3Crect x='45' y='20' width='7' height='24' rx='3' fill='%23fff'/%3E%3Crect x='52' y='25' width='6' height='14' rx='2.5' fill='%23fff'/%3E%3Cpolygon points='32,5 35,12.5 43,13 37,18.5 39,26 32,22 25,26 27,18.5 21,13 29,12.5' fill='%23ffd166' stroke='%23e0a800' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M20 51q12 8 24 0' stroke='%23ffd166' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237b5ea7'/%3E%3Cstop offset='1' stop-color='%23432d6b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Crect x='6' y='25' width='6' height='14' rx='2.5' fill='%23fff'/%3E%3Crect x='12' y='20' width='7' height='24' rx='3' fill='%23fff'/%3E%3Crect x='19' y='30' width='26' height='4' fill='%23e9defa'/%3E%3Crect x='45' y='20' width='7' height='24' rx='3' fill='%23fff'/%3E%3Crect x='52' y='25' width='6' height='14' rx='2.5' fill='%23fff'/%3E%3Cpolygon points='32,5 35,12.5 43,13 37,18.5 39,26 32,22 25,26 27,18.5 21,13 29,12.5' fill='%23ffd166' stroke='%23e0a800' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M20 51q12 8 24 0' stroke='%23ffd166' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
@@ -184,6 +193,31 @@
     .kid-theme .zone-label { font-size: 1.05rem; }
     .kid-theme .danger-btn { border-color: var(--teal); color: var(--teal); }
     .pop { animation: pop 0.35s ease; }
+
+    /* Kid Zone extras: seven pips, tap bursts, bouncing star, mystery gift box and sticker album */
+    .kz-pips { display: flex; gap: 4px; justify-content: center; margin-top: 2px; }
+    .kz-pips i { width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px var(--zc); }
+    .kz-pips i.on { background: var(--zc); }
+    .zone-btn.star .kz-pips i { box-shadow: inset 0 0 0 2px #fff; background: transparent; }
+    .zone-btn.star .kz-pips i.on { background: #fff; }
+    .kz-burst { position: fixed; z-index: 60; pointer-events: none; font-size: 1.5rem; line-height: 1; animation: kzFly 0.9s ease-out forwards; }
+    @keyframes kzFly { 0% { transform: translate(0, 0) scale(0.4); opacity: 1; } 100% { transform: translate(var(--bx), var(--by)) scale(1.2) rotate(var(--br)); opacity: 0; } }
+    .kid-hero svg { transform-origin: 50% 80%; }
+    .kid-hero.cheer svg { animation: kzCheer 0.7s ease; }
+    @keyframes kzCheer { 0% { transform: scale(1) rotate(0); } 25% { transform: scale(1.18) translateY(-8px) rotate(-10deg); } 55% { transform: scale(1.1) translateY(-4px) rotate(10deg); } 100% { transform: scale(1) rotate(0); } }
+    .kz-gift { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #fff4d6, #ffe3f0); border: 3px dashed #f2a71b; border-radius: 22px; padding: 12px 16px; margin-bottom: 14px; font-family: "Fredoka", "DM Sans", sans-serif; }
+    .kz-gift button.box { width: 68px; height: 68px; flex: 0 0 auto; font-size: 2.6rem; line-height: 1; padding: 0; border-radius: 20px; background: #fff; border: 3px solid #f2a71b; box-shadow: 0 4px 0 #f2a71b; }
+    .kz-gift button.box:active { transform: translateY(3px); box-shadow: 0 1px 0 #f2a71b; }
+    .kz-gift button.box:disabled { opacity: 0.55; box-shadow: none; }
+    .kz-gift b { display: block; font-size: 1.1rem; }
+    .kz-gift span { font-size: 0.92rem; color: var(--muted); }
+    .kz-album { margin-bottom: 14px; background: var(--card); border: 2px solid #b7e0f5; border-radius: 18px; padding: 10px 14px; font-family: "Fredoka", "DM Sans", sans-serif; }
+    .kz-album .row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; font-size: 1.7rem; line-height: 1.1; }
+    .kz-album .row .no { filter: grayscale(1); opacity: 0.22; font-size: 1.4rem; }
+    .kz-album strong { font-size: 1rem; }
+    @media (prefers-reduced-motion: no-preference) { .kz-gift button.box:not(:disabled) { animation: kzWiggle 1.6s ease-in-out infinite; } }
+    @keyframes kzWiggle { 0%, 70%, 100% { transform: rotate(0); } 76% { transform: rotate(-9deg); } 84% { transform: rotate(9deg); } 92% { transform: rotate(-5deg); } }
+    @media (prefers-reduced-motion: reduce) { .kz-burst { display: none; } .kid-hero.cheer svg { animation: none; } }
     @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.1); } 100% { transform: scale(1); } }
     .leaderboard { padding: 22px; }
     table { width: 100%; border-collapse: collapse; }
@@ -229,16 +263,6 @@
     .qteams { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
     .qteam { flex: 1; min-width: 120px; border-left: 6px solid var(--tc); background: var(--soft); border-radius: 10px; padding: 6px 10px; font-size: 0.82rem; }
     .qteam strong { display: block; font-size: 0.95rem; }
-    .race-card { background: var(--card); border: 4px solid var(--btn, var(--violet)); border-radius: 22px; overflow: hidden; margin-bottom: 20px; }
-    .race-head { background: var(--btn, var(--violet)); color: #fff; padding: 16px 20px; }
-    .race-head .section-title { margin: 0 0 4px; color: #fff; font-size: 1.5rem; }
-    .race-banner { font-weight: 700; }
-    .race-body { padding: 14px 16px 18px; }
-    .race-weeks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-    .race-scale { position: relative; height: 38px; margin: 0 22px 2px; }
-    .race-scale span { position: absolute; transform: translateX(-50%); text-align: center; font-size: 0.7rem; font-weight: 700; color: var(--muted); line-height: 1.1; white-space: nowrap; }
-    .race-scale span b { display: block; color: var(--ink); font-size: 0.78rem; }
-    .race-scale .flagpole { position: absolute; left: 50%; bottom: -6px; width: 2px; height: 8px; background: var(--line); transform: translateX(-50%); }
     .lane { padding: 8px 10px 26px; border-radius: 14px; border: 2px solid transparent; margin-bottom: 4px; }
     .lane.me { border-color: var(--btn, var(--violet)); background: var(--soft); }
     .lane.winner { border-color: #e0b341; background: var(--soft); }
@@ -253,7 +277,6 @@
     .avatar { position: absolute; top: 50%; width: 46px; height: 50px; margin: -27px 0 0 -23px; display: flex; align-items: center; justify-content: center; transition: left 0.7s ease; }
     .avatar svg.face { width: 100%; height: 100%; overflow: visible; }
     .avatar .crown { position: absolute; top: -18px; left: 50%; width: 22px; height: 22px; transform: translateX(-50%); fill: #e0b341; stroke: #8a6a1c; }
-    .race-note { font-size: 0.8rem; color: var(--muted); margin: 10px 4px 0; }
     .quest-result { margin: 12px 0 4px; padding: 12px 14px; border-radius: 14px; background: var(--sun); color: var(--ink); font-weight: 700; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
     .quest-result button { width: auto; padding: 9px 16px; font-size: 0.9rem; }
     .see-race, .back-small { width: auto; display: inline-block; margin: 10px 0 0; padding: 5px 14px; font-size: .78rem; border-radius: 999px; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
@@ -407,6 +430,74 @@
     .name-hello { font-family: var(--head); font-weight: 700; font-size: 1.6rem; margin: 2px 0 0; color: var(--btn, var(--violet)); }
     .name-change { width: auto; display: inline-block; margin: 4px 0 2px; padding: 3px 12px; font-size: .78rem; border-radius: 999px; background: var(--soft); color: var(--muted); border: 1px solid var(--line); box-shadow: none; }
     .tabs[hidden] { display: none; }
+    /* daily habits (climb board) */
+    .habit-card { background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 14px 14px 12px; margin-top: 10px; }
+    .habit-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+    .habit-head h3 { font-family: var(--head); font-size: 1.15rem; margin: 0; }
+    .habit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    @media (min-width: 560px) { .habit-grid { grid-template-columns: repeat(6, 1fr); } }
+    .hb { --c: #d9d2e0; --c2: #efeaf4; width: auto; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 3px 2px; background: var(--soft); color: var(--ink); border: 2px solid var(--line); border-radius: 16px; box-shadow: none; font-family: "DM Sans", sans-serif; font-weight: 700; font-size: 0.7rem; line-height: 1.1; text-align: center; cursor: pointer; height: 68px; justify-content: center; }
+    .hb:hover { filter: none; background: var(--card); border-color: var(--hc); }
+    .hb svg { width: 42px; height: 42px; flex: 0 0 auto; display: block; overflow: visible; opacity: 0.8; }
+    .hb .hc { fill: var(--c); stroke: #2b2035; stroke-width: 2; stroke-linejoin: round; }
+    .hb .hc2 { fill: var(--c2); stroke: #2b2035; stroke-width: 2; stroke-linejoin: round; }
+    .hb .gold { fill: #e3dcc9; stroke: #2b2035; stroke-width: 1.5; stroke-linejoin: round; }
+    .hb .leaf { fill: #bdb5c6; stroke: #2b2035; stroke-width: 2; stroke-linejoin: round; }
+    .hb .iq { fill: #8a8096; font-family: "Noto Naskh Arabic", "Amiri", "Geeza Pro", "Traditional Arabic", "Segoe UI", Tahoma, serif; }
+    .hb .iqline { fill: none; stroke: #8a8096; stroke-width: 1.8; stroke-linecap: round; }
+    .hb.on .iq { fill: #fff6cf; }
+    .hb.on .iqline { stroke: #ffe29a; }
+    .hb .sp, .hb .f-on { display: none; }
+    .hb .hp { font-size: 0.62rem; padding: 0 7px; border-radius: 999px; background: var(--card); border: 1px solid var(--line2); color: var(--muted); }
+    .hb:disabled:not(.on) { opacity: 0.5; cursor: not-allowed; }
+    .hb.on { --c: var(--hc); --c2: var(--hc2); background: var(--card); border-color: var(--hc); box-shadow: 0 0 0 2px var(--hc), 0 0 16px 2px var(--hc); }
+    .hb.on svg { opacity: 1; filter: drop-shadow(0 0 6px var(--hc)); }
+    .hb.on .sp, .hb.on .f-on { display: inline; }
+    .hb.on .f-off { display: none; }
+    .hb.on .gold { fill: #ffd166; }
+    .hb.on .leaf { fill: #3d9a5f; }
+    .hb.on .hp { background: var(--hc2); border-color: var(--hc); color: #2b2035; }
+    .hb:disabled.on { cursor: not-allowed; }
+    @keyframes hbBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    @keyframes hbPop { 0% { transform: scale(0.8); } 60% { transform: scale(1.22) rotate(-5deg); } 100% { transform: scale(1); } }
+    @keyframes hbHop { 0%, 100% { transform: translateY(0) scaleY(1); } 40% { transform: translateY(-8px) scaleY(1.06); } 60% { transform: translateY(-8px); } 85% { transform: translateY(0) scaleY(0.92); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .hb.on svg { animation: hbBob 2.6s ease-in-out infinite; }
+      .hb.on.hopper svg { animation: hbHop 1.4s ease-in-out infinite; }
+      .hb.on.just svg { animation: hbPop 0.6s ease; }
+      .sunbtn.lit .sunglow { animation: sunPulse 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .sunbtn.lit .rays { animation: sunBeat 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    }
+    @keyframes sunPulse { 0%, 100% { opacity: 0.75; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.08); } }
+    @keyframes sunBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+    .sunbtn.tap { cursor: pointer; }
+    .sunbtn:focus-visible { outline: 3px solid #5a3f06; outline-offset: 4px; border-radius: 50%; }
+    .sun-hint { font: 700 10.5px "DM Sans", sans-serif; fill: #5a3f06; paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+    .bp-back { position: fixed; inset: 0; z-index: 55; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(43,32,53,0.62); }
+    .bp-card { width: 100%; max-width: 340px; text-align: center; background: var(--card); color: var(--ink); border: 3px solid var(--ink); border-radius: 26px; padding: 20px 20px 18px; box-shadow: 0 12px 0 rgba(43,32,53,0.28); }
+    .bp-kick { font-family: var(--head); font-size: 1rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+    .bp-art svg { width: 150px; height: 169px; display: block; margin: 6px auto 2px; overflow: visible; }
+    .bp-art .spark { animation: wbTwinkle 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .bp-art .spark.s2 { animation-delay: 1.1s; }
+    .bp-name { font-family: var(--head); font-size: 1.7rem; line-height: 1.15; margin: 4px 0 4px; }
+    .bp-how { margin: 0 0 14px; color: var(--muted); font-size: 0.95rem; }
+    .bp-ok { margin: 0; }
+    .bp-more { margin-top: 10px; font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+    @media (prefers-reduced-motion: no-preference) {
+      .bp-card { animation: bpIn 0.5s cubic-bezier(0.2, 1.4, 0.4, 1); }
+      .bp-art svg { animation: wbWobble 1s ease 0.3s; }
+    }
+    @keyframes bpIn { 0% { opacity: 0; transform: scale(0.6) translateY(30px); } 100% { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .bp-art .spark { animation: none; } }
+    .wk-restset { margin: 12px 0 4px; }
+    .wk-restset > b { display: block; margin-bottom: 6px; }
+    .wk-rt { font-family: var(--head); font-size: 3.4rem; line-height: 1; margin: 4px 0 6px; }
+    .wk-rt.done { color: #3d8a7e; }
+    .wk-tbar { height: 10px; max-width: 260px; margin: 6px auto 8px; border-radius: 999px; background: var(--track); overflow: hidden; }
+    .wk-tbar i { display: block; height: 100%; width: 100%; background: #3d8a7e; }
+    .wk-plus { width: auto; margin: 8px auto 0; padding: 6px 16px; font-size: 0.85rem; }
+    @media (prefers-reduced-motion: no-preference) { .wk-main.ready { animation: wkReady 1s ease-in-out infinite; } }
+    @keyframes wkReady { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .name-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
     .name-btns .name-change { margin: 4px 0 2px; }
     .name-change.stuck-btn { background: #fff1b8; color: #5a4200; border-color: #e0b341; font-weight: 700; }
@@ -526,20 +617,6 @@
     .wk-sum li.sk { opacity: .55; }
     .wk-xp { text-align: center; font-family: var(--head); font-size: 3rem; font-weight: 700; color: #d49a12; margin: 6px 0; }
 
-    .rtimer { position: fixed; right: 10px; top: 42%; z-index: 45; display: flex; align-items: center; gap: 8px; }
-    .rtimer[hidden] { display: none; }
-    .rt-fab { width: 68px; height: 68px; border-radius: 50%; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: var(--btn, var(--violet)); color: #fff; font-family: "DM Sans", sans-serif; font-size: .72rem; font-weight: 700; box-shadow: 0 6px 16px -4px rgba(0,0,0,.4); }
-    .rt-fab.run { background: #3d8a7e; }
-    .rt-panel { order: -1; width: 190px; background: var(--card); border: 2px solid var(--btn, var(--violet)); border-radius: 18px; padding: 12px; text-align: center; box-shadow: 0 10px 26px -8px rgba(0,0,0,.4); }
-    .rt-panel[hidden] { display: none; }
-    .rt-time { width: 100%; font-family: var(--head); font-size: 2.6rem; padding: 6px; background: var(--soft); color: var(--ink); border: 2px solid var(--line); box-shadow: none; }
-    .rt-time:hover { filter: none; background: var(--sun); }
-    .rt-time.done { background: #3d8a7e; color: #fff; border-color: #3d8a7e; }
-    .rt-hint { font-size: .75rem; color: var(--muted); margin: 4px 0 8px; }
-    .rt-pre { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
-    .rt-pre button, .rt-reset { width: auto; padding: 5px 9px; font-size: .78rem; font-family: "DM Sans", sans-serif; font-weight: 700; background: var(--soft); color: var(--ink); border: 1px solid var(--line); box-shadow: none; border-radius: 999px; }
-    .rt-pre button.on { background: var(--ink); color: var(--bg); }
-    .rt-reset { margin-top: 8px; }
     .pbanner { display: flex; gap: 14px; align-items: center; background: #2b2035; color: #fff; border-radius: 18px; padding: 14px 16px; margin-bottom: 16px; box-shadow: 0 8px 22px -12px rgba(43,32,53,.6); border: 2px solid #f5c93a; }
     .pbanner svg { flex: none; }
     .pbanner b { display: block; font-family: var(--head); font-size: 1.2rem; letter-spacing: .02em; color: #f5c93a; }
@@ -701,12 +778,11 @@
         </select>
 <select id="exerciseSelect" onchange="updateAmountField()"></select>
     </div>
-    <div class="pick-label">1. Pick your week</div>
-    <div class="pick-row" id="pickWeek"></div>
+    <div class="name-hello" id="weekWelcome" style="text-align:center;margin-bottom:6px"></div>
     <div class="lock-note" id="lockNote" hidden></div>
-    <div class="pick-label">2. Pick the exercise</div>
+    <div class="pick-label">1. Pick the exercise</div>
     <div class="pick-row" id="pickEx"></div>
-    <div class="pick-label">3. Type the amount</div>
+    <div class="pick-label">2. Type the amount</div>
     <div class="amount-row">
       <input type="number" id="amountInput" placeholder="e.g. 50" min="1" inputmode="numeric" aria-label="Amount" />
       <button id="submitBtn" onclick="logEntry()">Add to team total</button>
@@ -719,7 +795,9 @@
   <h2 class="section-title" id="gridTitle"></h2>
   <div class="grid" id="exerciseGrid"></div>
 
-  <div class="quest-card" id="questBoard"></div>
+  <div class="quest-card" style="text-align:center"><b>Daily habits live on the Climb Board</b>
+    <p class="badge-sub" style="margin:4px 0 0">Quran, water, hops, clean eating, no sugar, vitamins and fresh air each light up there and climb the board.</p>
+    <button class="see-race" onclick="showView('board')">Open the Climb Board</button></div>
 
 
   <h2 class="section-title">Theme treasures</h2>
@@ -730,6 +808,7 @@
   <div id="view-board" hidden>
     <div class="quest-card" id="boardHead"></div>
     <div id="hfWave"></div>
+    <div id="habitTray"></div>
     <div class="pick-row" id="boardWeeks" style="margin-top:10px"></div>
     <div id="boardGrid" style="margin-top:12px"></div>
     <div class="treasure-row" id="boardUnlocks"></div>
@@ -747,10 +826,6 @@
   <div id="view-journal" hidden><div id="journalBox"></div></div>
   <div id="view-muscle" hidden><div id="muBox"></div></div>
   <div id="view-workout" hidden><div id="wkBox"></div></div>
-  <div id="view-race" hidden>
-    <button class="jmini back-small" onclick="showView('challenge')">&larr; Back to the Challenge</button>
-    <div id="raceBoard"></div>
-  </div>
 
   <div id="view-badges" hidden><div id="badgesBox"></div></div>
   <div id="view-stuck" hidden>
@@ -772,13 +847,15 @@
   </div>
 
   <div id="view-kid" class="kid-theme" hidden>
-    <div class="kid-hero">
+    <div class="kid-hero" id="kidHero">
       <svg viewBox="0 0 64 64" width="76" height="76" aria-hidden="true"><polygon points="32,4 39,24 60,24 43,37 49,58 32,45 15,58 21,37 4,24 25,24" fill="#f7c948" stroke="#e0a800" stroke-width="2" stroke-linejoin="round"/><circle cx="26" cy="32" r="2.5" fill="#3b2a1a"/><circle cx="38" cy="32" r="2.5" fill="#3b2a1a"/><path d="M26 39q6 6 12 0" stroke="#3b2a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
       <div><h2 class="section-title">Kid Zone</h2><div class="kid-bubble" id="kidInfo"></div></div>
     </div>
-    <p class="badge-sub">Tap a badge each time you do it. Tap one 7 times to win a new star. Every tap drops jelly beans in your jar. When the jar is full, a silly monster comes to gobble them all up, and you start a fresh jar!</p>
+    <p class="badge-sub">Tap a badge each time you do it and fill its 7 dots to win a new star. Every tap drops jelly beans in your jar, and a mystery gift is waiting for you every day. When the jar is full, a silly monster comes to gobble them all up, and you start a fresh jar!</p>
+    <div class="kz-gift" id="kidGift"></div>
     <div class="star-shelf" id="kidStars"></div>
     <div class="zone-grid" id="kidGrid"></div>
+    <div class="kz-album" id="kidAlbum"></div>
     <div class="zone-actions"><button class="danger-btn" onclick="newWeek('kid')">Start a new week</button><button class="danger-btn solid" onclick="resetMonth('kid')">Reset for the new month</button></div>
   </div>
 
@@ -799,18 +876,6 @@
     </svg>
     <span class="hf-ribbon" id="jbRib">Journal</span>
   </button>
-
-  <div class="rtimer" id="rtimer" hidden>
-    <div class="rt-panel" id="rtPanel" hidden>
-      <button type="button" class="rt-time" id="rtTime" onclick="rtMain()" aria-label="Start or pause the rest timer">1:00</button>
-      <div class="rt-hint" id="rtHint">Tap the time to start</div>
-      <div class="rt-pre"><button type="button" onclick="rtSet(30)">30s</button><button type="button" onclick="rtSet(45)">45s</button><button type="button" onclick="rtSet(60)">1 min</button><button type="button" onclick="rtSet(90)">90s</button><button type="button" onclick="rtSet(120)">2 min</button></div>
-      <button type="button" class="rt-reset" onclick="rtReset()">Reset</button>
-    </div>
-    <button type="button" class="rt-fab" id="rtFabBtn" onclick="rtToggle()" aria-label="Rest timer">
-      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><circle cx="16" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 18V11M12 3h8M16 3v5" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
-      <span id="rtFab">Rest</span></button>
-  </div>
 
   <button type="button" class="dbell" id="dbell" onclick="showView('muscle')" aria-label="Click me to get stronger! Opens the Muscle Up page">
     <span class="db-say">Click me to get stronger!</span>
@@ -846,6 +911,7 @@
     <div class="pf-time" id="pfTime"></div>
     <button class="pf-ok" id="pfOk" hidden>Continue</button>
     <button class="pf-early" id="pfEarly" onclick="pfEnd()">End early (no points)</button>
+    <button class="pf-ok" id="pfReturn" onclick="pfReturn()" hidden style="margin:6px">Return for now</button>
   </div>
 </div>
 <script>
@@ -861,7 +927,7 @@
     { id: 'wallslides', name: 'Wall Slides',          unit: 'reps',  targets: same(280) },
     { id: 'postwalk',   name: 'Post-Meal 10 Min Walks', unit: 'walks', targets: same(42) },
     { id: 'sleep',      name: 'Sleep Time',           unit: 'hrs',   perPerson: true, targets: same(56) },
-    { id: 'steps',      name: 'Steps',                unit: 'steps', targets: same(100000) },
+    { id: 'steps',      name: 'Steps',                unit: 'steps', targets: [70000, 78400, 88200, 98000] },   // per person per day: 5,000, 5,600, 6,300, 7,000 (x7 days x2 for the team of 2)
     { id: 'workouttime', name: 'Workout Time',        unit: 'mins',  targets: same(150) },
     { id: 'squathold',  name: 'Deep Squat Hold',      unit: 'secs',  targets: same(1200) },
     { id: 'checkin',    name: 'Daily Check-In',       unit: 'days',  targets: same(14) },
@@ -939,6 +1005,7 @@
     if (hadData && cw === wBefore) { const gain = weekPoints(me, cw) - ptsBefore; if (gain > 0) fireworks(gain); }   // a little firework for every climb point earned
     if (cw !== lastCur) { lastCur = cw; document.getElementById('phaseSelect').value = cw; kidWeekCheck(); }
     renderDashboard();
+    checkBadgePopups();
   }
 
   async function refresh() {
@@ -999,7 +1066,7 @@
     const l = mine[mine.length - 1];
     if (isLocked(l.phase)) { showToast(`That entry is in Week ${l.phase}, which is locked, so it can't be removed.`); return; }
     const ex = exerciseConfig.find(e => e.id === l.exercise);
-    const label = ex ? `${l.amount} ${ex.unit} of ${ex.name}` : questById[l.exercise] ? `quest: ${questById[l.exercise].name}` : `${l.amount}`;
+    const label = ex ? `${l.amount} ${ex.unit} of ${ex.name}` : habitById[l.exercise] ? `habit: ${habitById[l.exercise].name}` : `${l.amount}`;
     if (!confirm(`Remove ${user}'s last entry (${label}, Week ${l.phase})?`)) return;
     try {
       const data = await api({ action: 'undo', user });
@@ -1022,8 +1089,9 @@
   function pickFromDrop(v) { if (!v) return; userChosen = true; changingName = false; setPick('user', v); }
   function changeName() { changingName = true; renderPickers(); }
   function setPick(kind, v) {
-    if (kind === 'user') { questResultHTML = ''; userChosen = true; changingName = false; }
+    if (kind === 'user') { habitMsg = ''; userChosen = true; changingName = false; }
     document.getElementById(kind + 'Select').value = v;
+    if (kind === 'user' && lastCur !== null && badgeSeenLoad(v) === null) badgeSeenSave(v, new Set(allBadges(v).filter(b => b.got).map(b => b.id)));
     if (kind !== 'exercise') { try { localStorage.setItem('pick_' + kind, v); } catch (e) {} }
     renderDashboard();
   }
@@ -1032,8 +1100,7 @@
     const phase = document.getElementById('phaseSelect').value;
     const user = document.getElementById('userSelect').value;
     const ex = document.getElementById('exerciseSelect').value;
-    document.getElementById('pickWeek').innerHTML = phaseNames.map((n, i) =>
-      `<button class="pick${phase == i + 1 ? ' on' : ''}" onclick="setPick('phase','${i + 1}')">Week ${i + 1}${isLocked(i + 1) ? lockSVG : ''}</button>`).join('');
+    document.getElementById('weekWelcome').textContent = 'Welcome to week ' + phase;
     const note = document.getElementById('lockNote');
     note.hidden = !isLocked(phase);
     note.textContent = state.locks.includes(+phase) ? `Week ${phase} is locked. Its scores are saved, but no new entries can be added.` : `Week ${phase} has not opened yet.`;
@@ -1115,8 +1182,6 @@
 
     renderPickers();
     renderCheckin();
-    renderQuests();
-    renderRace();
     renderBadges();
     renderLeaderboard();
     renderThemes();
@@ -1167,16 +1232,19 @@
     { e: '🦍', c: '#b79b7a', name: 'Gorilla Mode',       how: 'Finish 10 Muscle Up sections.',                    f: s => [s.mu, 10] },
     { e: '🙌', c: '#ffd36e', name: 'Highly Fived',       how: 'Get a high five from a teammate.',                 f: s => [s.hf, 1] },
     { e: '😴', c: '#b6c9ff', name: 'Nap Royalty',        how: 'Use a rest token. Rest is part of the plan!',      f: s => [s.rests, 1] },
-    { e: '🐲', c: '#8ede8a', name: 'Quest Goblin',       how: 'Finish 10 daily quests.',                          f: s => [s.quests, 10] }
+    { e: '🐲', c: '#8ede8a', name: 'Habit Goblin',       how: 'Light up 10 daily habits.',                        f: s => [s.habits, 10] },
+    { e: '✨', c: '#ffe27a', name: 'Full Glow',          how: 'Light up all 7 daily habits in one day.',          f: s => [s.bestHabitDay, 7] }
   ];
   function badgeStats(u) {
     const logs = state.logs.filter(l => l.user === u), team = teamMap[u];
     const cnt = fn => logs.filter(fn).length;
     const st = { logs, run: longestRun(logs.filter(l => l.exercise === 'checkin' && l.ts).map(l => dayNum(l.ts))),
       cards: cnt(l => l.exercise.startsWith('c_')), reflects: cnt(l => l.exercise === 'reflect'), phonefree: cnt(l => l.exercise === 'phonefree'),
-      mu: cnt(l => l.exercise.startsWith('mu_d')), rests: cnt(l => l.exercise === 'rest'), quests: cnt(l => l.exercise.startsWith('q_')),
+      mu: cnt(l => l.exercise.startsWith('mu_d')), rests: cnt(l => l.exercise === 'rest'), habits: 0, bestHabitDay: 0,
       hf: logs.filter(l => l.exercise === 'hf').reduce((a, l) => a + l.amount, 0),
       bestWeekCheckins: 0, halfWeeks: 0, crownWeeks: 0, goalsDone: 0, teamGoals: 0 };
+    const perDay = {}; logs.filter(l => habitById[l.exercise] && l.ts).forEach(l => { const k = dayNum(l.ts); (perDay[k] = perDay[k] || new Set()).add(l.exercise); });
+    Object.values(perDay).forEach(x => { st.habits += x.size; st.bestHabitDay = Math.max(st.bestHabitDay, x.size); });
     [1, 2, 3, 4].forEach(w => {
       st.bestWeekCheckins = Math.max(st.bestWeekCheckins, cnt(l => l.exercise === 'checkin' && l.phase === w));
       const n = boardFor(w).n, pts = weekPoints(u, w);
@@ -1194,13 +1262,41 @@
   }
   function allBadges(u) {
     const st = badgeStats(u), list = [];
-    specialBadges.forEach(b => { const [v, g] = b.f(st); list.push({ sec: 'special', e: b.e, c: b.c, name: b.name, how: b.how, got: v >= g, prog: `${Math.min(v, g)} / ${g}` }); });
+    specialBadges.forEach(b => { const [v, g] = b.f(st); list.push({ id: 's:' + b.name, sec: 'special', e: b.e, c: b.c, name: b.name, how: b.how, got: v >= g, prog: `${Math.min(v, g)} / ${g}` }); });
     exerciseConfig.forEach(ex => {
       const total = userTotal(u, ex.id), cr = wbCreatures[ex.id];
-      badgeTiers[ex.id].forEach((t, i) => list.push({ sec: 'collect', e: cr.e[i], c: wbTierColor[i], name: cr.n[i], how: `${wbTierWord[i]}: ${t.toLocaleString()} ${ex.unit} of ${ex.name}.`, got: total >= t, prog: `${Math.min(total, t).toLocaleString()} / ${t.toLocaleString()}` }));
+      badgeTiers[ex.id].forEach((t, i) => list.push({ id: 'c:' + ex.id + ':' + i, sec: 'collect', e: cr.e[i], c: wbTierColor[i], name: cr.n[i], how: `${wbTierWord[i]}: ${t.toLocaleString()} ${ex.unit} of ${ex.name}.`, got: total >= t, prog: `${Math.min(total, t).toLocaleString()} / ${t.toLocaleString()}` }));
     });
     return list;
   }
+  // ----- Pop-up whenever you earn a badge (it remembers which badges you have already seen on this device) -----
+  let badgeQueue = [], badgeShowing = false;
+  function badgeSeenLoad(u) { try { const v = localStorage.getItem('badgeseen_' + u); return v === null ? null : new Set(JSON.parse(v)); } catch (e) { return null; } }
+  function badgeSeenSave(u, set) { try { localStorage.setItem('badgeseen_' + u, JSON.stringify([...set])); } catch (e) {} }
+  function badgeUserReady() { let st = null; try { st = localStorage.getItem('pick_user'); } catch (e) {} const u = document.getElementById('userSelect').value; return !!teamMap[u] && (userChosen || st === u); }
+  // Call with the new data in place. The first time we see someone on this device we just note what they already have.
+  function checkBadgePopups() {
+    if (!badgeUserReady()) return;
+    const u = document.getElementById('userSelect').value, earned = allBadges(u).filter(b => b.got), seen = badgeSeenLoad(u);
+    if (seen === null) { badgeSeenSave(u, new Set(earned.map(b => b.id))); return; }
+    const fresh = earned.filter(b => !seen.has(b.id));
+    if (!fresh.length) return;
+    fresh.forEach(b => seen.add(b.id)); badgeSeenSave(u, seen);
+    badgeQueue.push(...fresh); showNextBadge();
+  }
+  function showNextBadge() {
+    if (badgeShowing || !badgeQueue.length) return;
+    const b = badgeQueue.shift(); badgeShowing = true;
+    const el = document.createElement('div');
+    el.className = 'bp-back'; el.id = 'badgePop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'New badge: ' + b.name);
+    el.onclick = ev => { if (ev.target === el) closeBadgePop(); };
+    el.innerHTML = `<div class="bp-card"><div class="bp-kick">New badge!</div><div class="bp-art">${wbSVG({ ...b, got: true })}</div><h2 class="bp-name">${esc(b.name)}</h2><p class="bp-how">${esc(b.how)}</p><button class="bp-ok" onclick="closeBadgePop()">Yay!</button>${badgeQueue.length ? `<div class="bp-more">${badgeQueue.length} more ${badgeQueue.length === 1 ? 'badge' : 'badges'} to see</div>` : ''}</div>`;
+    document.body.appendChild(el);
+    const ok = el.querySelector('.bp-ok'); if (ok) ok.focus();
+    launchConfetti(80);
+  }
+  function closeBadgePop() { const el = document.getElementById('badgePop'); if (el) el.remove(); badgeShowing = false; showNextBadge(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && badgeShowing) closeBadgePop(); });
   function badgeCounts(u) { const l = allBadges(u); return { earned: l.filter(b => b.got).length, total: l.length }; }
   function wbSVG(b) {
     const dark = '#2b2035', scallops = Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6; return `<circle cx="${(40 + 31 * Math.cos(a)).toFixed(1)}" cy="${(40 + 31 * Math.sin(a)).toFixed(1)}" r="7.5" fill="${b.got ? b.c : '#d9d2e0'}" stroke="${dark}" stroke-width="2"/>`; }).join('');
@@ -1230,10 +1326,11 @@
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const TEAM_NAMES = ['Team 1', 'Team 2', 'Team 3'];
   // The Climb Board gets longer (and harder) each week. n = spaces to the top. Every climb point is one space.
-  // Most climb points a perfect week can earn (not counting rest tokens): W1 69, W2 65, W3 69, W4 73, plus up to 7 from a teammate's daily high five.
-  // The tops below ask for about 58%, 71%, 77% and 82% of that, so each week is harder, but no single thing is required: goals, check-ins,
-  // cards, the reflection, the phone-free hour and high fives can all make up the points, so there are many ways to reach the crown.
-  const BOARDS = [{ n: 40 }, { n: 46 }, { n: 53 }, { n: 60 }];
+  // Most climb points a perfect week can earn (not counting rest tokens): W1 97, W2 93, W3 97, W4 101, plus up to 7 from a teammate's daily high five.
+  // That is the old 69, 65, 69 and 73 plus up to 28 from the daily habits (7 days x (Quran 1 + five habits and the sun at half a point each)).
+  // The tops below ask for about 64%, 77%, 84% and 88% of that (a little longer than before, so habits alone can never reach the halfway tile), so each week is harder, but no single thing is required: goals, check-ins,
+  // cards, the reflection, the phone-free hour, the daily habits and high fives can all make up the points, so there are many ways to reach the crown.
+  const BOARDS = [{ n: 62 }, { n: 72 }, { n: 81 }, { n: 89 }];
   const boardFor = w => BOARDS[Math.min(4, Math.max(1, w)) - 1];
   // Cut-off targets: to stay in the challenge you must reach this share of the climb by the end of the week.
   // Week 1: halfway, week 2: 60%, week 3: 70%. (Rounded up to a whole space.) Week 4 has no cut-off.
@@ -1244,7 +1341,7 @@
   const targetFor = (ex, w, team) => { const t = ex.targets[w - 1]; if (t === null) return null; const n = membersOf(team).length; return ex.perPerson ? t * n : Math.round(t * n / 2); };
   // Climb points this week: every exercise goal (up to 4 each), check-ins (1 each), the daily card (+2), the bonus reflection (+1),
   // the phone-free hour (+3), each finished Muscle Up section (+3), teammate high fives (1 each, 2 with the Golden High-Five), rest tokens (+1), minus slides (3 each).
-  // Daily quests no longer climb the board. They only count in the Quest Race.
+  // The 7 daily habits: Quran is +1, the other six (water, hops, clean eating, no sugar, vitamins, fresh air) are +half each, once a day.
   function weekPoints(u, w, logs = state.logs) {
     const L = logs.filter(l => l.user === u && l.phase === w);
     let n = 0;
@@ -1260,9 +1357,10 @@
     n += L.filter(l => l.exercise === 'phonefree').length * 3;
     n += L.filter(l => l.exercise === 'hf').reduce((a, l) => a + l.amount, 0);
     n += L.filter(l => l.exercise === 'rest').length;
+    n += habitPts(L);
     n += L.filter(l => l.exercise.startsWith('mu_d')).length * MU_POINTS;   // Muscle Up: +3 for each finished section
     n -= missInfo(u, w, logs).slides * SLIDE_BACK;
-    return Math.max(0, n);
+    return Math.floor(Math.max(0, n) + 1e-9);   // half points add up; the board counts whole spaces
   }
   function weekSpaces(u, w, logs = state.logs) { return Math.min(boardFor(w).n, weekPoints(u, w, logs)); }
   function renderLeaderboard() {
@@ -1421,64 +1519,42 @@
     }).join('');
   }
 
-  // ----- Daily quests: once a day each, bonus points and streaks -----
-  const questIcons = {
-    q_sport: '<circle cx="16" cy="16" r="11"/><path d="M5 16h22M16 5c-5 5-5 17 0 22M16 5c5 5 5 17 0 22"/>',
-    q_weights: '<path d="M3 16h26M7 9v14M11 11v10M25 9v14M21 11v10"/>',
-    q_hops: '<path d="M9 14l7-7 7 7M9 24l7-7 7 7"/>',
-    q_clean: '<path d="M16 11c-3-3-10-1-10 6 0 6 4 11 8 11 1 0 1.500-.5 2-.5s1 .5 2 .5c4 0 8-5 8-11 0-7-7-9-10-6z"/><path d="M16 11c0-3 1-5 4-6"/>',
-    q_sugarfree: '<rect x="7" y="7" width="18" height="18" rx="3"/><path d="M5 27L27 5"/>',
-    q_water: '<path d="M16 4C11 11 8 15 8 19a8 8 0 0 0 16 0c0-4-3-8-8-15z"/>',
-    q_stretch: '<circle cx="16" cy="7" r="3"/><path d="M16 10v10M6 6l10 8 10-8M16 20l-5 8M16 20l5 8"/>',
-    q_outdoors: '<circle cx="16" cy="16" r="6"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3"/>',
-    q_quran: '<path d="M4 8c5-2 9-1 12 2 3-3 7-4 12-2v17c-5-2-9-1-12 2-3-3-7-4-12-2z"/><path d="M16 10v17"/>',
-    q_reading: '<rect x="8" y="4" width="16" height="24" rx="2"/><path d="M12 10h8M12 15h8M12 20h5"/>',
-    q_vitamins: '<g transform="rotate(-40 16 16)"><rect x="3" y="10" width="26" height="12" rx="6"/><path d="M16 10v12"/></g>'
-  };
-  const quests = [
-    { id: 'q_sport', color: '#e4572e', name: 'Play a sport', pts: 10 }, { id: 'q_weights', color: '#8a5fc9', name: 'Lift weights', pts: 10 },
-    { id: 'q_hops', color: '#e08a00', name: '100 hops', pts: 5 }, { id: 'q_clean', color: '#3d9a5f', name: 'Clean eating day', pts: 10 },
-    { id: 'q_sugarfree', color: '#d6336c', name: 'Sugar-free day', pts: 10 }, { id: 'q_water', color: '#2b8fd6', name: '8 glasses of water', pts: 5 },
-    { id: 'q_stretch', color: '#12a89a', name: 'Stretch 10 min', pts: 5 }, { id: 'q_outdoors', color: '#d99100', name: 'Fresh air 20 min', pts: 5 },
-    { id: 'q_quran', color: '#1e8a5a', name: 'Quran time', pts: 10 }, { id: 'q_reading', color: '#3a6ea5', name: 'Reading time', pts: 5 }, { id: 'q_vitamins', color: '#d6336c', name: 'Vitamins', pts: 5 }
+  // ----- Daily habits: tiny items on the Climb Board. Each one lights up once a day and climbs 1 space. -----
+  const habits = [
+    { id: 'q_quran', short: 'Quran', name: 'Quran time', pts: 1, color: '#1e8a5a', c2: '#a8e6c3' },
+    { id: 'q_water', short: 'Water', pts: 0.5, name: '8 glasses of water', color: '#2b8fd6', c2: '#a9dcff' },
+    { id: 'q_hops', short: '100 hops', pts: 0.5, name: '100 hops', color: '#5fb336', c2: '#e3f8b8' },
+    { id: 'q_clean', short: 'Clean eating', pts: 0.5, name: 'Clean eating day', color: '#e5484d', c2: '#ffc2b8' },
+    { id: 'q_sugarfree', short: 'No sugar', pts: 0.5, name: 'Sugar-free day', color: '#e0508f', c2: '#ffd0e3' },
+    { id: 'q_vitamins', short: 'Vitamins', pts: 0.5, name: 'Vitamins', color: '#f59f00', c2: '#ffe29a' }
   ];
-  const questById = Object.fromEntries(quests.map(q => [q.id, q]));
+  const sunHabit = { id: 'q_outdoors', short: 'Fresh air', pts: 0.5, name: 'Fresh air 20 min', color: '#ffb703', c2: '#fff0a8' };   // the sun at the top of the board
+  const allHabits = [...habits, sunHabit];
+  const habitById = Object.fromEntries(allHabits.map(h => [h.id, h]));
+  const legacyQuestIds = ['q_sport', 'q_weights', 'q_stretch', 'q_reading'];   // old quests: no longer shown, but still count as an active day
+  let habitMsg = '', justLit = null;
   const flameSVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4-3 6-3 10a5 5 0 0 0 10 0c0-3-2-4-2-7-2 1-3 2-3 4 0-3-1-5-2-7z" fill="#ff7a1a"/></svg>';
-  // Streak bonus for each day: +2 per streak day after the first, capped at +10.
-  function questDays(user, logs = state.logs) {
-    const byDay = new Map();
-    logs.filter(l => l.user === user && questById[l.exercise] && l.ts).forEach(l => {
-      const d = dayNum(l.ts);
-      const cur = byDay.get(d) || { pts: 0, phase: l.phase, ts: 0 };
-      cur.pts += questById[l.exercise].pts;
-      if (l.ts >= cur.ts) { cur.ts = l.ts; cur.phase = l.phase; }
-      byDay.set(d, cur);
-    });
-    let streak = 0, prev = null;
-    return [...byDay.keys()].sort((a, b) => a - b).map(d => {
-      streak = prev !== null && d === prev + 1 ? streak + 1 : 1;
-      prev = d;
-      const x = byDay.get(d);
-      return { day: d, phase: x.phase, streak, pts: x.pts + Math.min(streak - 1, 5) * 2 };
-    });
-  }
-  const questWeekPoints = (user, week, logs = state.logs) => questDays(user, logs).filter(d => d.phase === week).reduce((a, d) => a + d.pts, 0);
-  function questStats(user, logs = state.logs) {
-    const days = questDays(user, logs);
+  // The Quran is worth 1 point a day. Every other habit (and the sun) is worth half a point a day. Each habit only counts once a day.
+  // Points add up over the week and the board shows whole spaces, so two halves make one space.
+  const halfFmt = n => { const w = Math.floor(n + 1e-9), h = n - w >= 0.5; return h ? (w ? w + '½' : '½') : String(w); };
+    const habitDayKeys = L => new Set(L.filter(l => habitById[l.exercise] && l.ts).map(l => l.exercise + '|' + dayNum(l.ts)));
+  const habitPts = L => [...habitDayKeys(L)].reduce((a, k) => a + habitById[k.split('|')[0]].pts, 0);
+  const todaysHabit = (user, id) => {
     const today = dayNum(Date.now());
-    const last = days[days.length - 1];
-    const alive = !!last && (last.day === today || last.day === today - 1);
-    const doneToday = new Set(logs.filter(l => l.user === user && questById[l.exercise] && l.ts && dayNum(l.ts) === today).map(l => l.exercise));
-    return { streak: alive ? last.streak : 0, doneToday, atRisk: alive && last.day === today - 1 };
-  }
-
-  // ----- Quest Race: an individual weekly race everyone can follow -----
-  // Quest points needed to finish the race. It gets harder each week (a perfect week is about 600 quest points).
-  const RACE_FINISH = [350, 400, 440, 480];
-  const raceFor = w => {
-    const max = RACE_FINISH[Math.min(4, Math.max(1, w)) - 1], at = f => Math.round(max * f / 5) * 5;
-    return { max, ms: [{ at: at(.1), name: 'Kickoff' }, { at: at(.29), name: 'Warm-up' }, { at: at(.5), name: 'Halfway' }, { at: at(.71), name: 'Sprint' }, { at: max, name: 'Finish' }] };
+    return state.logs.filter(l => l.user === user && l.exercise === id && l.ts && dayNum(l.ts) === today).pop() || null;
   };
+  const hbFace = (x, y) => `<g class="f-off"><path d="M${x - 7} ${y}h4M${x + 3} ${y}h4M${x - 2} ${y + 6}h4" fill="none" stroke="#2b2035" stroke-width="2" stroke-linecap="round"/></g><g class="f-on"><ellipse cx="${x - 5}" cy="${y}" rx="2" ry="2.600" fill="#2b2035"/><ellipse cx="${x + 5}" cy="${y}" rx="2" ry="2.600" fill="#2b2035"/><circle cx="${x - 4.400}" cy="${y - 1}" r=".8" fill="#fff"/><circle cx="${x + 5.600}" cy="${y - 1}" r=".8" fill="#fff"/><path d="M${x - 3.500} ${y + 4}q3.500 4 7 0" fill="none" stroke="#2b2035" stroke-width="2" stroke-linecap="round"/><ellipse cx="${x - 9.500}" cy="${y + 4}" rx="2.600" ry="1.600" fill="#ff8fa3" opacity=".7"/><ellipse cx="${x + 9.500}" cy="${y + 4}" rx="2.600" ry="1.600" fill="#ff8fa3" opacity=".7"/></g>`;
+  const hbSparks = '<path class="sp" d="M43 36l1.600 3.800 3.800 1.600-3.800 1.600L43 46.800l-1.600-3.800L37.600 41.400l3.800-1.600z" fill="#ffd166" stroke="#2b2035" stroke-width="1.200" stroke-linejoin="round"/><path class="sp" d="M5 5l1.200 2.800 2.800 1.200-2.800 1.200L5 13l-1.200-2.800L1 9l2.800-1.200z" fill="#fff" stroke="#2b2035" stroke-width="1" stroke-linejoin="round"/>';
+  const hbArt = {
+    q_quran: `<rect class="hc" x="8" y="4" width="32" height="40" rx="6"/><rect class="hc2" x="8" y="4" width="8" height="40" rx="4"/><path class="iqline" d="M21 12h15M21 37h15"/><text class="iq" x="28.500" y="29" text-anchor="middle" font-size="13" font-weight="700">اقرأ</text>`,
+    q_water: `<path class="hc" d="M24 4C17 14 10 21 10 30a14 14 0 0 0 28 0c0-9-7-16-14-26z"/><path d="M16.500 29a7.500 7.500 0 0 1 4.500-7" stroke="#fff" stroke-width="2.500" fill="none" stroke-linecap="round" opacity=".8"/>${hbFace(25, 32)}`,
+    q_hops: `<ellipse class="hc" cx="24" cy="31" rx="18" ry="12"/><circle class="hc" cx="14" cy="17" r="7.500"/><circle class="hc" cx="34" cy="17" r="7.500"/><circle class="hc2" cx="14" cy="17" r="4.800"/><circle class="hc2" cx="34" cy="17" r="4.800"/><g class="f-off"><path d="M10.500 17h7M30.500 17h7M20 34h8" fill="none" stroke="#2b2035" stroke-width="2" stroke-linecap="round"/></g><g class="f-on"><circle cx="14.800" cy="17.200" r="2.300" fill="#2b2035"/><circle cx="33.200" cy="17.200" r="2.300" fill="#2b2035"/><path d="M17 32q7 7 14 0" fill="none" stroke="#2b2035" stroke-width="2" stroke-linecap="round"/><ellipse cx="9.500" cy="32" rx="2.800" ry="1.700" fill="#ff8fa3" opacity=".75"/><ellipse cx="38.500" cy="32" rx="2.800" ry="1.700" fill="#ff8fa3" opacity=".75"/></g>`,
+    q_clean: `<path class="hc" d="M24 14c-5-5-15-2-15 9 0 9 6 20 12 20 1.500 0 2-.8 3-.8s1.500.8 3 .8c6 0 12-11 12-20 0-11-10-14-15-9z"/><path class="leaf" d="M24 14c0-4 2-8 7-9 0 5-3 8-7 9z"/>${hbFace(24, 29)}`,
+    q_sugarfree: `<rect class="hc" x="7" y="11" width="31" height="31" rx="8"/><path d="M12 17h8" stroke="#fff" stroke-width="2.500" stroke-linecap="round" opacity=".75"/>${hbFace(22.500, 29)}<circle cx="38" cy="12" r="7.500" fill="#fff" stroke="#e03131" stroke-width="2.600"/><path d="M32.800 17.200l10.400-10.400" stroke="#e03131" stroke-width="2.600" stroke-linecap="round"/>`,
+    q_vitamins: `<rect class="hc2" x="4" y="14" width="40" height="22" rx="11"/><path class="hc" d="M24 14h9a11 11 0 0 1 0 22h-9z"/><path d="M10 19h6" stroke="#fff" stroke-width="2.500" stroke-linecap="round" opacity=".8"/>${hbFace(24, 25)}`
+  };
+  const hbSVG = id => `<svg viewBox="0 0 48 48" aria-hidden="true">${hbArt[id]}${hbSparks}</svg>`;
+
   const avatarShapes = [
     '<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>',
     '<path d="M13 2L5 14h6l-1 8 8-12h-6z"/>',
@@ -1492,8 +1568,6 @@
   ];
   const personIndex = u => Math.max(0, Object.keys(teamMap).indexOf(u));
   const raceCrown = '<svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18l-1-11 5 4 5-8 5 8 5-4-1 11z" stroke-width="1.2" stroke-linejoin="round"/></svg>';
-  let raceWeek = null;
-  const raceCelebrated = new Set();
 
   function launchConfetti(count = 70) {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1531,55 +1605,6 @@
     setTimeout(() => box.remove(), 1400);
   }
 
-  function raceRows(week) {
-    const rows = Object.keys(teamMap).map(u => ({ u, pts: questWeekPoints(u, week) }))
-      .sort((a, b) => b.pts - a.pts || a.u.localeCompare(b.u));
-    rows.forEach((r, i) => { r.rank = i && rows[i - 1].pts === r.pts ? rows[i - 1].rank : i + 1; });
-    return rows;
-  }
-  function celebrateFinishedRace() {
-    const week = raceWeek === null ? parseInt(document.getElementById('phaseSelect').value) : raceWeek;
-    if (isLocked(week) && !raceCelebrated.has(week) && raceRows(week)[0].pts > 0) { raceCelebrated.add(week); launchConfetti(110); }
-  }
-  function setRaceWeek(w) { raceWeek = w; renderRace(); celebrateFinishedRace(); }
-
-  function renderRace() {
-    const el = document.getElementById('raceBoard');
-    if (!el) return;
-    if (raceWeek === null) raceWeek = parseInt(document.getElementById('phaseSelect').value);
-    const week = raceWeek, over = isLocked(week), rf = raceFor(week);
-    const me = document.getElementById('userSelect').value;
-    const rows = raceRows(week);
-    const top = rows[0].pts;
-    const leaders = top > 0 ? rows.filter(r => r.pts === top).map(r => r.u).join(' and ') : '';
-    const banner = over
-      ? (top > 0 ? `Race over! Winner${rows.filter(r => r.pts === top).length > 1 ? 's' : ''}: ${leaders} with ${top} points.` : 'Race over. No quests were logged this week.')
-      : (top > 0 ? `${leaders} leads with ${top} points. The race ends when the week is locked.` : 'The race has not started. Complete a quest to get your icon moving!');
-    el.innerHTML = `
-      <div class="race-card">
-        <div class="race-head"><h2 class="section-title">Quest Race: Week ${week}</h2><div class="race-banner">${banner}</div><div class="race-banner" style="font-weight:500;font-size:.85rem;margin-top:4px">Separate from the challenge: quest points never count toward the Climb Board or team scores.</div></div>
-        <div class="race-body">
-          <div class="race-weeks">${phaseNames.map((n, i) => `<button class="pick${week === i + 1 ? ' on' : ''}" onclick="setRaceWeek(${i + 1})">Week ${i + 1}${isLocked(i + 1) ? lockSVG : ''}</button>`).join('')}</div>
-          <div class="race-scale">${rf.ms.map(m => `<span style="left:${m.at / rf.max * 100}%"><b>${m.name}</b>${m.at}<i class="flagpole"></i></span>`).join('')}</div>
-          ${rows.map(r => {
-            const pct = Math.min(r.pts / rf.max, 1) * 100;
-            const reached = rf.ms.filter(m => r.pts >= m.at);
-            const isWinner = over && top > 0 && r.pts === top;
-            return `<div class="lane${r.u === me ? ' me' : ''}${isWinner ? ' winner' : ''}" style="--tc:${teamColor[teamMap[r.u]]}">
-              <div class="lane-top"><span class="lane-name">${r.u}${r.u === me ? '<small>(you)</small>' : ''}${reached.length ? `<small>${reached[reached.length - 1].name}</small>` : ''}</span><span class="lane-pts">${r.pts} pts${r.pts > rf.max ? ` (+${r.pts - rf.max} past finish)` : ''}</span></div>
-              <div class="lane-track">
-                <div class="lane-fill" style="width:${pct}%"></div>
-                ${rf.ms.map(m => `<i class="ms${r.pts >= m.at ? ' hit' : ''}" style="left:${m.at / rf.max * 100}%"></i>`).join('')}
-                <div class="avatar" style="left:${pct}%" title="${r.u}">${runnerSVG(teamColor[teamMap[r.u]], faceLevel(pct / 100))}${isWinner ? raceCrown : ''}</div>
-              </div>
-            </div>`;
-          }).join('')}
-          <p class="race-note"><strong>The Quest Race is its own separate competition.</strong> Quest points only count here. They do not add to your Climb Board, your team's race, badges or any other points in the challenge, and the challenge points do not count here either. Every daily quest earns points that move your icon along the track (streak days add extra). Anyone can reach every milestone, and each one is celebrated. The person with the most points when the week is locked wins. Your lane is highlighted using the name picked on the Challenge page. Team colors show who is on which team.</p>
-        </div>
-      </div>`;
-  }
-
-
   // ----- Goofy anime faces: they get more excited the closer they are to the top -----
   const starPts = (cx, cy, R, r) => Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; return (cx + rr * Math.cos(a)).toFixed(1) + ',' + (cy + rr * Math.sin(a)).toFixed(1); }).join(' ');
   const heartAt = (x, y, s) => `<path d="M${x} ${y + 4 * s}C${x - 7 * s} ${y - s} ${x - 4 * s} ${y - 6 * s} ${x} ${y - 2 * s}C${x + 4 * s} ${y - 6 * s} ${x + 7 * s} ${y - s} ${x} ${y + 4 * s}Z" fill="#ff4d6d"/>`;
@@ -1607,17 +1632,10 @@
       `<path d="M3.5 19Q4 4 20 4Q36 4 36.5 19Q30 10 20 11.5Q10 10 3.5 19Z" style="fill:${col}"/>` +
       `<path d="M20 4.5Q16-2 22-3" style="stroke:${col};fill:none;stroke-width:2.4px;stroke-linecap:round"/>`;
   }
-  // Runner icon for the Quest Race (the Climb Board keeps the faces). More speed lines and sparkle the closer to the finish.
-  const runnerSVG = (col, lv) => `<svg viewBox="0 0 44 44" class="face lv${lv}" aria-hidden="true">
-    ${lv >= 1 ? '<path d="M1 17h8M0 24h9" stroke="#b9b1c2" stroke-width="2" stroke-linecap="round"/>' : ''}${lv >= 3 ? '<path d="M3 31h9" stroke="#b9b1c2" stroke-width="2" stroke-linecap="round"/>' : ''}
-    ${lv >= 4 ? '<path d="M38 3l1.2 3 3 1.2-3 1.2L38 11l-1.2-3-3-1.2 3-1.2z" fill="#ffd166"/>' : ''}${lv >= 5 ? '<path d="M42 17l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="#ff8fa3"/>' : ''}
-    <circle cx="27" cy="8" r="5.5" fill="${col}"/>
-    <g stroke="${col}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M25 15L21 27"/><path d="M24 18l7 4 5-5"/><path d="M24 18l-7 2-5 6"/><path d="M21 27l8 4-1 9"/><path d="M21 27l-7 6-7-2"/></g>
-  </svg>`;
   const faceSVG = (col, lv) => `<svg viewBox="-2 -8 44 50" class="face lv${lv}" aria-hidden="true">${faceInner(col, lv)}</svg>`;
   const miniFace = (col, lv) => `<svg viewBox="-2 -8 44 50" width="26" height="28" aria-hidden="true">${faceInner(col, lv)}</svg>`;
 
-  // ----- Slide penalty: 3 days in a row without updating the challenge slides you back 3 spaces. A check-in, exercise entry, daily quest or rest token counts as an active day. Daily cards and high fives do not. -----
+  // ----- Slide penalty: 3 days in a row without updating the challenge slides you back 3 spaces. A check-in, exercise entry, daily habit or rest token counts as an active day. Daily cards and high fives do not. -----
   const SLIDE_AFTER = 3, SLIDE_BACK = 3;
   function missInfo(u, w, logs = state.logs) {
     const s = startOf(w), nx = state.starts[w + 1], e = Math.min(s + 7, todayD(), nx !== undefined ? nx : 1e9);
@@ -1718,6 +1736,7 @@
     document.getElementById('boardHead').innerHTML = `<h2 class="section-title">Climb Board: Week ${w}</h2><p class="badge-sub" style="margin:0">${
       isLocked(w) ? (state.locks.includes(w) ? `Week ${w} is locked. Final positions are saved.` : `Week ${w} has not opened yet.`) : `Week ${w}: every point climbs one space and everyone starts back at the beginning. Reach space ${N} to win the crown.`}</p>`;
     document.getElementById('boardWeeks').innerHTML = phaseNames.map((n, i) => `<button class="pick${w == i + 1 ? ' on' : ''}" onclick="setPick('phase','${i + 1}')">Week ${i + 1}${isLocked(i + 1) ? lockSVG : ''}</button>`).join('');
+    renderHabitTray(me, w);
     const lay = layoutFor(w);
     const pts = boardGeometry(w);
     const players = Object.keys(teamMap).map(u => ({ u, p: weekSpaces(u, w) }));
@@ -1742,11 +1761,20 @@
       return `<g transform="translate(${q[0]} ${q[1] - 34})" class="goalmark"><title>Week ${w} target: space ${T}</title><ellipse cy="12" rx="17" ry="4" fill="rgba(43,32,53,.18)"/>${lid}<rect x="-12" y="-9" width="24" height="17" rx="3" fill="${passed ? '#e0b341' : '#a8683a'}" stroke="#5a3f06" stroke-width="1.6"/><path d="M-12-2h24" stroke="#5a3f06" stroke-width="1.4"/><rect x="-3" y="-5" width="6" height="7" rx="1.5" fill="${passed ? '#fff3c4' : '#d9c7a3'}" stroke="#5a3f06" stroke-width="1.2"/><text y="23" text-anchor="middle" font-size="8.5" font-weight="700" style="fill:#5a3f06;stroke:#fff;stroke-width:3px;paint-order:stroke">TARGET</text></g>`; })();
     if (T !== null && passed && !isLocked(w)) { try { const k = `cut_${me}_${w}`; if (!localStorage.getItem(k)) { localStorage.setItem(k, 1); showToast(`${me}, you passed the Week ${w} target!`); launchConfetti(80); } } catch (e) {} }
     const goalNote = T === null ? `<p class="badge-sub" style="margin-top:6px"><b>Week ${w} has no cut-off.</b> Climb as high as you can and race to the crown!</p>` : `<p class="badge-sub" style="margin-top:6px"><b>Week ${w} target: reach space ${T} of ${N} (${Math.round(CUTOFF[w] * 100)}% of the climb).</b> ${passed ? `You are past the treasure chest, so you have passed this week's target. Keep climbing!` : `You are on space ${mine}, so ${T - mine} more ${T - mine === 1 ? 'space' : 'spaces'} to open the treasure chest. Players who have not reached it by the end of the week will be asked to leave the challenge.`}</p>`;
+    // The sun at the top is the fresh-air habit: sleepy until you tap it, then it glows.
+    const sunLit = !!todaysHabit(me, sunHabit.id), sunTap = !isLocked(w), sunSide = sun[0] > 200 ? -1 : 1;
+    const sunC = sunLit ? '#ffb703' : '#cfc3a8', sunTip = sunLit ? 'Fresh air done today! Tap to undo' : 'Tap me when you have had fresh air today';
+    const sunSvg = `<g transform="translate(${sun[0]} ${sun[1] - 52})" class="sunbtn${sunLit ? ' lit' : ''}${sunTap ? ' tap' : ''}" ${sunTap ? `role="button" tabindex="0" aria-pressed="${sunLit}" aria-label="Fresh air. ${sunTip}" onclick="toggleHabit('q_outdoors')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleHabit('q_outdoors')}"` : ''}><title>${sunTip}</title>
+        ${sunLit ? '<circle class="sunglow" r="74" fill="url(#sunGlow)" pointer-events="none"/>' : ''}<circle r="36" fill="transparent"/>
+        <g class="rays" stroke="${sunC}" stroke-width="3" stroke-linecap="round"><path d="M0-30V-38M-22-22l-6-6M22-22l6-6M-30 0H-38M30 0H38"/></g>
+        <circle r="22" fill="${sunLit ? '#ffd166' : '#eadfc6'}" stroke="${sunC}" stroke-width="2"/>
+        ${sunLit ? '<path d="M-9 4q9 9 18 0" stroke="#b8860b" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="-8" cy="-4" r="2.5" fill="#b8860b"/><circle cx="8" cy="-4" r="2.5" fill="#b8860b"/><ellipse cx="-14" cy="3" rx="3.500" ry="2" fill="#ff8fa3" opacity=".7"/><ellipse cx="14" cy="3" rx="3.500" ry="2" fill="#ff8fa3" opacity=".7"/><path d="M-30-26l1.500 3.500 3.500 1.500-3.500 1.500-1.500 3.500-1.500-3.500-3.500-1.500 3.500-1.500zM33-30l1.200 2.800 2.800 1.200-2.800 1.200-1.200 2.800-1.200-2.800-2.800-1.200 2.800-1.200z" fill="#fff" stroke="#e0b341" stroke-width="1"/>' : '<path d="M-12-4q4 3.500 8 0M4-4q4 3.500 8 0" stroke="#a08f6a" stroke-width="2.400" fill="none" stroke-linecap="round"/><path d="M-4 8h8" stroke="#a08f6a" stroke-width="2.400" stroke-linecap="round"/>'}
+        ${!sunLit && sunTap ? `<text class="sun-hint" x="${sunSide * 42}" y="4" text-anchor="${sunSide > 0 ? 'start' : 'end'}">Fresh air? Tap me!</text>` : ''}</g>`;
     document.getElementById('boardGrid').innerHTML = `<div class="board-wrap"><svg viewBox="${lay.vb.join(' ')}" class="board-svg" role="img" aria-label="A winding candy road with ${N} spaces past beaches, waterfalls and mountains">
-      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff1ff"/><stop offset=".55" stop-color="#e6f6dc"/><stop offset="1" stop-color="#fff0cf"/></linearGradient></defs>
+      <defs><radialGradient id="sunGlow"><stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/><stop offset=".45" stop-color="#ffd166" stop-opacity=".55"/><stop offset="1" stop-color="#ffd166" stop-opacity="0"/></radialGradient><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff1ff"/><stop offset=".55" stop-color="#e6f6dc"/><stop offset="1" stop-color="#fff0cf"/></linearGradient></defs>
       <rect x="0" y="${lay.vb[1]}" width="400" height="${lay.vb[3]}" fill="url(#sky)"/>
       ${lay.clouds}
-      <g transform="translate(${sun[0]} ${sun[1] - 52})"><g stroke="#ffb703" stroke-width="3" stroke-linecap="round"><path d="M0-30V-38M-22-22l-6-6M22-22l6-6M-30 0H-38M30 0H38"/></g><circle r="22" fill="#ffd166"/><path d="M-9 4q9 9 18 0" stroke="#b8860b" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="-8" cy="-4" r="2.5" fill="#b8860b"/><circle cx="8" cy="-4" r="2.5" fill="#b8860b"/></g>
+      ${sunSvg}
       <path d="${lay.d}" fill="none" stroke="#b88a5a" stroke-width="46" stroke-linecap="round"/><path d="${lay.d}" fill="none" stroke="#fff3d6" stroke-width="38" stroke-linecap="round"/>
       ${lmSvg}${tiles}${goalSvg}${toks}</svg></div>
       <div class="startbar"><span class="legend" style="margin-left:0">${players.map(x => `<span class="lg-item">${miniFace(teamColor[teamMap[x.u]], faceLevel(x.p / N))}${x.u} ${x.p}</span>`).join('')}</span></div>
@@ -1863,9 +1891,9 @@
   function todaysCard(me) { return state.logs.filter(l => l.user === me && l.exercise.startsWith('c_') && l.ts && dayNum(l.ts) === todayD()).pop(); }
 
   // ----- Rest tokens: update the challenge 5 days in a row to earn one -----
-  // A challenge day is a day with a check-in, an exercise entry or a daily quest. Daily cards and high fives do not count.
+  // A challenge day is a day with a check-in, an exercise entry or a daily habit. Daily cards and high fives do not count.
   // A rest token keeps the streak alive for its day, but it is not one of the 5 days.
-  const isChallengeLog = l => !!l.ts && (validIds.includes(l.exercise) || !!questById[l.exercise]);
+  const isChallengeLog = l => !!l.ts && (validIds.includes(l.exercise) || !!habitById[l.exercise] || legacyQuestIds.includes(l.exercise));
   function phoenixInfo(u, logs = state.logs) {
     const act = new Set(logs.filter(l => l.user === u && isChallengeLog(l)).map(l => dayNum(l.ts)));
     const rest = new Set(logs.filter(l => l.user === u && l.exercise === 'rest' && l.ts).map(l => dayNum(l.ts)));
@@ -2104,13 +2132,15 @@
   function phoneFreeHTML(me, w) {
     const done = pfDoneToday(me), sess = pfLoad(), locked = isLocked(w);
     const sleeping = done || !!sess;
+    const unsaved = !done && !!sess && !!sess.returned && sess.end <= Date.now();
     const [cap, sub] = done ? ['Phone tucked in. Sleep tight!', '+3 points earned today. See you tomorrow!']
+      : unsaved ? ['Your hour is finished', 'Your 3 points have not saved yet. Tap the button below to try again.']
       : sess ? ['Your phone is having a nap', 'Phone-free hour in progress. Come back when it ends.']
       : locked ? ['Closed for this week', state.locks.includes(w) ? 'This week is locked.' : 'This week has not opened yet.']
       : ['Tap the phone to tuck it in for an hour', 'Put it down and be present. +3 points when the hour ends.'];
     return `<div class="quest-card" style="margin-top:14px"><h2 class="section-title">Phone-free hour</h2>
       <p class="badge-sub">Once a day, put your phone down for an hour and be present with yourself and the people around you. This page is blocked for the hour, and you earn <b>+3 points</b> when it ends.</p>
-      <button type="button" class="pfpic${locked && !sleeping ? ' off' : ''}" onclick="startPhoneFree()" ${locked || sleeping ? 'disabled' : ''} aria-label="${cap}">${phoneFreePic(sleeping)}<span class="cap">${cap}<small>${sub}</small></span></button></div>`;
+      <button type="button" class="pfpic${locked && !sleeping ? ' off' : ''}" onclick="startPhoneFree()" ${locked || sleeping ? 'disabled' : ''} aria-label="${cap}">${phoneFreePic(sleeping)}<span class="cap">${cap}<small>${sub}</small></span></button>${unsaved ? '<button type="button" style="margin-top:10px" onclick="pfRetry()">Try saving my 3 points again</button>' : ''}</div>`;
   }
   function startPhoneFree() {
     const me = $id('userSelect').value, w = curWeek();
@@ -2121,7 +2151,7 @@
   }
   function pfShow() {
     $id('pfLock').hidden = false; document.body.style.overflow = 'hidden';
-    $id('pfOk').hidden = true; $id('pfEarly').hidden = false; $id('pfTime').hidden = false; $id('pfTitle').textContent = 'Be here, right now';
+    $id('pfOk').hidden = true; $id('pfReturn').hidden = true; $id('pfEarly').hidden = false; $id('pfTime').hidden = false; $id('pfTitle').textContent = 'Be here, right now';
     clearInterval(pfTimer); pfTimer = setInterval(pfTick, 1000); pfTick();
   }
   function pfHide() { clearInterval(pfTimer); pfTimer = null; $id('pfLock').hidden = true; document.body.style.overflow = ''; }
@@ -2140,15 +2170,18 @@
     $id('pfLock').hidden = false; document.body.style.overflow = 'hidden';
     $id('pfTime').hidden = true; $id('pfEarly').hidden = true; $id('pfOk').hidden = true; $id('pfTitle').textContent = 'You did it!';
     $id('pfMsg').textContent = `A whole hour of being present, ${s.user}. Saving your 3 points...`;
+    $id('pfReturn').hidden = false;
     try {
       const data = await api({ action: 'add', entry: { user: s.user, team: teamMap[s.user], exercise: 'phonefree', amount: 1, phase: curWeek() } });
       pfSave(null); applyData(data); renderCardView();
       $id('pfMsg').textContent = `+3 points, ${s.user}! Welcome back. Be proud of yourself.`;
+      $id('pfReturn').hidden = true;
       $id('pfOk').textContent = 'Continue'; $id('pfOk').onclick = pfHide;
     } catch (e) {
       if (/409|423/.test(String(e.message))) {
         pfSave(null);
         $id('pfMsg').textContent = 'Welcome back! Your phone-free point for today was already counted, or the week is locked.';
+        $id('pfReturn').hidden = true;
         $id('pfOk').textContent = 'Continue'; $id('pfOk').onclick = pfHide;
       } else {
         $id('pfMsg').textContent = 'Welcome back! We could not save your points yet. Check your connection and try again.';
@@ -2160,9 +2193,19 @@
     if (!confirm('End the phone-free hour early? You will not earn the 3 points.')) return;
     pfSave(null); pfHide(); renderCardView();
   }
+  // A finished hour that could not save its points is marked "returned" so it does not lock the page again.
+  const pfNeedsLock = s => !!s && !(s.returned && s.end <= Date.now());
+  function pfReturn() {
+    const s = pfLoad(); if (s) { s.returned = true; pfSave(s); }
+    pfHide(); renderCardView();
+  }
+  function pfRetry() {
+    const s = pfLoad(); if (!s) return;
+    delete s.returned; pfSave(s); pfShow();
+  }
   function pfInit() {
-    if (pfLoad()) pfShow();
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && pfLoad() && !pfBusy) pfShow(); });
+    if (pfNeedsLock(pfLoad())) pfShow();
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && pfNeedsLock(pfLoad()) && !pfBusy) pfShow(); });
   }
 
   // ----- Big daily check-in button + status strip on the Challenge page -----
@@ -2179,7 +2222,7 @@
     const rb = document.getElementById('restBtn');
     rb.disabled = locked || ps.left < 1 || ps.restToday;
     rb.textContent = ps.restToday ? `Rest token used today (${ps.left} left)` : ps.left < 1 ? 'You have 0 rest tokens' : `Use a rest token (${ps.left} left)`;
-    document.getElementById('restNote').innerHTML = `Update the challenge 5 days in a row (a check-in, an exercise or a daily quest) to earn a rest token. A token covers one day: it gives 1 point, counts as an active day so there is no slide, and keeps your streak going. <b>${ps.streak} day streak</b>, ${ps.inCycle} of 5 days to your next token.`;
+    document.getElementById('restNote').innerHTML = `Update the challenge 5 days in a row (a check-in, an exercise or a daily habit) to earn a rest token. A token covers one day: it gives 1 point, counts as an active day so there is no slide, and keeps your streak going. <b>${ps.streak} day streak</b>, ${ps.inCycle} of 5 days to your next token.`;
     document.getElementById('statusStrip').innerHTML =
       `<span class="qstat">Rest tokens: ${ps.left}</span><span class="qstat">Days missed in a row: ${mi.run} of ${SLIDE_AFTER}</span><span class="qstat">Slides this week: ${mi.slides}</span>` +
       (mi.run >= SLIDE_AFTER - 1 && !mi.activeToday ? `<span class="qstat" style="background:#ffd3c9">Update the challenge today or use a rest token to avoid sliding back ${SLIDE_BACK} spaces!</span>` : '');
@@ -2218,79 +2261,51 @@
       localStorage.setItem('kid_week_seen', w); } catch (e) {}
   }
 
-  let questResultHTML = '', justDone = null;
-  const todaysQuestEntry = (user, id) => {
-    const today = dayNum(Date.now());
-    return state.logs.filter(l => l.user === user && l.exercise === id && l.ts && dayNum(l.ts) === today).pop() || null;
-  };
-  function toggleQuest(id) { return todaysQuestEntry(document.getElementById('userSelect').value, id) ? undoQuest(id) : logQuest(id); }
-  async function undoQuest(id) {
+  function toggleHabit(id) { return todaysHabit(document.getElementById('userSelect').value, id) ? undoHabit(id) : logHabit(id); }
+  async function undoHabit(id) {
     const user = document.getElementById('userSelect').value;
-    const q = questById[id], entry = todaysQuestEntry(user, id);
+    const h = habitById[id], entry = todaysHabit(user, id);
     if (!entry) return;
-    if (isLocked(entry.phase)) { showToast(`That quest is in Week ${entry.phase}, which is locked, so it cannot be undone.`); return; }
+    if (isLocked(entry.phase)) { showToast(`That habit is in Week ${entry.phase}, which is locked, so it cannot be undone.`); return; }
     try {
       const data = await api({ action: 'undo', user, exercise: id });
       applyData(data);
-      justDone = null;
-      questResultHTML = `${q.name} undone. It is back on your list for today.`;
-      renderQuests();
-      renderRace();
+      justLit = null;
+      habitMsg = `${h.short} undone. It is back on your list for today.`;
+      renderBoard();
     } catch (e) {
-      showToast(String(e.message).includes('423') ? 'That quest is in a locked week and cannot be undone.' : 'Could not undo that quest. Please try again.');
+      showToast(String(e.message).includes('423') ? 'That habit is in a locked week and cannot be undone.' : 'Could not undo that habit. Please try again.');
     }
   }
-  function renderQuests() {
+  async function logHabit(id) {
     const user = document.getElementById('userSelect').value;
     const phase = parseInt(document.getElementById('phaseSelect').value);
-    const locked = isLocked(phase);
-    const st = questStats(user);
-    const pts = questWeekPoints(user, phase);
-    const next = raceFor(phase).ms.find(m => pts < m.at);
-    document.getElementById('questBoard').innerHTML = `
-      <div class="quest-head">
-        <h2 class="section-title">Daily Quests</h2>
-        <div class="quest-stats">
-          <span class="qstat">${flameSVG}${st.streak} day streak</span>
-          <span class="qstat">Week ${phase}: ${pts} race pts</span>
-          <span class="qstat">Today: ${st.doneToday.size} of ${quests.length}</span>
-        </div>
-      </div>
-      <p class="badge-sub" style="margin:0 0 4px"><strong>Quests are a separate game.</strong> They only move your icon in the Quest Race. They do not add climb points, board spaces or team race points anywhere else in the challenge. Tap a quest when you have done it. Each one counts once a day. Streak days add +2 extra points each, up to +10 a day.${next ? ` Next milestone: ${next.name} at ${next.at} points.` : ' You have finished the race track, keep going to win!'}${st.atRisk ? ' <strong>Do a quest today to keep your streak alive!</strong>' : ''}${locked ? ' <strong>Week ' + phase + ' is locked, so pick an open week to log quests.</strong>' : ''}</p>
-      ${questResultHTML ? `<div class="quest-result"><span>${questResultHTML}</span><button onclick="showView('race')">See the race</button></div>` : ''}
-      <div class="quest-grid">${quests.map(q => {
-        const entry = todaysQuestEntry(user, q.id);
-        const done = !!entry;
-        const off = done ? isLocked(entry.phase) : locked;
-        return `<button class="quest${done ? ' done' : ''}${done && justDone === q.id ? ' just' : ''}" style="--qc:${q.color}" ${off ? 'disabled' : ''} onclick="toggleQuest('${q.id}')" aria-label="${q.name}, ${q.pts} points${done ? ', done today. Tap again to undo' : ''}">
-          <svg viewBox="0 0 32 32" aria-hidden="true">${done ? '<circle cx="16" cy="16" r="12"/><path d="M10 16.500l4 4 8-9"/>' : questIcons[q.id]}</svg>${q.name}<span class="qpts">${done ? (off ? 'Done' : 'Done. Tap to undo') : '+' + q.pts + ' pts'}</span></button>`;
-      }).join('')}</div>
-      <button class="see-race" onclick="showView('race')">See the Quest Race</button>`;
-  }
-  async function logQuest(id) {
-    const user = document.getElementById('userSelect').value;
-    const phase = parseInt(document.getElementById('phaseSelect').value);
-    const q = questById[id];
-    if (isLocked(phase)) { showToast(`Week ${phase} is locked. Pick an open week to log quests.`); return; }
-    const before = questWeekPoints(user, phase);
+    const h = habitById[id];
+    if (isLocked(phase)) { showToast(`Week ${phase} is locked. Pick an open week to light up habits.`); return; }
+    justLit = id;
     const r = await submitEntry(user, id, 1, phase);
-    if (!r.ok) { showToast(r.msg); return; }
-    const st = questStats(user);
-    const after = questWeekPoints(user, phase);
-    const rf = raceFor(phase), crossed = rf.ms.filter(m => before < m.at && after >= m.at);
+    if (!r.ok) { justLit = null; showToast(r.msg); return; }
+    const lit = allHabits.filter(x => todaysHabit(user, x.id)).length;
     const unlock = (r.msg.match(/New theme treasure unlocked: [^!]*!/) || [''])[0];
-    let msg = `${q.name} done! +${q.pts} points${st.streak > 1 ? ', ' + st.streak + ' day streak' : ''}.`;
-    if (crossed.length) {
-      const m = crossed[crossed.length - 1];
-      msg += m.at >= rf.max ? ` You crossed the FINISH line!` : ` Milestone reached: ${m.name}!`;
-      launchConfetti(m.at >= rf.max ? 130 : 70);
-    }
     const pho = (r.msg.match(/5 days in a row! You earned a rest token\./) || [''])[0];
-    questResultHTML = `${msg} ${unlock} ${pho}`.trim();
-    justDone = id;
-    renderQuests();
-    setTimeout(() => { justDone = null; }, 1200);
-    renderRace();
+    let msg = id === sunHabit.id ? 'The sun is glowing! Fresh air done.' : `${h.short} lit up!`;
+    if (lit === allHabits.length) { msg += ' All 7 habits are glowing today. What a day!'; launchConfetti(90); }
+    habitMsg = `${msg} ${unlock} ${pho}`.trim();
+    renderBoard();
+    setTimeout(() => { justLit = null; }, 1200);
+  }
+  function renderHabitTray(me, w) {
+    const box = document.getElementById('habitTray'); if (!box) return;
+    const locked = isLocked(w), lit = new Set(allHabits.filter(h => todaysHabit(me, h.id)).map(h => h.id));
+    box.innerHTML = `<div class="habit-card">
+      <div class="habit-head"><h3>Daily habits</h3><span class="qstat">${lit.size} of ${allHabits.length} lit today</span></div>
+      <p class="badge-sub" style="margin:0">Tap each one when you have done it today. Tap again to undo. Had fresh air? Tap the sun at the top of the board.</p>
+      ${habitMsg ? `<div class="quest-result"><span>${habitMsg}</span></div>` : ''}
+      <div class="habit-grid">${habits.map(h => {
+        const on = lit.has(h.id), off = locked;
+        return `<button class="hb${on ? ' on' : ''}${on && justLit === h.id ? ' just' : ''}${h.id === 'q_hops' ? ' hopper' : ''}" style="--hc:${h.color};--hc2:${h.c2}" ${off ? 'disabled' : ''} onclick="toggleHabit('${h.id}')" aria-pressed="${on}" aria-label="${h.name}${on ? ', lit today. Tap again to undo' : ''}">${hbSVG(h.id)}<span>${h.short}</span></button>`;
+      }).join('')}</div>
+    </div>`;
   }
 
   // ----- Kid Zone (weekly tallies saved on this device only) -----
@@ -2324,10 +2339,11 @@
       div.className = 'zone-item' + (id === popId ? ' pop' : '');
       div.style.setProperty('--zc', colors[i % colors.length]);
       div.innerHTML = `
-        <button class="zone-btn${n >= 7 ? ' star' : ''}" onclick="zoneTap('${z}','${id}',1)">
+        <button class="zone-btn${n >= 7 ? ' star' : ''}" onclick="zoneTap('${z}','${id}',1, event)">
           <span class="zone-icon">${zoneIcons[id] || ''}</span>
           <span class="zone-label">${label}</span>
           <span class="zone-count">${n}</span>
+          ${z === 'kid' ? `<span class="kz-pips" aria-hidden="true">${[0,1,2,3,4,5,6].map(k => `<i${k < n ? ' class="on"' : ''}></i>`).join('')}</span>` : ''}
           ${n >= 7 ? '<span class="zone-tag">Star earned</span>' : ''}
         </button>
         <button class="zone-minus" onclick="zoneTap('${z}','${id}',-1)">undo one</button>`;
@@ -2353,7 +2369,7 @@
   const xpKey = z => z;
   const habitXp = id => id === 'quran' ? 20 : id === 'workout' ? 10 : 5;
   const cheers = ['Great job!', 'Way to go!', 'You are a star!', 'Awesome!', 'Keep it up!', 'Nice one!'];
-  function zoneTap(z, id, d) {
+  function zoneTap(z, id, d, ev) {
     const key = xpKey(z), gain = habitXp(id);
     const xpNow = () => zoneXp(key);
     const beforeLevel = levelFor(xpNow());
@@ -2379,7 +2395,51 @@
     if (afterLevel > beforeLevel) msg += ` Level up! Level ${afterLevel}.`;
     renderZone(z, d > 0 ? id : null);
     renderZoneInfo(z, msg);
+    if (z === 'kid' && d > 0) { kzBurst(ev, data[id] === 7); kzCheer(); renderKidFun(); }
     if (z === 'kid' && d > 0 && beansOf() >= JAR_FULL) setTimeout(() => eatBeans(true), 500);
+  }
+
+  // ----- Kid Zone fun: tap bursts, a cheering star, a daily mystery gift and a sticker album -----
+  const KZ_STICKERS = ['🦄','🐶','🐱','🐼','🦊','🐯','🐸','🐙','🦋','🐢','🦖','🐬','🚀','🌈','🍕','🍦','🎈','⚽','🎨','🧸','🦁','🐧','🍓','🌻'];
+  const kzStickers = () => { try { return JSON.parse(localStorage.getItem('kidstickers')) || []; } catch (e) { return []; } };
+  const kzGiftDay = () => { try { return parseInt(localStorage.getItem('kidgift_day')); } catch (e) { return NaN; } };
+  function kzBurst(ev, big) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = ev && ev.currentTarget; if (!el) return;
+    const r = el.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 3;
+    const set = big ? ['⭐','🌟','✨','🎉','🎊'] : ['⭐','✨','💖','🎈','🍬'];
+    for (let i = 0; i < (big ? 16 : 7); i++) {
+      const e = document.createElement('span');
+      e.className = 'kz-burst'; e.textContent = set[i % set.length];
+      e.style.left = x + 'px'; e.style.top = y + 'px';
+      const a = Math.random() * Math.PI * 2, d = 50 + Math.random() * (big ? 150 : 90);
+      e.style.setProperty('--bx', Math.cos(a) * d + 'px'); e.style.setProperty('--by', (Math.sin(a) * d - 30) + 'px'); e.style.setProperty('--br', (Math.random() * 360 - 180) + 'deg');
+      document.body.appendChild(e); setTimeout(() => e.remove(), 1000);
+    }
+    if (big) launchConfetti(60);
+  }
+  function kzCheer() {
+    const h = document.getElementById('kidHero'); if (!h) return;
+    h.classList.remove('cheer'); void h.offsetWidth; h.classList.add('cheer');
+  }
+  function renderKidFun() {
+    const g = document.getElementById('kidGift'), a = document.getElementById('kidAlbum'); if (!g || !a) return;
+    const have = kzStickers(), opened = kzGiftDay() === dayNum(Date.now());
+    g.innerHTML = `<button type="button" class="box" id="kidGiftBtn" onclick="kzOpenGift()" ${opened ? 'disabled' : ''} aria-label="${opened ? 'Mystery gift opened for today' : 'Open your mystery gift'}">${opened ? '📭' : '🎁'}</button>
+      <div><b>${opened ? 'Come back tomorrow!' : 'Your daily mystery gift!'}</b><span>${opened ? 'A new surprise will be waiting for you.' : 'Tap the box to find a sticker and some jelly beans.'}</span></div>`;
+    a.innerHTML = `<strong>Sticker album: ${have.length} of ${KZ_STICKERS.length}</strong><div class="row">${KZ_STICKERS.map(s => have.includes(s) ? `<span>${s}</span>` : `<span class="no">${s}</span>`).join('')}</div>`;
+  }
+  function kzOpenGift() {
+    const today = dayNum(Date.now()); if (kzGiftDay() === today) return;
+    const have = kzStickers(), left = KZ_STICKERS.filter(s => !have.includes(s));
+    const pick = left.length ? left[Math.floor(Math.random() * left.length)] : KZ_STICKERS[Math.floor(Math.random() * KZ_STICKERS.length)];
+    const beans = 2 + Math.floor(Math.random() * 4);
+    try { localStorage.setItem('kidgift_day', today); if (!have.includes(pick)) localStorage.setItem('kidstickers', JSON.stringify([...have, pick])); } catch (e) {}
+    beansAdd(beans);
+    const btn = document.getElementById('kidGiftBtn');
+    kzBurst({ currentTarget: btn || document.getElementById('kidGift') }, true); kzCheer();
+    renderZone('kid'); renderZoneInfo('kid', `Surprise! You found a ${pick} sticker and ${beans} jelly beans!`); renderKidFun();
+    if (beansOf() >= JAR_FULL) setTimeout(() => eatBeans(true), 800);
   }
   function renderZoneInfo(z, flash) {
     const xp = zoneXp(z), L = levelFor(xp);
@@ -2388,6 +2448,7 @@
       document.getElementById('kidInfo').textContent = `${flash ? flash + ' ' : 'Hi there! '}You are Level ${L}, ${levelTitle(L)}, with ${xp} XP and ${taps} taps this week.`;
     }
     renderStars(z);
+    if (z === 'kid') renderKidFun();
   }
   function newWeek(z) {
     if (!confirm("Start a new week? This clears this week's tallies so you can earn stars again. Your stars and XP are kept, and the Bean Monster will come to eat your jelly beans.")) return;
@@ -2400,7 +2461,7 @@
   function resetMonth(z) {
     if (!confirm('Reset for the new month? This erases all tallies, stars, XP and jelly beans on this device. It cannot be undone.')) return;
     zoneSave(z, {});
-    try { ['starswk_', 'stars_', 'zonexp_', 'zonebeans_'].forEach(p => localStorage.removeItem(p + z)); } catch (e) {}
+    try { ['starswk_', 'stars_', 'zonexp_', 'zonebeans_'].forEach(p => localStorage.removeItem(p + z)); if (z === 'kid') ['kidstickers', 'kidgift_day'].forEach(k => localStorage.removeItem(k)); } catch (e) {}
     renderZone(z);
     renderZoneInfo(z);
   }
@@ -2814,7 +2875,7 @@
     if (isLocked(w)) { muNote('This week is locked, so workouts are closed.'); return; }
     if (muDone(me, w, id)) { muNote(`${muDay(id).name} is done for this week. Come back next week!`); return; }
     if (muRun && muRun.phase !== 'summary' && !confirm('Start a different workout? Your current one will be lost.')) return;
-    muRun = { day: id, user: me, i: 0, set: 1, phase: 'intro', settings: { sets: 3 }, reps: muDay(id).ex.map(k => repsFor(k)[0]), done: [], skipped: [], saved: false, xp: 0, complete: false, err: '' };
+    muRun = { day: id, user: me, i: 0, set: 1, phase: 'intro', settings: { sets: 3, rest: wkRestPref() }, reps: muDay(id).ex.map(k => repsFor(k)[0]), done: [], skipped: [], saved: false, xp: 0, complete: false, err: '' };
     showView('workout');
   }
   const wkEx = () => EX[muDay(muRun.day).ex[muRun.i]];
@@ -2822,11 +2883,18 @@
   const REPS = { goblet: [12], glutebridge: [15], sidelunge: [10, 'each side'], bicepcurl: [12], hammercurl: [12], deadbug: [10, 'each side'], superman: [12], snowangel: [12], swimcrawl: [20, 'in total'], lateralraise: [12], crossfront: [12], reversecrunch: [15], birddog: [10, 'each side'], sumo: [15], splitsquat: [10, 'each leg'], curtsy: [10, 'each side'], tricepkick: [12], widerow: [12], flutter: [30, 'kicks'], shouldertap: [20, 'taps'], bearcrawl: [10, 'steps'], kneeelbow: [12, 'each side'], crunch: [15], pulsesquat: [20, 'pulses'], pendulum: [8, 'each leg'], climber: [20, 'taps'], vup: [10], punches: [30, 'punches'] };
   const repsFor = k => REPS[k] || [12];
   const wkRepLabel = () => { const r = muRun, per = repsFor(muDay(r.day).ex[r.i])[1]; return `${r.reps[r.i]} ${per && per !== 'in total' && !/^(kicks|taps|steps|pulses|punches)$/.test(per) ? 'reps ' + per : per === 'in total' ? 'reps in total' : per || 'reps'}`.replace('reps reps', 'reps'); };
-  function wkSetPhase(phase) { muRun.phase = phase; wkRender(); }
+  // ----- Rest timer: part of the workout. You choose the rest time on the start screen. -----
+  const WK_RESTS = [[0, 'No timer'], [20, '20s'], [30, '30s'], [45, '45s'], [60, '1 min'], [90, '90s']];
+  function wkRestPref() { try { const v = parseInt(localStorage.getItem('wk_rest')); if (WK_RESTS.some(x => x[0] === v)) return v; } catch (e) {} return 30; }
+  function wkSetRest(sec) { muRun.settings.rest = sec; try { localStorage.setItem('wk_rest', sec); } catch (e) {} wkRender(); }
+  const wkFmt = ms => { const t = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+  function wkMoreRest() { const r = muRun; r.restEnd = Math.max(Date.now(), r.restEnd) + 15000; r.restLen += 15000; r.restDone = false; wkRender(); }
+  function wkSetPhase(phase) { muRun.phase = phase; muRun.ask = ''; wkRender(); }
+  function wkAsk(k) { if (muRun) { muRun.ask = k; wkRender(); } }
   function wkStart() { muBeep(880, 160); try { navigator.wakeLock && navigator.wakeLock.request('screen').then(l => { muWake = l; }).catch(() => {}); } catch (e) {} muRun.i = 0; muRun.set = 1; wkSetPhase('get'); }
   function wkAdj(key, dir) { const r = muRun; if (key === 'reps') r.reps[r.i] = Math.max(1, Math.min(100, r.reps[r.i] + dir)); else r.settings.sets = Math.max(1, Math.min(10, r.settings.sets + dir)); wkRender(); }
   function wkSetVal(key, v) { const r = muRun; v = parseInt(v); if (isNaN(v)) return; if (key === 'reps') r.reps[r.i] = Math.max(1, Math.min(100, v)); else r.settings.sets = Math.max(1, Math.min(10, v)); wkUpdateEst(); }
-  function wkSkipExercise() { if (!confirm('Skip this exercise?')) return; muRun.skipped[muRun.i] = true; wkNextExercise(); }
+  function wkSkipExercise(sure) { if (!sure) { wkAsk('skip'); return; } muRun.ask = ''; muRun.skipped[muRun.i] = true; wkNextExercise(); }
   function wkNextExercise() { const r = muRun; r.i++; r.set = 1; if (r.i >= muDay(r.day).ex.length) wkFinish(); else wkSetPhase('get'); }
   // "I'm ready" -> set 1 starts. "Done set" -> rest (or the next exercise after the last set). "Start next set" -> the next set.
   function wkAdvance() {
@@ -2834,12 +2902,12 @@
     if (r.phase === 'get') { r.set = 1; muBeep(880, 200); wkSetPhase('work'); }
     else if (r.phase === 'work') {
       r.done[r.i] = (r.done[r.i] || 0) + 1;
-      if (r.set < r.settings.sets) { muBeep(520, 220); wkSetPhase('rest'); }
+      if (r.set < r.settings.sets) { muBeep(520, 220); r.restLen = (r.settings.rest || 0) * 1000; r.restEnd = Date.now() + r.restLen; r.restDone = false; wkSetPhase('rest'); }
       else { muBeep(660, 300); wkNextExercise(); }
     }
     else if (r.phase === 'rest') { r.set++; muBeep(880, 200); wkSetPhase('work'); }
   }
-  function wkEstMin() { const r = muRun; return Math.round(r.reps.reduce((a, n) => a + r.settings.sets * (n * 3 + 45), 0) / 60); }
+  function wkEstMin() { const r = muRun; return Math.round(r.reps.reduce((a, n) => a + r.settings.sets * (n * 3 + (r.settings.rest || 45)), 0) / 60); }
   function wkUpdateEst() { const el = document.getElementById('wkEst'); if (el) el.textContent = `About ${wkEstMin()} minutes in total, at your own pace`; }
   function wkStepper(key, label, unit) {
     const r = muRun, val = key === 'reps' ? r.reps[r.i] : r.settings.sets;
@@ -2862,9 +2930,9 @@
     catch (e) { r.saved = String(e.message).includes('409'); r.err = r.saved ? '' : 'We could not save your XP yet. Check your connection and try again.'; if (r.saved) { try { await refresh(); } catch (e2) {} } }
     wkRender();
   }
-  function wkLeave() {
+  function wkLeave(sure) {
     const r = muRun;
-    if (r && ['get', 'work', 'rest'].includes(r.phase) && !confirm('Leave this workout? Your progress will be lost.')) return;
+    if (r && ['get', 'work', 'rest'].includes(r.phase) && !sure) { wkAsk('leave'); return; }
     muRun = null; try { if (muWake) { muWake.release(); muWake = null; } } catch (e) {}
     showView('muscle');
   }
@@ -2878,9 +2946,11 @@
     if (r.phase === 'intro') {
       box.innerHTML = `<div class="quest-card wk">${head}
         <h2 class="section-title">Ready to start?</h2>
-        <p class="badge-sub">${n} exercises. For each one you will see how to do it, then do a set number of reps. Tap Done set when you finish a set, rest for as long as you need, then start the next one. There is no clock, so go at your own pace. Skip an exercise if you need to, and finish at least half to complete the section.</p>
+        <p class="badge-sub">${n} exercises. For each one you will see how to do it, then do a set number of reps. Tap Done set when you finish a set, then rest and start the next one. Choose your rest time below, or pick No timer to go at your own pace. Skip an exercise if you need to, and finish at least half to complete the section.</p>
         <ol class="wk-list">${d.ex.map(k => `<li><b>${EX[k].name}</b><small>${repsFor(k)[0]} ${repsFor(k)[1] || 'reps'} &middot; ${EX[k].gear}</small></li>`).join('')}</ol>
         <div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}</div>
+        <div class="wk-restset"><b>Rest between sets</b><div class="pick-row" style="flex-wrap:wrap">${WK_RESTS.map(([sec, lab]) => `<button class="pick${r.settings.rest === sec ? ' on' : ''}" onclick="wkSetRest(${sec})">${lab}</button>`).join('')}</div>
+          <p class="badge-sub" style="margin:6px 0 0">${r.settings.rest ? 'A countdown starts by itself after every set and beeps when your rest is over.' : 'No clock. Rest for as long as you need.'}</p></div>
         <p class="badge-sub" id="wkEst" style="margin:8px 0 14px">About ${wkEstMin()} minutes in total, at your own pace</p>
         <button class="wk-go" onclick="wkStart()">Start workout</button></div>`;
       return;
@@ -2900,13 +2970,14 @@
     const next = r.i + 1 < n ? EX[d.ex[r.i + 1]].name : null;
     const gearNote = ex.gear && !/Bodyweight|Mat/.test(ex.gear) ? ' (grab: ' + ex.gear + ')' : ex.gear === 'Mat' ? ' (grab a mat)' : '';
     const mainText = phase === 'get' ? "I'm ready, start set 1" : phase === 'work' ? 'Done set' : `Start set ${r.set + 1}`;
-    const big = phase === 'get' ? `<div class="wk-setn">${r.settings.sets} sets of ${wkRepLabel()}${gearNote}</div>` : phase === 'work' ? `<div class="wk-count">${wkRepLabel()}</div><div class="wk-setn">Tap Done set when you finish</div>` : `<div class="wk-count" style="font-size:1.6rem">Catch your breath</div><div class="wk-setn">Take as long as you need.<br>${r.done[r.i] || 0} of ${r.settings.sets} sets done</div>`;
-    box.innerHTML = `<div class="quest-card wk ph-${phase}">${head}
+    const big = phase === 'get' ? `<div class="wk-setn">${r.settings.sets} sets of ${wkRepLabel()}${gearNote}</div>` : phase === 'work' ? `<div class="wk-count">${wkRepLabel()}</div><div class="wk-setn">Tap Done set when you finish</div>` : (r.settings.rest ? `<div class="wk-rt" id="wkRestT">${wkFmt(r.restEnd - Date.now())}</div><div class="wk-tbar"><i id="wkRestBar"></i></div><div class="wk-setn" id="wkRestN">Catch your breath.<br>${r.done[r.i] || 0} of ${r.settings.sets} sets done</div><button class="wk-ghost wk-plus" onclick="wkMoreRest()">+15 seconds</button>` : `<div class="wk-count" style="font-size:1.6rem">Catch your breath</div><div class="wk-setn">Take as long as you need.<br>${r.done[r.i] || 0} of ${r.settings.sets} sets done</div>`);
+    const askBox = r.ask ? `<div class="lock-note">${r.ask === 'leave' ? 'Leave this workout? Your progress will be lost.' : 'Skip this exercise?'}<div class="zone-actions" style="margin-top:8px"><button class="pbtn" style="width:auto" onclick="${r.ask === 'leave' ? 'wkLeave(true)' : 'wkSkipExercise(true)'}">${r.ask === 'leave' ? 'Yes, leave' : 'Yes, skip'}</button><button class="wk-ghost" onclick="wkAsk('')">Keep going</button></div></div>` : '';
+    box.innerHTML = `<div class="quest-card wk ph-${phase}">${head}${askBox}
       <div class="wk-prog">Exercise ${r.i + 1} of ${n}${next ? ` &middot; then ${next}` : ' &middot; last one!'}</div>
       <h2 class="wk-title">${ex.name}</h2>
       <div class="wk-stage${phase === 'rest' ? ' dim' : ''}"><svg id="wkSvg" viewBox="0 0 300 200" role="img" aria-label="Animation of ${ex.name}"></svg><div class="wk-works">Works: ${ex.works}${ex.gear ? ' &middot; ' + ex.gear : ''}</div>${phase === 'rest' ? '<div class="wk-rest">Rest. Shake it out and breathe.</div>' : ''}</div>
       <div class="wk-reps"><div class="wk-phase">${label}</div>${big}</div>
-      <div class="wk-ctl"><button class="wk-main wk-bigbtn" style="background:${phase === 'rest' ? '#3d8a7e' : d.color}" onclick="wkAdvance()">${mainText}</button><button class="wk-ghost" onclick="wkSkipExercise()">Skip exercise</button></div>
+      <div class="wk-ctl"><button class="wk-main wk-bigbtn" id="wkMainBtn" style="background:${phase === 'rest' ? '#3d8a7e' : d.color}" onclick="wkAdvance()">${mainText}</button><button class="wk-ghost" onclick="wkSkipExercise()">Skip exercise</button></div>
       ${phase === 'get' ? `<div class="wk-sets">${wkStepper('sets', 'Sets', 'per exercise')}${wkStepper('reps', 'Reps', 'this exercise')}</div>` : ''}
       <h3 class="wk-h">How to do it</h3>
       <ol class="wk-cues">${ex.cues.map(c => `<li>${c}</li>`).join('')}</ol>
@@ -2917,6 +2988,20 @@
     const v = document.getElementById('view-workout');
     if (!muRun || !v || v.hidden) return;
     const r = muRun, dt = Math.min(64, ts - (muLastTs || ts)); muLastTs = ts;
+    if (r.phase === 'rest' && r.settings.rest) {
+      const left = r.restEnd - Date.now(), t = document.getElementById('wkRestT');
+      if (t) {
+        const txt = left > 0 ? wkFmt(left) : 'Go!';
+        if (t.textContent !== txt) t.textContent = txt;
+        const bar = document.getElementById('wkRestBar'); if (bar) bar.style.width = Math.max(0, Math.min(1, left / r.restLen)) * 100 + '%';
+        if (left <= 0 && !r.restDone) {
+          r.restDone = true; t.classList.add('done');
+          const nt = document.getElementById('wkRestN'); if (nt) nt.innerHTML = 'Rest is over. Start your next set when you are ready.';
+          const mb = document.getElementById('wkMainBtn'); if (mb) mb.classList.add('ready');
+          muBeep(880, 200); setTimeout(() => muBeep(880, 200), 320); setTimeout(() => muBeep(1100, 350), 640);
+        }
+      }
+    }
     const svg = document.getElementById('wkSvg');
     if (svg && ['get', 'work', 'rest'].includes(r.phase)) {
       const ex = wkEx(), d = muDay(r.day);
@@ -3182,9 +3267,9 @@
       row('Journal days', 'entries saved', w => cnt(x => x === 'reflect', w)),
       row('Phone-free hours', 'done', w => cnt(x => x === 'phonefree', w)),
       row('High fives sent', 'sent', w => state.logs.filter(l => l.exercise === 'hf' && l.phase === w && senderOf(l) === me).length),
+      row('Daily habits lit', 'lit', w => habitDayKeys(mine.filter(l => l.phase === w)).size),
       row('Rest tokens used', 'used', w => cnt(x => x === 'rest', w))
     ].join('');
-    const quest = row('Quest Race points', 'separate game', w => questWeekPoints(me, w));
     const ps = phoenixInfo(me), xp = xpOf(me);
     box.innerHTML = `
       <div class="quest-card"><div class="quest-stats">
@@ -3192,37 +3277,9 @@
         <span class="qstat">Badges: ${badgeCounts(me).earned} of ${badgeCounts(me).total}</span>
         <span class="qstat">Muscle Up: ${xp} XP, level ${levelOf(xp)}</span></div></div>
       <div class="quest-card"><h2 class="section-title">Exercises you submitted</h2><div class="table-wrap"><table class="stat-table">${head}${ex}</table></div></div>
-      <div class="quest-card"><h2 class="section-title">Points and bonuses</h2><div class="table-wrap"><table class="stat-table">${head}${extra}</table></div></div>
-      <div class="quest-card"><h2 class="section-title">Quest Race</h2><p class="badge-sub">The Quest Race is a separate game. These points never count toward the Climb Board or team scores.</p><div class="table-wrap"><table class="stat-table">${head}${quest}</table></div></div>`;
+      <div class="quest-card"><h2 class="section-title">Points and bonuses</h2><div class="table-wrap"><table class="stat-table">${head}${extra}</table></div></div>`;
   }
 
-
-  // ----- Rest timer: a tappable timer on the side of the Muscle Up pages -----
-  const RT = { len: 60, left: 60000, endAt: 0, run: false, timer: null, fin: false };
-  const rtFmt = ms => { const t = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
-  function rtPaint() {
-    const t = document.getElementById('rtTime'); if (!t) return;
-    t.textContent = RT.fin ? 'Go!' : rtFmt(RT.left); t.classList.toggle('done', RT.fin);
-    document.getElementById('rtHint').textContent = RT.fin ? 'Rest is over. Tap to restart.' : RT.run ? 'Tap the time to pause' : RT.left < RT.len * 1000 ? 'Paused. Tap to continue' : 'Tap the time to start';
-    document.getElementById('rtFab').textContent = RT.run || RT.left < RT.len * 1000 ? (RT.fin ? 'Go!' : rtFmt(RT.left)) : 'Rest';
-    document.getElementById('rtFabBtn').classList.toggle('run', RT.run);
-    document.querySelectorAll('.rt-pre button').forEach(b => b.classList.toggle('on', b.textContent === ({ 30: '30s', 45: '45s', 60: '1 min', 90: '90s', 120: '2 min' })[RT.len]));
-  }
-  function rtToggle() { const p = document.getElementById('rtPanel'); p.hidden = !p.hidden; rtPaint(); }
-  function rtSet(sec) { RT.len = sec; RT.left = sec * 1000; RT.fin = false; RT.run = false; clearInterval(RT.timer); rtPaint(); }
-  function rtReset() { rtSet(RT.len); }
-  function rtMain() {
-    if (RT.run) { RT.left = Math.max(0, RT.endAt - Date.now()); RT.run = false; clearInterval(RT.timer); rtPaint(); return; }
-    if (RT.fin || RT.left <= 0) { RT.left = RT.len * 1000; RT.fin = false; }
-    RT.endAt = Date.now() + RT.left; RT.run = true; muBeep(660, 80);
-    clearInterval(RT.timer);
-    RT.timer = setInterval(() => {
-      RT.left = RT.endAt - Date.now();
-      if (RT.left <= 0) { RT.left = 0; RT.run = false; RT.fin = true; clearInterval(RT.timer); muBeep(880, 200); setTimeout(() => muBeep(880, 200), 320); setTimeout(() => muBeep(1100, 350), 640); }
-      rtPaint();
-    }, 250);
-    rtPaint();
-  }
 
   // ----- Tiny admin buttons at the bottom of the page. The passwords are checked on the server. -----
   function renderLockBtns() {
@@ -3347,21 +3404,20 @@
     if (lane) { lane.classList.remove('flash'); void lane.offsetWidth; lane.classList.add('flash'); setTimeout(() => lane.classList.remove('flash'), 2500); }
   }
   function showView(v) {
-    ['challenge', 'board', 'card', 'journal', 'muscle', 'workout', 'race', 'badges', 'stuck', 'stats', 'kid'].forEach(n => {
+    ['challenge', 'board', 'card', 'journal', 'muscle', 'workout', 'badges', 'stuck', 'stats', 'kid'].forEach(n => {
       document.getElementById('view-' + n).hidden = n !== v;
       const tb = document.getElementById('tab-' + n);
-      if (tb) tb.classList.toggle('active', n === v || (n === 'muscle' && v === 'workout') || (n === 'card' && v === 'journal') || (n === 'challenge' && (v === 'race' || v === 'stuck')));
+      if (tb) tb.classList.toggle('active', n === v || (n === 'muscle' && v === 'workout') || (n === 'card' && v === 'journal') || (n === 'challenge' && v === 'stuck'));
     });
     document.querySelector('nav.tabs').hidden = v === 'workout';
     const ks = document.getElementById('kidStar'); if (ks) ks.hidden = v === 'workout';
     const db = document.getElementById('dbell'); if (db) db.hidden = v !== 'challenge';
     const jb = document.getElementById('jbook'); if (jb) jb.hidden = v !== 'card';
-    const rtm = document.getElementById('rtimer'); if (rtm) rtm.hidden = !(v === 'muscle' || v === 'workout');
+    if (v === 'challenge') { const ps = document.getElementById('phaseSelect'); if (ps.value != curWeek()) { ps.value = curWeek(); renderDashboard(); } }
     if (v === 'card') cardPick = null;
     if (v === 'card') renderCardView();
     if (v === 'muscle') renderMuscle();
     if (v === 'workout') wkEnter();
-    if (v === 'race') { renderRace(); celebrateFinishedRace(); }
     if (v === 'badges') renderBadges();
     if (v === 'stuck') enterStuck();
     if (v === 'stats') renderPrivate();
